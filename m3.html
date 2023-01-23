@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="powered-by" content="https://github.com/menduo/mdtree">
+    <title>Performing Basic System Management Tasks.</title>
+    <style>
+        #sidebar:hover,pre{overflow:auto}#footer,#footer a{color:#eee}body{padding:40px}#layout>header,.btns{width:auto}#sidebar{width:400px;height:100%;position:fixed;top:0;right:0;overflow:hidden;background:#fff;z-index:100;padding:18px;border:1px solid #ddd;border-top:none;border-bottom:none}#sidebar h1{font-size:16px}#sidebar a,#sidebar a:visited{color:#4183c4}#sidebar a:hover{font-size:120%;color:#1e90ff}#custom-toc-container{padding-left:0;padding-bottom:20px}#content-container{padding-left:0;padding-right:430px;margin:0}.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;padding:6px 10px;border-radius:3px}
+#footer{margin:30px auto 10px;}
+#generated-at{margin-top:30px;}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     /** code highliting start **/
+.codehilite .hll{background-color:#ffc}.codehilite{background:#f8f8f8}.codehilite .c{color:#408080;font-style:italic}.codehilite .err{border:1px solid red}.codehilite .k{color:green;font-weight:700}.codehilite .o{color:#666}.codehilite .ch,.codehilite .cm{color:#408080;font-style:italic}.codehilite .cp{color:#BC7A00}.codehilite .c1,.codehilite .cpf,.codehilite .cs{color:#408080;font-style:italic}.codehilite .gd{color:#A00000}.codehilite .ge{font-style:italic}.codehilite .gr{color:red}.codehilite .gh{color:navy;font-weight:700}.codehilite .gi{color:#00A000}.codehilite .go{color:#888}.codehilite .gp{color:navy;font-weight:700}.codehilite .gs{font-weight:700}.codehilite .gu{color:purple;font-weight:700}.codehilite .gt{color:#04D}.codehilite .kc,.codehilite .kd,.codehilite .kn{color:green;font-weight:700}.codehilite .kp{color:green}.codehilite .kr{color:green;font-weight:700}.codehilite .kt{color:#B00040}.codehilite .m{color:#666}.codehilite .s{color:#BA2121}.codehilite .na{color:#7D9029}.codehilite .nb{color:green}.codehilite .nc{color:#00F;font-weight:700}.codehilite .no{color:#800}.codehilite .nd{color:#A2F}.codehilite .ni{color:#999;font-weight:700}.codehilite .ne{color:#D2413A;font-weight:700}.codehilite .nf{color:#00F}.codehilite .nl{color:#A0A000}.codehilite .nn{color:#00F;font-weight:700}.codehilite .nt{color:green;font-weight:700}.codehilite .nv{color:#19177C}.codehilite .ow{color:#A2F;font-weight:700}.codehilite .w{color:#bbb}.codehilite .mb,.codehilite .mf,.codehilite .mh,.codehilite .mi,.codehilite .mo{color:#666}.codehilite .s2,.codehilite .sb,.codehilite .sc{color:#BA2121}.codehilite .sd{color:#BA2121;font-style:italic}.codehilite .se{color:#B62;font-weight:700}.codehilite .sh{color:#BA2121}.codehilite .si{color:#B68;font-weight:700}.codehilite .sx{color:green}.codehilite .sr{color:#B68}.codehilite .s1{color:#BA2121}.codehilite .ss{color:#19177C}.codehilite .bp{color:green}.codehilite .vc,.codehilite .vg,.codehilite .vi{color:#19177C}.codehilite .il{color:#666}
+
+/** code highliting end **/
+/** css from https://github.com/pandao/editor.md */
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format("woff");
+}
+.markdown-body hr:after,.markdown-body hr:before{display:table;content:""}.markdown-body ol,.markdown-body td,.markdown-body th,.markdown-body ul{padding:0}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#333;overflow:hidden;font-family:"Microsoft YaHei",Helvetica,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Monaco,monospace,Tahoma,STXihei,"åŽæ–‡ç»†é»‘",STHeiti,"Helvetica Neue","Droid Sans","wenquanyi micro hei",FreeSans,Arimo,Arial,SimSun,"å®‹ä½“",Heiti,"é»‘ä½“",sans-serif;font-size:16px;line-height:1.6;word-wrap:break-word}.markdown-body strong{font-weight:700}.markdown-body h1{margin:.67em 0}.markdown-body img{border:0}.markdown-body hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}.markdown-body input{color:inherit;margin:0;line-height:normal;font:13px/1.4 Helvetica,arial,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.markdown-body html input[disabled]{cursor:default}.markdown-body input[type=checkbox]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}.markdown-body *{-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body a{background:0 0;color:#4183c4;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline:0;text-decoration:underline}.markdown-body hr{margin:15px 0;overflow:hidden;background:0 0;border:0;border-bottom:1px solid #ddd}.markdown-body hr:after{clear:both}.markdown-body blockquote{margin:0}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body .task-list-item,li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}.markdown-body dd{margin-left:0}.markdown-body code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .octicon{font:normal normal 16px octicons-anchor;line-height:1;display:inline-block;text-decoration:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-body .octicon-link:before{content:'\f05c'}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body .anchor{position:absolute;top:0;left:0;display:block;padding-right:6px;padding-left:30px;margin-left:-30px}.markdown-body .anchor:focus{outline:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{position:relative;margin-top:1em;margin-bottom:16px;font-weight:700;line-height:1.4}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{display:none;color:#000;vertical-align:middle}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{padding-left:8px;margin-left:-30px;text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{display:inline-block}.markdown-body h1{font-size:2.25em;line-height:1.2}.markdown-body h1 .anchor{line-height:1}.markdown-body h2{font-size:1.75em;line-height:1.225}.markdown-body h2 .anchor{line-height:1}.markdown-body h3{font-size:1.5em;line-height:1.43}.markdown-body h3 .anchor,.markdown-body h4 .anchor{line-height:1.2}.markdown-body h4{font-size:1.25em}.markdown-body h5 .anchor,.markdown-body h6 .anchor{line-height:1.1}.markdown-body h5{font-size:1em}.markdown-body h6{font-size:1em;color:#777}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body blockquote{padding:0 15px;color:#777;border-left:4px solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;background-color:#f7f7f7;border-radius:3px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body pre code{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before{content:normal}.markdown-body .pl-c{color:#969896}.markdown-body .pl-c1,.markdown-body .pl-mdh,.markdown-body .pl-mm,.markdown-body .pl-mp,.markdown-body .pl-mr,.markdown-body .pl-s1 .pl-v,.markdown-body .pl-s3,.markdown-body .pl-sc,.markdown-body .pl-sv{color:#0086b3}.markdown-body .pl-e,.markdown-body .pl-en{color:#795da3}.markdown-body .pl-s1 .pl-s2,.markdown-body .pl-smi,.markdown-body .pl-smp,.markdown-body .pl-stj,.markdown-body .pl-vo,.markdown-body .pl-vpf{color:#333}.markdown-body .pl-ent{color:#63a35c}.markdown-body .pl-k,.markdown-body .pl-s,.markdown-body .pl-st{color:#a71d5d}.markdown-body .pl-pds,.markdown-body .pl-s1,.markdown-body .pl-s1 .pl-pse .pl-s2,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-src{color:#df5000}.markdown-body .pl-mo,.markdown-body .pl-v{color:#1d3e81}.markdown-body .pl-id{color:#b52a1d}.markdown-body .pl-ii{background-color:#b52a1d;color:#f8f8f8}.markdown-body .pl-sr .pl-cce{color:#63a35c;font-weight:700}.markdown-body .pl-ml{color:#693a17}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:#1d3e81;font-weight:700}.markdown-body .pl-mq{color:teal}.markdown-body .pl-mi{color:#333;font-style:italic}.markdown-body .pl-mb{color:#333;font-weight:700}.markdown-body .pl-md,.markdown-body .pl-mdhf{background-color:#ffecec;color:#bd2c00}.markdown-body .pl-mdht,.markdown-body .pl-mi1{background-color:#eaffea;color:#55a532}.markdown-body .pl-mdr{color:#795da3;font-weight:700}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{float:left;margin:.3em 0 .25em -1.6em;vertical-align:middle}.markdown-body :checked+.radio-label{z-index:1;position:relative;border-color:#4183c4}.editormd-html-preview,.editormd-preview-container{text-align:left;font-size:14px;line-height:1.6;padding:20px;overflow:auto;width:100%;background-color:#fff}.editormd-html-preview blockquote,.editormd-preview-container blockquote{color:#666;border-left:4px solid #ddd;padding-left:20px;margin-left:0;font-size:14px;font-style:italic}.editormd-html-preview p code,.editormd-preview-container p code{margin-left:5px;margin-right:4px}.editormd-html-preview abbr,.editormd-preview-container abbr{background:#ffd}.editormd-html-preview hr,.editormd-preview-container hr{height:1px;border:none;border-top:1px solid #ddd;background:0 0}.editormd-html-preview code,.editormd-preview-container code{border:1px solid #ddd;background:#f6f6f6;padding:3px;border-radius:3px;font-size:14px}.editormd-html-preview pre,.editormd-preview-container pre{border:1px solid #ddd;background:#f6f6f6;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px}.editormd-html-preview pre code,.editormd-preview-container pre code{padding:0}.editormd-html-preview code,.editormd-html-preview kbd,.editormd-html-preview pre,.editormd-preview-container code,.editormd-preview-container kbd,.editormd-preview-container pre{font-family:"YaHei Consolas Hybrid",Consolas,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,monospace,monospace}.editormd-html-preview table thead tr,.editormd-preview-container table thead tr{background-color:#F8F8F8}.editormd-html-preview p.editormd-tex,.editormd-preview-container p.editormd-tex{text-align:center}.editormd-html-preview span.editormd-tex,.editormd-preview-container span.editormd-tex{margin:0 5px}.editormd-html-preview .emoji,.editormd-preview-container .emoji{width:24px;height:24px}.editormd-html-preview .katex,.editormd-preview-container .katex{font-size:1.4em}.editormd-html-preview .flowchart,.editormd-html-preview .sequence-diagram,.editormd-preview-container .flowchart,.editormd-preview-container .sequence-diagram{margin:0 auto;text-align:center}.editormd-html-preview .flowchart svg,.editormd-html-preview .sequence-diagram svg,.editormd-preview-container .flowchart svg,.editormd-preview-container .sequence-diagram svg{margin:0 auto}.editormd-html-preview .flowchart text,.editormd-html-preview .sequence-diagram text,.editormd-preview-container .flowchart text,.editormd-preview-container .sequence-diagram text{font-size:15px!important;font-family:"YaHei Consolas Hybrid",Consolas,"Microsoft YaHei","Malgun Gothic","Segoe UI",Helvetica,Arial!important}/*! Pretty printing styles. Used with prettify.js. */.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.clo,.opn,.pun{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.kwd,.tag,.typ{font-weight:700}.str{color:#060}.kwd{color:#006}.com{color:#600;font-style:italic}.typ{color:#404}.lit{color:#044}.clo,.opn,.pun{color:#440}.tag{color:#006}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}.editormd-html-preview pre.prettyprint,.editormd-preview-container pre.prettyprint{padding:10px;border:1px solid #ddd;white-space:pre-wrap;word-wrap:break-word}.editormd-html-preview ol.linenums,.editormd-preview-container ol.linenums{color:#999;padding-left:2.5em}.editormd-html-preview ol.linenums li,.editormd-preview-container ol.linenums li{list-style-type:decimal}.editormd-html-preview ol.linenums li code,.editormd-preview-container ol.linenums li code{border:none;background:0 0;padding:0}.editormd-html-preview .editormd-toc-menu,.editormd-preview-container .editormd-toc-menu{margin:8px 0 12px;display:inline-block}.editormd-html-preview .editormd-toc-menu>.markdown-toc,.editormd-preview-container .editormd-toc-menu>.markdown-toc{position:relative;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;border:1px solid #ddd;display:inline-block;font-size:1em}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul{width:160%;min-width:180px;position:absolute;left:-1px;top:-2px;z-index:100;padding:0 10px 10px;display:none;background:#fff;border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li ul{width:100%;min-width:180px;border:1px solid #ddd;display:none;background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn:hover,.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a:hover,.editormd-preview-container .editormd-toc-menu .toc-menu-btn:hover,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a:hover{background-color:#f6f6f6}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a{color:#666;padding:6px 10px;display:block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu>.markdown-toc li,.editormd-preview-container .editormd-toc-menu>.markdown-toc li{position:relative}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul{position:absolute;top:32px;left:10%;display:none;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{pointer-events:pointer-events;position:absolute;left:15px;top:-6px;display:block;content:"";width:0;height:0;border:6px solid transparent;border-width:0 6px 6px;z-index:10}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{border-bottom-color:#ccc}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after{border-bottom-color:#fff;top:-5px}.editormd-html-preview .editormd-toc-menu ul,.editormd-preview-container .editormd-toc-menu ul{list-style:none}.editormd-html-preview .editormd-toc-menu a,.editormd-preview-container .editormd-toc-menu a{text-decoration:none}.editormd-html-preview .editormd-toc-menu h1,.editormd-preview-container .editormd-toc-menu h1{font-size:16px;padding:5px 0 10px 10px;line-height:1;border-bottom:1px solid #eee}.editormd-html-preview .editormd-toc-menu h1 .fa,.editormd-preview-container .editormd-toc-menu h1 .fa{padding-left:10px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn,.editormd-preview-container .editormd-toc-menu .toc-menu-btn{color:#666;min-width:180px;padding:5px 10px;border-radius:4px;display:inline-block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu .toc-menu-btn .fa,.editormd-preview-container .editormd-toc-menu .toc-menu-btn .fa{float:right;padding:3px 0 0 10px;font-size:1.3em}.markdown-body .editormd-toc-menu ul{padding-left:0}.markdown-body .highlight pre,.markdown-body pre{line-height:1.6}hr.editormd-page-break{border:1px dotted #ccc;font-size:0;height:2px}@media only print{hr.editormd-page-break{background:0 0;border:none;height:0}}.editormd-html-preview textarea{display:none}.editormd-html-preview hr.editormd-page-break{background:0 0;border:none;height:0}.editormd-preview-close-btn{color:#fff;padding:4px 6px;font-size:18px;-webkit-border-radius:500px;-moz-border-radius:500px;-ms-border-radius:500px;-o-border-radius:500px;border-radius:500px;display:none;background-color:#ccc;position:absolute;top:25px;right:35px;z-index:19;-webkit-transition:background-color .3s ease-out;-moz-transition:background-color .3s ease-out;transition:background-color .3s ease-out}.editormd-preview-close-btn:hover{background-color:#999}.editormd-preview-active{width:100%;padding:40px}
+
+
+
+    </style>
+    
+</head>
+<body>
+<div id="layout">
+        <div id="sidebar">
+            <h1>Table of Contents</h1>
+            <div id="custom-toc-container">
+                <div class="toc">
+<ul>
+<li><a href="#performing-basic-system-management-tasks">Performing Basic System Management Tasks.</a></li>
+<li><a href="#using-essential-file-management-tools">Using Essential File Management Tools.</a><ul>
+<li><a href="#the-filesystem-hierarchy-standard-fhs">The Filesystem Hierarchy Standard (FHS)</a><ul>
+<li><a href="#bin">/bin</a></li>
+<li><a href="#sbin">/sbin</a></li>
+<li><a href="#boot">/boot</a></li>
+<li><a href="#home">/home</a></li>
+<li><a href="#dev">/dev</a></li>
+<li><a href="#etc">/etc</a></li>
+<li><a href="#lib">/lib</a></li>
+<li><a href="#media">/media</a></li>
+<li><a href="#mnt">/mnt</a></li>
+<li><a href="#tmp">/tmp</a></li>
+<li><a href="#proc">/proc</a></li>
+<li><a href="#sys">/sys</a></li>
+<li><a href="#srv">/srv</a></li>
+<li><a href="#run">/run</a></li>
+<li><a href="#usr">/usr</a></li>
+<li><a href="#var">/var</a></li>
+</ul>
+</li>
+<li><a href="#finding-files">Finding Files</a></li>
+<li><a href="#mounting-filesystems">Mounting Filesystems</a></li>
+<li><a href="#using-links">Using links</a></li>
+<li><a href="#archiving-files-and-working-with-compressed-files">Archiving Files and Working with Compressed files</a></li>
+</ul>
+</li>
+<li><a href="#managing-text-files">Managing Text Files</a><ul>
+<li><a href="#lab">LAB</a></li>
+</ul>
+</li>
+<li><a href="#using-root-privileges">Using ROOT Privileges</a><ul>
+<li><a href="#understanding-the-root-user">Understanding the root user</a></li>
+<li><a href="#su-command">su command</a></li>
+<li><a href="#using-sudo-command">Using sudo command</a></li>
+<li><a href="#managing-sudo-configuration">Managing sudo configuration</a></li>
+<li><a href="#using-ssh-to-log-in-remotely">Using SSH to Log In Remotely</a></li>
+<li><a href="#lab_1">LAB</a></li>
+</ul>
+</li>
+<li><a href="#managing-users-and-groups">Managing Users and Groups</a><ul>
+<li><a href="#setting-user-properties">Setting User Properties</a></li>
+<li><a href="#creating-and-managing-users">Creating and Managing Users</a></li>
+<li><a href="#defining-user-default-settings">Defining User Default Settings</a></li>
+<li><a href="#limiting-user-access">Limiting User Access</a></li>
+<li><a href="#managing-group-membership">Managing Group Membership</a></li>
+<li><a href="#creating-and-managing-groups">Creating and Managing Groups</a></li>
+<li><a href="#setting-password-properties">Setting Password Properties</a></li>
+<li><a href="#lab_2">LAB</a></li>
+</ul>
+</li>
+<li><a href="#securing-files-with-permissions">Securing Files With Permissions</a><ul>
+<li><a href="#understanding-ownership">Understanding Ownership</a></li>
+<li><a href="#change-file-ownerhsip">Change File Ownerhsip</a></li>
+<li><a href="#understanding-basic-permissions">Understanding Basic Permissions</a><ul>
+<li><a href="#special-x">Special X</a></li>
+</ul>
+</li>
+<li><a href="#managing-basic-permissions">Managing Basic Permissions</a></li>
+<li><a href="#configuring-shared-group-directories">Configuring Shared Group Directories</a></li>
+<li><a href="#understand-umask">Understand umask</a></li>
+</ul>
+</li>
+<li><a href="#managing-network-configuration">Managing Network Configuration</a><ul>
+<li><a href="#exploring-ipv6-networking">Exploring IPv6 networking</a></li>
+<li><a href="#understanding-nic-naming">Understanding NIC naming</a></li>
+<li><a href="#defining-host-name-and-host-name-resolution">Defining Host name and Host name resolution</a></li>
+<li><a href="#analyzing-network-config">Analyzing Network config</a></li>
+<li><a href="#understanding-network-manager">Understanding Network Manager</a></li>
+<li><a href="#network-troubleshooting">Network Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </div>
+        </div>
+        <div id="content-container">
+            <div class="markdown-body markdown-content">
+                <h1 id="performing-basic-system-management-tasks">Performing Basic System Management Tasks.</h1>
+<hr />
+<p><strong><a href="m3.html">Module 3</a> <a href="m4.html">Module 4</a> <a href="m5.html">Module 5</a> <a href="m6.html">Module 6</a> <a href="m7.html">Module 7</a></strong></p>
+<hr />
+<h1 id="using-essential-file-management-tools">Using Essential File Management Tools.</h1>
+<h2 id="the-filesystem-hierarchy-standard-fhs">The Filesystem Hierarchy Standard (FHS)</h2>
+<ul>
+<li>Directory usage on Linux is highly standardized.</li>
+<li>Standard directories are defined in the FHS which is maintained by Linux Foundation.</li>
+<li>The starting point of the filesystem is the root (<code>/</code>) directory.</li>
+<li>Different devices may be integrated in the filesystem by using mounts.</li>
+<li><code>man hier</code> will show the man page for FHS.</li>
+</ul>
+<h4 id="bin"><code>/bin</code></h4>
+<ul>
+<li>contains binaries or user executable files which are available to all users.</li>
+</ul>
+<h4 id="sbin"><code>/sbin</code></h4>
+<ul>
+<li>contains applications that only the superuser (hence the initial s) will need.</li>
+</ul>
+<h4 id="boot"><code>/boot</code></h4>
+<ul>
+<li>contains files required for starting your system.</li>
+</ul>
+<h4 id="home"><code>/home</code></h4>
+<ul>
+<li>where you find user's home directories. Under this directory, there is another directory for each user, if that particular user has a home directory.</li>
+</ul>
+<blockquote>
+<p>Note: root has it's home directory seprated from the rest of the users home directories and is <strong>/root</strong></p>
+</blockquote>
+<h4 id="dev"><code>/dev</code></h4>
+<ul>
+<li>contains device files.</li>
+</ul>
+<h4 id="etc"><code>/etc</code></h4>
+<ul>
+<li>contains most if not all system-wide config files.</li>
+</ul>
+<h4 id="lib"><code>/lib</code></h4>
+<ul>
+<li>contains shared library fiels used by different applications.</li>
+</ul>
+<h4 id="media"><code>/media</code></h4>
+<ul>
+<li>it is used for external storage and mostly is auto mounted.</li>
+</ul>
+<h4 id="mnt"><code>/mnt</code></h4>
+<ul>
+<li>it like /media but not used often these days.</li>
+</ul>
+<h4 id="tmp"><code>/tmp</code></h4>
+<ul>
+<li>contains temporary files, usually saved there by applications that are running. Non priv users may also store files here temporarily.</li>
+</ul>
+<h4 id="proc"><code>/proc</code></h4>
+<ul>
+<li>it is a virutal directory. It contains info about your computer hardware, such as cpu info, RAM memory, kernel etc. The files and directories are generated when your system starts, or on the fly, as your system is running and things change.</li>
+</ul>
+<h4 id="sys"><code>/sys</code></h4>
+<ul>
+<li>contains info about devices, drivers, and some kernel features.</li>
+</ul>
+<h4 id="srv"><code>/srv</code></h4>
+<ul>
+<li>contains data for servers.</li>
+</ul>
+<h4 id="run"><code>/run</code></h4>
+<ul>
+<li>It is a temporary filesystem that runs in RAM.</li>
+</ul>
+<h4 id="usr"><code>/usr</code></h4>
+<ul>
+<li>contains many other sub directories binaries files, shared libraries and so on. On some distro like CentOS many commands are saved in /usr/bin and /usr/sbin instead of /bin and /sbin</li>
+</ul>
+<h4 id="var"><code>/var</code></h4>
+<ul>
+<li>it typically contains variable length files such as logs which are files that register events that happen on the system.</li>
+</ul>
+<h2 id="finding-files">Finding Files</h2>
+<ul>
+<li><code>which</code> looks for binaries in $PATH.</li>
+<li><code>locate</code> uses a database, built by <code>updatedb</code> to find files in a database.</li>
+<li>
+<p><code>find</code> is the most flexible tool that allows you to find files based on many criteria</p>
+</li>
+<li>
+<p><strong>Examples</strong></p>
+</li>
+<li>Finding files in <code>/etc</code> that have a size of more than 1k, and have the word student in them:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># find /etc -size +1k -exec grep -l &quot;student&quot; {} \; 2&gt; /dev/null</span>
+/etc/passwd-
+/etc/shadow-
+/etc/passwd
+/etc/shadow
+/etc/security/limits.conf
+</pre></div>
+
+
+<ul>
+<li><code>\;</code> is used to seprate bash commands. <code>-exec</code> is used to run a bash command based on the output of the find command.</li>
+<li>Finding files in <code>/etc</code> that have a size of more than 1k, and have the word student in them and then copying those files in a directory find/contents</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ mkdir -p find/contents<span class="p">;</span> find /etc -size +1k -exec grep -l student <span class="o">{}</span> <span class="se">\;</span> -exec cp <span class="o">{}</span> find/contents/ <span class="se">\;</span> <span class="m">2</span>&gt;/dev/null
+</pre></div>
+
+
+<ul>
+<li>Command to show all files that contain the string "127.0.0.1" in <code>/etc/</code>.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># find /etc/ -type f -name &quot;*&quot; | xargs  grep &quot;127.0.0.1&quot;</span>
+/etc/hosts:127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+/etc/samba/lmhosts:127.0.0.1 localhost
+/etc/security/access.conf:#+:root:127.0.0.1
+/etc/speech-dispatcher/modules/ivona.conf:#IvonaServerHost <span class="s2">&quot;127.0.0.1&quot;</span>
+/etc/dnsmasq.conf:#address<span class="o">=</span>/double-click.net/127.0.0.1
+/etc/dnsmasq.conf:# Or which to listen on by address <span class="o">(</span>remember to include <span class="m">127</span>.0.0.1 <span class="k">if</span>
+</pre></div>
+
+
+<h2 id="mounting-filesystems">Mounting Filesystems</h2>
+<ul>
+<li>Mounting: connecting a device to a directory to use it.</li>
+<li>Different types of data typically are on different devices for multiple reasons</li>
+<li>security</li>
+<li>manageability</li>
+<li>
+<p>specific mount options</p>
+</li>
+<li>
+<p><code>mount /dev/devicename /directory</code> to mount device to directory.</p>
+</li>
+<li><code>findmnt</code> shows all currently mounted devices.</li>
+<li><code>lsblk</code> shows all list block devices</li>
+<li><code>umount /directory</code> unmounts a device from directory.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># findmnt</span>
+TARGET                       SOURCE         FSTYPE      OPTIONS
+/                            /dev/mapper/rhel-root
+│                                           xfs         rw,relatime,seclabel,attr2,inode64,logbufs<span class="o">=</span><span class="m">8</span>,logbsize<span class="o">=</span>32k,noquota
+├─/proc                      proc           proc        rw,nosuid,nodev,noexec,relatime
+│ └─/proc/sys/fs/binfmt_misc systemd-1      autofs      rw,relatime,fd<span class="o">=</span><span class="m">31</span>,pgrp<span class="o">=</span><span class="m">1</span>,timeout<span class="o">=</span><span class="m">0</span>,minproto<span class="o">=</span><span class="m">5</span>,maxproto<span class="o">=</span><span class="m">5</span>,direct,pipe_ino<span class="o">=</span>
+├─/sys                       sysfs          sysfs       rw,nosuid,nodev,noexec,relatime,seclabel
+│ ├─/sys/kernel/security     securityfs     securityfs  rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/fs/cgroup           cgroup2        cgroup2     rw,nosuid,nodev,noexec,relatime,seclabel,nsdelegate,memory_recursiveprot
+│ ├─/sys/fs/pstore           pstore         pstore      rw,nosuid,nodev,noexec,relatime,seclabel
+│ ├─/sys/fs/bpf              none           bpf         rw,nosuid,nodev,noexec,relatime,mode<span class="o">=</span><span class="m">700</span>
+│ ├─/sys/fs/selinux          selinuxfs      selinuxfs   rw,nosuid,noexec,relatime
+│ ├─/sys/kernel/debug        debugfs        debugfs     rw,nosuid,nodev,noexec,relatime,seclabel
+│ ├─/sys/kernel/tracing      tracefs        tracefs     rw,nosuid,nodev,noexec,relatime,seclabel
+│ ├─/sys/kernel/config       configfs       configfs    rw,nosuid,nodev,noexec,relatime
+│ └─/sys/fs/fuse/connections fusectl        fusectl     rw,nosuid,nodev,noexec,relatime
+├─/dev                       devtmpfs       devtmpfs    rw,nosuid,seclabel,size<span class="o">=</span>1861896k,nr_inodes<span class="o">=</span><span class="m">465474</span>,mode<span class="o">=</span><span class="m">755</span>,inode64
+│ ├─/dev/shm                 tmpfs          tmpfs       rw,nosuid,nodev,seclabel,inode64
+│ ├─/dev/pts                 devpts         devpts      rw,nosuid,noexec,relatime,seclabel,gid<span class="o">=</span><span class="m">5</span>,mode<span class="o">=</span><span class="m">620</span>,ptmxmode<span class="o">=</span><span class="m">000</span>
+│ ├─/dev/hugepages           hugetlbfs      hugetlbfs   rw,relatime,seclabel,pagesize<span class="o">=</span>2M
+│ └─/dev/mqueue              mqueue         mqueue      rw,nosuid,nodev,noexec,relatime,seclabel
+├─/run                       tmpfs          tmpfs       rw,nosuid,nodev,seclabel,size<span class="o">=</span>757108k,nr_inodes<span class="o">=</span><span class="m">819200</span>,mode<span class="o">=</span><span class="m">755</span>,inode64
+│ ├─/run/vmblock-fuse        vmware-vmblock fuse.vmware rw,relatime,user_id<span class="o">=</span><span class="m">0</span>,group_id<span class="o">=</span><span class="m">0</span>,default_permissions,allow_other
+│ ├─/run/user/1000           tmpfs          tmpfs       rw,nosuid,nodev,relatime,seclabel,size<span class="o">=</span>378552k,nr_inodes<span class="o">=</span><span class="m">94638</span>,mode<span class="o">=</span><span class="m">700</span>,u
+│ │ └─/run/user/1000/gvfs    gvfsd-fuse     fuse.gvfsd- rw,nosuid,nodev,relatime,user_id<span class="o">=</span><span class="m">1000</span>,group_id<span class="o">=</span><span class="m">1000</span>
+│ └─/run/media/student/RHEL-9-0-0-BaseOS-x86_64
+│                            /dev/sr0       iso9660     ro,nosuid,nodev,relatime,nojoliet,check<span class="o">=</span>s,map<span class="o">=</span>n,blocksize<span class="o">=</span><span class="m">2048</span>,uid<span class="o">=</span><span class="m">1000</span>,g
+└─/boot                      /dev/nvme0n1p1 xfs         rw,relatime,seclabel,attr2,inode64,logbufs<span class="o">=</span><span class="m">8</span>,logbsize<span class="o">=</span>32k,noquota
+<span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># </span>
+<span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># </span>
+<span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># lsblk</span>
+NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sr0            <span class="m">11</span>:0    <span class="m">1</span>  <span class="m">7</span>.9G  <span class="m">0</span> rom  /run/media/student/RHEL-9-0-0-BaseOS-x86_64
+nvme0n1       <span class="m">259</span>:0    <span class="m">0</span>   20G  <span class="m">0</span> disk 
+├─nvme0n1p1   <span class="m">259</span>:1    <span class="m">0</span>    1G  <span class="m">0</span> part /boot
+└─nvme0n1p2   <span class="m">259</span>:2    <span class="m">0</span>   19G  <span class="m">0</span> part 
+  ├─rhel-root <span class="m">253</span>:0    <span class="m">0</span>   17G  <span class="m">0</span> lvm  /
+  └─rhel-swap <span class="m">253</span>:1    <span class="m">0</span>    2G  <span class="m">0</span> lvm  <span class="o">[</span>SWAP<span class="o">]</span>
+<span class="o">[</span>root@localhost tmp<span class="o">]</span><span class="c1"># </span>
+</pre></div>
+
+
+<h2 id="using-links">Using links</h2>
+<ul>
+<li><code>ln /original/file createdHardLink</code> creates hardlinks.</li>
+<li><code>ln -s /original/file createdSymLink</code> creates symbolic links.</li>
+</ul>
+<h2 id="archiving-files-and-working-with-compressed-files">Archiving Files and Working with Compressed files</h2>
+<ul>
+<li><strong>The <code>tar</code> command</strong>.</li>
+<li>Can be used compress, extract or list</li>
+<li><code>tar -cvf my_archive.tar /folder1 /folder2</code> to create an archive</li>
+<li><code>tar -tvf archive</code> will show contents of an archive.</li>
+<li>
+<p><code>tar -xvf archive</code> extracts contents of an archive.</p>
+</li>
+<li>
+<p>To create archive not in pwd, use <code>-C</code>.</p>
+</li>
+<li>
+<p>To add compression, use <code>-z</code>, <code>-j</code>, <code>-J</code>, before <code>f</code>.</p>
+</li>
+<li>
+<p>A wide range of compression solutions is available for linux.</p>
+</li>
+<li><strong>gzip</strong> (-z) is still the most common compression utility.</li>
+<li><strong>bzip2</strong> (j) is an alternate utility.</li>
+<li>zip is also available and has windows compatible syntax.</li>
+<li><strong>xz</strong> (-J) is showing up more often as well.</li>
+</ul>
+<hr />
+<h1 id="managing-text-files">Managing Text Files</h1>
+<ol>
+<li><code>cat</code> command:</li>
+<li>dumps text file contents on screen.</li>
+<li><code>-A</code> shows all non-printable characters</li>
+<li><code>-b</code> shows line numbers.</li>
+<li>
+<p><code>-s</code> suppresses repeated empty lines</p>
+</li>
+<li>
+<p><code>tac</code> command:</p>
+</li>
+<li>opposite of the <code>cat</code> command.</li>
+<li>displays from the last line to the first.</li>
+<li>propably the least used command in linux.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ tac /etc/passwd <span class="p">|</span> head -1
+anna:x:1001:1001::/home/anna:/bin/bash
+<span class="o">[</span>student@localhost ~<span class="o">]</span>$ cat /etc/passwd <span class="p">|</span> tail -1
+anna:x:1001:1001::/home/anna:/bin/bash
+</pre></div>
+
+
+<ol>
+<li><code>tr</code> command</li>
+<li>most common use: upper case to lower case and vice versa.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> hello <span class="p">|</span> tr a-z A-Z
+HELLO
+<span class="o">[</span>student@localhost ~<span class="o">]</span>$ <span class="nb">echo</span> hello <span class="p">|</span> tr <span class="o">[</span>:lower:<span class="o">]</span> <span class="o">[</span>:upper:<span class="o">]</span>
+HELLO
+</pre></div>
+
+
+<ol>
+<li><code>grep</code> command</li>
+<li><code>-R</code> recursive search.</li>
+<li><code>-A 5 -B 5</code> show 5 lines below and after the matched pattern.</li>
+<li>
+<p><code>-v</code> don't show lines that match the pattern.</p>
+</li>
+<li>
+<p><code>awk</code> command</p>
+</li>
+<li>used for data extraction and reporting.</li>
+<li>actions performed based on selectors.</li>
+<li>useful examples are as folow</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ awk -F : <span class="s1">&#39;{ print $3 }&#39;</span> /etc/passwd <span class="p">|</span> tail -3
+<span class="m">978</span>
+<span class="m">1000</span>
+<span class="m">1001</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ awk -F : <span class="s1">&#39;/student/ { print $3 } &#39;</span> /etc/passwd 
+<span class="m">1000</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ awk -F : <span class="s1">&#39;{ print $NF }&#39;</span> /etc/passwd <span class="p">|</span> tail -3
+/usr/sbin/nologin
+/bin/bash
+/bin/bash
+</pre></div>
+
+
+<ul>
+<li>
+<p>the <code>$NF</code> corresponds to list the element in the line.</p>
+</li>
+<li>
+<p><code>sed</code> commnd</p>
+</li>
+<li>stream editor, to search and transform text.</li>
+<li>used to search for a text, and perform an operation on matching text.</li>
+<li>displaying the 5th line in /etc/passwd <code>sed -n 5p /etc/passwd</code>.</li>
+<li>replacing all occurence of the word 'boot' with 'beet' in users.txt <code>sed -i s/boot/beet/g users.txt</code> here <code>g</code> means global (replace all findings).</li>
+<li>deleting line no 10 in users.txt <code>sed -i -e '10d' users</code></li>
+</ul>
+<h2 id="lab"><strong>LAB</strong></h2>
+<ol>
+<li>Use head and tail to display the fifth line of /etc/passwd</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ head -5 /etc/passwd <span class="p">|</span> tail -1
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+</pre></div>
+
+
+<ol>
+<li>Use sed to display the 5th line of the /etc/passwd</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ sed -n 5p /etc/passwd
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+</pre></div>
+
+
+<ol>
+<li>Use awk in a pipe to filter the last column out of the results of the command ps aux.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ ps aux <span class="p">|</span> awk <span class="s1">&#39; { print $NF } &#39;</span>
+COMMAND
+<span class="m">31</span>
+<span class="o">[</span>kthreadd<span class="o">]</span>
+<span class="o">[</span>rcu_gp<span class="o">]</span>
+<span class="o">[</span>rcu_par_gp<span class="o">]</span>
+<span class="o">[</span>kworker/0:0H-events_highpri<span class="o">]</span>
+<span class="o">[</span>mm_percpu_wq<span class="o">]</span>
+<span class="o">[</span>rcu_tasks_kthre<span class="o">]</span>
+<span class="o">[</span>rcu_tasks_rude_<span class="o">]</span>
+<span class="o">[</span>rcu_tasks_trace<span class="o">]</span>
+</pre></div>
+
+
+<ol>
+<li>Use grep to show the names of all files in /etc that have line that contain the text 'root'as word</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@localhost ~<span class="o">]</span>$ sudo grep -R <span class="s1">&#39;root\b&#39;</span> /etc
+/etc/mtab:/dev/mapper/rhel-root / xfs rw,seclabel,relatime,attr2,inode64,logbufs<span class="o">=</span><span class="m">8</span>,logbsize<span class="o">=</span>32k,noquota <span class="m">0</span> <span class="m">0</span>
+/etc/fstab:/dev/mapper/rhel-root   /                       xfs     defaults        <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+
+
+<ol>
+<li>Use grep to show all lines from all files in /etc that contain exactly 3 characters</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost etc<span class="o">]</span><span class="c1"># grep -E  &#39;^.{3}$&#39; * 2&gt;/dev/null</span>
+adjtime:UTC
+filesystems:hfs
+krb5.conf:# <span class="o">}</span>
+mailcap:###
+sudoers:## 
+wgetrc:###
+wgetrc:###
+</pre></div>
+
+
+<ol>
+<li>Use grep to find all files that contain the string "alex", but make sure that "alexander" is not included in the result.</li>
+</ol>
+<div class="codehilite"><pre><span></span>grep <span class="s1">&#39;\balex\b&#39;</span> file
+</pre></div>
+
+
+<hr />
+<h1 id="using-root-privileges">Using ROOT Privileges</h1>
+<h2 id="understanding-the-root-user">Understanding the root user</h2>
+<ul>
+<li>In UNIX, a user account with UID 0 exits to perform adminstrative tasks.</li>
+<li>On linux, this user by default is named root.</li>
+<li>
+<p>The root user operates in the kernel space and for that reason, has unlimited access to all parts fo the system.</p>
+</li>
+<li>
+<p>While installing RHEL 9, the root user can be activated or not.</p>
+</li>
+<li>If the root user is not activated, the adminstrative user is used for admin tasks.</li>
+<li>To activate the root user, you'll just have to set a password</li>
+<li>From a security perspective, it may be a good idea not to have an active root user.</li>
+<li>Additional measuers are possible to restrict root user access to a system.</li>
+<li>Remote root login using secure shell (SSH) can be allowed or not</li>
+</ul>
+<h2 id="su-command"><code>su</code> command</h2>
+<ul>
+<li>Using <code>su</code> to switch to root shell is considered bad practice. use <code>sudo -i</code> instead.</li>
+</ul>
+<h2 id="using-sudo-command">Using <code>sudo</code> command</h2>
+<ul>
+<li>sudo is a more secure mechanism to perform adminstration tasks.</li>
+<li>Behind sudo is the /etc/sudoers config file.</li>
+<li>While editing /etc/sudoers through <strong>visudo</strong> very detailed adminstration privileges can be assigned.</li>
+<li>To run an adminstration taks using sudo, use sudo command.</li>
+<li>This will prompt for the current user password and run the command if this is allowed through /etc/sudoers</li>
+<li>To open a root shell, <code>sudo -i</code> can be used.</li>
+</ul>
+<h2 id="managing-sudo-configuration">Managing sudo configuration</h2>
+<ul>
+<li>sudo config is in /etc/sudoers.</li>
+<li>should not be edited directly, use visudo, as it also does some checks on the sudoers file.</li>
+<li>instead of editing /etc/sudoers, create and drop in files in /etc/sudoers.d</li>
+<li>
+<p>/etc/sudoers is installed from packages and may be overwritten, drop-in files never be overwritten.</p>
+</li>
+<li>
+<p>In RHEL, users that are members of <strong>wheel</strong> group get full sudo access.</p>
+</li>
+<li>Accomplished by the following line <code>%wheel ALL=(ALL) ALL</code> in /etc/sudoers.</li>
+<li>Use <code>usermod -aG wheel user</code> to add user to wheel group.</li>
+<li><strong>Do NOT</strong> enable the line <code>%wheel ALL=(ALL) NOPASSWD: ALL</code></li>
+<li>it provides full sudo access without using a passowrd!.</li>
+<li>
+<p>Use the following line, to increase the authentication token expiration:</p>
+<ul>
+<li><code>Defaults timestamp_type=global, timestamp_timeout=60</code></li>
+</ul>
+</li>
+<li>
+<p>Use drop-in files to provide admin access to specific tasks</p>
+</li>
+<li><code>lisa ALL=/sbin/useradd, /usr/bin/passwd</code></li>
+<li>Consider using command arguments to make the commands more specific</li>
+<li><code>%users ALL=/bin/mount /dev/sdb, /bin/umount, /dev/sdb</code></li>
+<li><code>linda ALL=/usr/bin/passwd, ! /usr/bin/passwd root</code></li>
+</ul>
+<h2 id="using-ssh-to-log-in-remotely">Using SSH to Log In Remotely</h2>
+<ul>
+<li>By default all RHEL server run SSH.</li>
+<li><code>systemctl status sshd</code> to verify</li>
+<li>access is allowed through firewall by default.</li>
+<li><strong>Root access is oftenly denied</strong></li>
+<li>syntax to ssh: <code>ssh ip@username</code></li>
+</ul>
+<h2 id="lab_1"><strong>LAB</strong></h2>
+<ul>
+<li>Use <code>useradd linda</code> to create a user linda. Create a sudo configuration, that allows linda to perform common user mgt taks</li>
+<li>Allow using useradd, usermod, userdel</li>
+<li>
+<p>Allow changing passwords, but not password for root user.</p>
+</li>
+<li>
+<p>Ensure the the user needs to enter a password for sudo operations every 60 minutes</p>
+</li>
+</ul>
+<hr />
+<h1 id="managing-users-and-groups">Managing Users and Groups</h1>
+<ul>
+<li>A user is a security priniciple, user accounts are used to provide people or processes access to system resources.</li>
+<li>Processes are using system accounts.</li>
+<li>People are using regular user accounts.</li>
+</ul>
+<h2 id="setting-user-properties">Setting User Properties</h2>
+<ul>
+<li>User properties are managed in /etc/passwd</li>
+<li><strong>Name</strong>: the name of the account</li>
+<li><strong>Password</strong>: the users's password, may be disabled.</li>
+<li><strong>UID</strong>: user id.</li>
+<li><strong>GID</strong>: primary group id.</li>
+<li><strong>GECOS</strong>: additional non-mandatory infor about the user.</li>
+<li><strong>Home directory</strong>: the env where users create personal files.</li>
+<li><strong>Shell</strong>: the program that will be started after successful authentication.</li>
+</ul>
+<div class="codehilite"><pre><span></span>systemd-oom:x:978:978:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+
+student:x:1000:1000:student:/home/student:/bin/bash
+</pre></div>
+
+
+<h2 id="creating-and-managing-users">Creating and Managing Users</h2>
+<ul>
+<li><code>useradd</code> create user accounts.</li>
+<li><code>usermod</code> modify user accounts.</li>
+<li><code>userdel</code> delete user accounts.</li>
+<li>
+<p><code>passwd</code> set passwords</p>
+</li>
+<li>
+<p>useradd help</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># useradd --help</span>
+Usage: useradd <span class="o">[</span>options<span class="o">]</span> LOGIN
+       useradd -D
+       useradd -D <span class="o">[</span>options<span class="o">]</span>
+
+Options:
+      --badnames                <span class="k">do</span> not check <span class="k">for</span> bad names
+  -b, --base-dir BASE_DIR       base directory <span class="k">for</span> the home directory of the
+                                new account
+      --btrfs-subvolume-home    use BTRFS subvolume <span class="k">for</span> home directory
+  -c, --comment COMMENT         GECOS field of the new account
+  -d, --home-dir HOME_DIR       home directory of the new account
+  -D, --defaults                print or change default useradd configuration
+  -e, --expiredate EXPIRE_DATE  expiration date of the new account
+  -f, --inactive INACTIVE       password inactivity period of the new account
+  -g, --gid GROUP               name or ID of the primary group of the new
+                                account
+  -G, --groups GROUPS           list of supplementary groups of the new
+                                account
+  -h, --help                    display this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -k, --skel SKEL_DIR           use this alternative skeleton directory
+  -K, --key <span class="nv">KEY</span><span class="o">=</span>VALUE           override /etc/login.defs defaults
+  -l, --no-log-init             <span class="k">do</span> not add the user to the lastlog and
+                                faillog databases
+  -m, --create-home             create the user<span class="s1">&#39;s home directory</span>
+<span class="s1">  -M, --no-create-home          do not create the user&#39;</span>s home directory
+  -N, --no-user-group           <span class="k">do</span> not create a group with the same name as
+                                the user
+  -o, --non-unique              allow to create users with duplicate
+                                <span class="o">(</span>non-unique<span class="o">)</span> UID
+  -p, --password PASSWORD       encrypted password of the new account
+  -r, --system                  create a system account
+  -R, --root CHROOT_DIR         directory to chroot into
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -s, --shell SHELL             login shell of the new account
+  -u, --uid UID                 user ID of the new account
+  -U, --user-group              create a group with the same name as the user
+  -Z, --selinux-user SEUSER     use a specific SEUSER <span class="k">for</span> the SELinux user mapping
+</pre></div>
+
+
+<ul>
+<li>Creating user lori, with shell nologin, and uid 2000</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># useradd lori -u 2000 -s /sbin/nologin</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># grep lori /etc/passwd</span>
+lori:x:2000:2000::/home/lori:/sbin/nologin
+</pre></div>
+
+
+<ul>
+<li>userdel help</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># userdel --help</span>
+Usage: userdel <span class="o">[</span>options<span class="o">]</span> LOGIN
+
+Options:
+  -f, --force                   force some actions that would fail otherwise
+                                e.g. removal of user still logged <span class="k">in</span>
+                                or files, even <span class="k">if</span> not owned by the user
+  -h, --help                    display this <span class="nb">help</span> message and <span class="nb">exit</span>
+  -r, --remove                  remove home directory and mail spool
+  -R, --root CHROOT_DIR         directory to chroot into
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -Z, --selinux-user            remove any SELinux user mapping <span class="k">for</span> the user
+</pre></div>
+
+
+<ul>
+<li>deleting lori user</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c1"># userdel -rf lori</span>
+</pre></div>
+
+
+<h2 id="defining-user-default-settings">Defining User Default Settings</h2>
+<ul>
+<li>Use <code>useradd -D</code> to specify default settings.</li>
+<li>Settings in <strong>/etc/default/useradd</strong> apply to useradd only. Thus no need to edit this file.</li>
+<li>Alternatively, write default settings to <strong>/etc/login.defs</strong></li>
+<li>Files in <strong>/etc/skel</strong> are created to the user home directory upon creation.</li>
+</ul>
+<p><a href="sample_login_defs.md">/etc/login.defs sample</a></p>
+<h2 id="limiting-user-access">Limiting User Access</h2>
+<ul>
+<li>User accounts can be temporarily locked.</li>
+<li><code>usermod -L anna</code> will lock anna.</li>
+<li>
+<p><code>usermod -U anna</code> will unlock anna.</p>
+</li>
+<li>
+<p>User accounts can be set to expire as well,</p>
+</li>
+<li>
+<p><code>usermod -e 2032-01-01 bill</code> expires user account bill on 01-01-2032.</p>
+</li>
+<li>
+<p>Set <strong>/sbin/nologin</strong> as the shell for users that are not intended to log in at all.</p>
+</li>
+<li><code>usermod -s /sbin/nologin myapp</code>.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># usermod -L anna</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># passwd -S anna</span>
+anna LK <span class="m">2022</span>-10-25 <span class="m">0</span> <span class="m">99999</span> <span class="m">7</span> -1 <span class="o">(</span>Password locked.<span class="o">)</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># grep anna /etc/shadow</span>
+anna:!<span class="nv">$6$khbk4y5PmsuOxJkw$DIYOU</span>/56NAI/l7JoQ9Rr35s/ij3cj1nFnqQ7j5diSyh000hSSmIrH4/QaXjJcVBvT5cJ37gG5HONg0kD6h4qn/:19291:0:99999:7:::
+</pre></div>
+
+
+<ul>
+<li>The <code>!</code> before the password string in /etc/shadow indicates that it's password is locked.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># usermod -U anna</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># passwd -S anna</span>
+anna PS <span class="m">2022</span>-10-25 <span class="m">0</span> <span class="m">99999</span> <span class="m">7</span> -1 <span class="o">(</span>Password set, SHA512 crypt.<span class="o">)</span>
+</pre></div>
+
+
+<h2 id="managing-group-membership">Managing Group Membership</h2>
+<ul>
+<li>Each user must be a member of at least one group.</li>
+<li>Primary groups membership is managed through <strong>/etc/passwd</strong></li>
+<li>The user primary group becomes group-owner if a user creates a file.</li>
+<li>Additional (secondary) groups can be defined as well</li>
+<li>Secondary group membership is managed through /etc/groups</li>
+<li>Temporarily set primary group membership using <strong>newgrp</strong>.</li>
+<li>Use <code>id</code> to see which groups a user is a member of</li>
+</ul>
+<h2 id="creating-and-managing-groups">Creating and Managing Groups</h2>
+<ul>
+<li>Use <code>groupadd</code> to add groups.</li>
+<li><code>groupdel</code> and <code>groupmod</code> can be used to delete and modify groups</li>
+<li>Use <code>lid -g groupname</code> to list all users that are members of specific group.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># groupadd sales</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># groupmod -U anna sales</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># id anna</span>
+<span class="nv">uid</span><span class="o">=</span><span class="m">1001</span><span class="o">(</span>anna<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1001</span><span class="o">(</span>anna<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1001</span><span class="o">(</span>anna<span class="o">)</span>,1004<span class="o">(</span>sales<span class="o">)</span>
+<span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># lid -g sales</span>
+ anna<span class="o">(</span><span class="nv">uid</span><span class="o">=</span><span class="m">1001</span><span class="o">)</span>
+</pre></div>
+
+
+<h2 id="setting-password-properties">Setting Password Properties</h2>
+<ul>
+<li>Encrypted passwords are stored in /etc/shadow</li>
+<li>The encrypted string shows 3 pieces of information.</li>
+<li>The hashing algo.</li>
+<li>The random salt.</li>
+<li>
+<p>The encrypted hash of the user password.</p>
+</li>
+<li>
+<p>Basic Password requirements are set in <strong>/etc/login.defs</strong>.</p>
+</li>
+<li>For advanced password properties, Pluggable Authentication Modules, (PAM) can be used.</li>
+<li>
+<p>Look for the pam_faillock module.</p>
+</li>
+<li>
+<p>To change password settings for current users, use <code>chage</code> or <code>passwd</code> as root.</p>
+</li>
+<li>
+<p>The <code>chage</code> command without options gives a prompt, it recommended to use this in the exam.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># chage bob</span>
+Changing the aging information <span class="k">for</span> bob
+Enter the new value, or press ENTER <span class="k">for</span> the default
+
+    Minimum Password Age <span class="o">[</span><span class="m">0</span><span class="o">]</span>: <span class="m">7</span>
+    Maximum Password Age <span class="o">[</span><span class="m">99</span><span class="o">]</span>: <span class="m">31</span>
+    Last Password Change <span class="o">(</span>YYYY-MM-DD<span class="o">)</span> <span class="o">[</span><span class="m">2022</span>-10-30<span class="o">]</span>: 
+    Password Expiration Warning <span class="o">[</span><span class="m">7</span><span class="o">]</span>: <span class="m">3</span>
+    Password Inactive <span class="o">[</span>-1<span class="o">]</span>: 
+    Account Expiration Date <span class="o">(</span>YYYY-MM-DD<span class="o">)</span> <span class="o">[</span>-1<span class="o">]</span>: <span class="m">2023</span>-10-30
+</pre></div>
+
+
+<ul>
+<li><code>chage -l</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost student<span class="o">]</span><span class="c1"># chage -l bob</span>
+Last password change                    : Oct <span class="m">30</span>, <span class="m">2022</span>
+Password expires                    : Nov <span class="m">30</span>, <span class="m">2022</span>
+Password inactive                   : never
+Account expires                     : Oct <span class="m">30</span>, <span class="m">2023</span>
+Minimum number of days between password change      : <span class="m">7</span>
+Maximum number of days between password change      : <span class="m">31</span>
+Number of days of warning before password expires   : <span class="m">3</span>
+</pre></div>
+
+
+<h2 id="lab_2">LAB</h2>
+<ul>
+<li>
+<p>Make sure new users require a password with a maximum validity of 90 days <code>PASS_MAX_DAYS 90</code></p>
+</li>
+<li>
+<p>Ensure that while creating users, an empty file with the name newfile is created to their home directory <code>touch /etc/skel/newfile</code></p>
+</li>
+<li>Create users anna, audrey linda, and lisa</li>
+<li>Set the passwords for anna and audrey to 'password', disable the passwords for linda and lisa.<code>usermod -L</code> <code>usermod -U</code> <code>echo password | passwd --stdin anna</code> </li>
+<li>Create the groups profs and students and make users anna and audrey members of profs and linda and lisa members of students <code>groupmod -U audrey,anna profs</code></li>
+</ul>
+<hr />
+<h1 id="securing-files-with-permissions">Securing Files With Permissions</h1>
+<h2 id="understanding-ownership">Understanding Ownership</h2>
+<ul>
+<li>To determine permissions a user has, Linux uses ownership.</li>
+<li>Every file has user-owner, group-owner, and the other entity that is also granted permissions (ugo).</li>
+<li>Linux permissions are not additive, if you're the owner, permissions are applied and that's all.</li>
+<li>Use <code>ls -l</code> to display current ownership and associated permissions.</li>
+<li><strong>Best Practice</strong>: Set ownership before modifying permissions.</li>
+</ul>
+<h2 id="change-file-ownerhsip">Change File Ownerhsip</h2>
+<ul>
+<li><code>chown</code> and <code>chgrp</code> commands</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># chown lisa newfiles/</span>
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># ls -l</span>
+total <span class="m">0</span>
+drwxr-xr-x. <span class="m">2</span> lisa root <span class="m">6</span> Oct <span class="m">30</span> <span class="m">11</span>:45 newfiles
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># chown linda:sales newfiles/</span>
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># ls -l</span>
+total <span class="m">0</span>
+drwxr-xr-x. <span class="m">2</span> linda sales <span class="m">6</span> Oct <span class="m">30</span> <span class="m">11</span>:45 newfiles
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># chgrp profs newfiles/</span>
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># ls -l</span>
+total <span class="m">0</span>
+drwxr-xr-x. <span class="m">2</span> linda profs <span class="m">6</span> Oct <span class="m">30</span> <span class="m">11</span>:45 newfiles
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># chown :sales newfiles/</span>
+<span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># ls -l</span>
+total <span class="m">0</span>
+drwxr-xr-x. <span class="m">2</span> linda sales <span class="m">6</span> Oct <span class="m">30</span> <span class="m">11</span>:45 newfiles
+</pre></div>
+
+
+<h2 id="understanding-basic-permissions">Understanding Basic Permissions</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong><em>Files</em></strong></th>
+<th><strong><em>Directory</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>READ (4)</strong></td>
+<td>Open the file</td>
+<td>Allows to list the directory</td>
+</tr>
+<tr>
+<td><strong>WRITE (2)</strong></td>
+<td>Modify file</td>
+<td>create / delete files</td>
+</tr>
+<tr>
+<td><strong>EXECUTE (1)</strong></td>
+<td>run</td>
+<td>create sub directories etc</td>
+</tr>
+</tbody>
+</table>
+<h3 id="special-x">Special X</h3>
+<ul>
+<li>When <strong>x</strong> is applied recusively, it would make directories as well as files executable, this can be dangerous.</li>
+<li>In recusive command, use <strong>X</strong> instead</li>
+<li>Directories will be granted the execute permission.</li>
+<li>Files will only get the execute permission if it is set already elsewhere on the file.</li>
+</ul>
+<h2 id="managing-basic-permissions">Managing Basic Permissions</h2>
+<ul>
+<li>Permission do not apply to the root user.</li>
+<li><code>chmod</code> can be used in absolute mode <code>chmod 751 myfile</code> or in relative mode <code>chmod +x myscript</code>.</li>
+</ul>
+<blockquote>
+<p>The thing to remember, is creating and deleting file depends on the directory permission and not on permission on the file created.</p>
+</blockquote>
+<h2 id="configuring-shared-group-directories">Configuring Shared Group Directories</h2>
+<ul>
+<li>If members of the same group need to share files within a directory, some special permissions are required</li>
+<li>The Set Group ID (SGID), permission ensures that all files in the shared group directory are group owned by the group owner of the directory.</li>
+<li>
+<p>The sticky bit permission ensures that only the user who is owner of the file, or the directory that contains the file, is allowed to delete the file.</p>
+</li>
+<li>
+<p><code>chmod g+s mydir</code> will apply SGID to the directory</p>
+</li>
+<li><code>chmod +t mydir</code> will apply sticky bit to the directory.</li>
+</ul>
+<h2 id="understand-umask">Understand umask</h2>
+<ul>
+<li>The umask is a shell setting that subtracts the umask from the default permissions</li>
+<li>Default is et in /etc/bashrc</li>
+<li>Set user-specific overrides in ~/.bashrc</li>
+<li>Default permission for file are 666</li>
+<li>Default permissions for directory are 777</li>
+</ul>
+<hr />
+<h1 id="managing-network-configuration">Managing Network Configuration</h1>
+<ul>
+<li>In IPv4 each node needs its own IP address, written in dotted deciaml notation (192.168.4.200/24).</li>
+<li>Each IP address must be indicated with the subnet mask behind it</li>
+<li>The default router or gateway specifies which server to forward packets to that have an external destination.</li>
+<li>The DNS nameserver is the IP address of a server that helps to resolve to IP addresses and the other way around.</li>
+<li>IPv4 is still the most common IP version, but IPv6 addresses can be used asd well.</li>
+<li>IPv6 addresses are written in hexadecimal notation.</li>
+<li>IPv4 and IPv6 can co-exist on the same network interface.</li>
+</ul>
+<h2 id="exploring-ipv6-networking">Exploring IPv6 networking</h2>
+<ul>
+<li>IPv6 was introduced in the 1990's to overcome the shortage of world-wide unique IPv4 addresses.</li>
+<li>IPv6 is used extensively by ISP's to address the core internet infrastructure</li>
+<li>End-users and companies mostly use IPv4 behind a NAT router.</li>
+<li>
+<p>Linux distros (including RHEL), offer dual stack IPv4 and IPv6</p>
+</li>
+<li>
+<p>IPv6 addresses are 128-bit numbers, which are normally expressed as 8 colon-seprated groups of four hexadecimal numbers.</p>
+</li>
+<li>In these numbers, leading zero's are omitted.</li>
+<li>
+<p><strong>2001:db:7891:123:1010:6bbd:cbcb:210</strong></p>
+</li>
+<li>
+<p>Long strings of zeros can be replaced by one block of two colon characters</p>
+</li>
+<li>
+<p><strong>::210</strong></p>
+</li>
+<li>
+<p>When combining an IPv6 address with a port number, enclose the IPv6 address in sq brackets</p>
+</li>
+<li><strong>[2001:bad:210]:80</strong></li>
+<li>
+<p>Typically, network providers hand out a /48 prefixed address which leaves 16 bits to the customer to address subnets</p>
+</li>
+<li>
+<p>Different IPv6 address types are available</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Purpose</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>localhost</td>
+<td>::1/128</td>
+<td>Local host address, used on the loopback interface</td>
+</tr>
+<tr>
+<td>unspecified</td>
+<td>::</td>
+<td>Used to refer to all IP addresses</td>
+</tr>
+<tr>
+<td>default route</td>
+<td>::/0</td>
+<td>Used in default route specification</td>
+</tr>
+<tr>
+<td>global unicast</td>
+<td>2000::/3</td>
+<td>IPv6 addresses currently being allocated</td>
+</tr>
+<tr>
+<td>unique local</td>
+<td>fd00::/8</td>
+<td>Addresses for internal use like 192.168.0.0</td>
+</tr>
+<tr>
+<td>link local</td>
+<td>fe80::/10</td>
+<td>Non-routable auto assigned for internal use.</td>
+</tr>
+<tr>
+<td>multicast</td>
+<td>ff00::/8</td>
+<td>Multicast addresses</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Apart from manual allocation and DHCP IPv6 supports <strong>Stateless Address Autoconfiguration (SLAAC)</strong></li>
+<li>In SLAAC, a host sends a router solicitation to the ff02::2 multicast group to access all routers</li>
+<li>A router answers that request sending all relevant information </li>
+<li>The host adds an automatically generated host ID to the network prefix to obtain a unique address in this way</li>
+<li>To enable RHEL 9 for SLAAC support, install the <strong>radvd</strong> package</li>
+</ul>
+<h2 id="understanding-nic-naming">Understanding NIC naming</h2>
+<ul>
+<li>IP address configuration needs to be connected to a specific network device.</li>
+<li>Use <code>ip link show</code> to see current devices, and <code>ip addr show</code> to see their configuration</li>
+<li>
+<p>Every system has a <strong>lo</strong> device, which is for internal networking.</p>
+</li>
+<li>
+<p>Classical naming is using device names like eth0, eth1 and so on</p>
+</li>
+<li>
+<p>These device names don't reveal any info about physical device location.</p>
+</li>
+<li>
+<p>BIOS naming is based on hardware properties to give more specific information in the device name.</p>
+</li>
+<li>em[1-N] for embedded NIC's</li>
+<li>eno[nn] for embedded NIC's</li>
+<li>
+<p>p<slot>p<port> for NIC's on the PCI bus</p>
+</li>
+<li>
+<p>If the driver doesn't reveal network device properties, classic naming is used.</p>
+</li>
+</ul>
+<h2 id="defining-host-name-and-host-name-resolution">Defining Host name and Host name resolution</h2>
+<ul>
+<li><code>hostnamectl set-hostname new.host.name</code> to mange hostname</li>
+<li>hostname is written to <code>/etc/hostname</code>.</li>
+<li><code>/etc/resolv.conf</code> contains DNS client config</li>
+<li><strong>The order of host name resolution is determined through <code>/etc/nsswitch.conf</code>.</strong> as follows:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">hosts</span><span class="o">:</span><span class="w">      </span><span class="n">files</span><span class="w"> </span><span class="n">dns</span><span class="w"> </span><span class="n">myhostname</span><span class="w"></span>
+</pre></div>
+
+
+<h2 id="analyzing-network-config">Analyzing Network config</h2>
+<ul>
+<li><strong><em>DO NOT USE THE IPCONFIG COMMAND</em></strong></li>
+<li><code>ip addr</code> or <code>ip a</code> to view network properties.</li>
+<li><code>ip addr add dev ens33 10.0.0.10/24</code></li>
+<li><code>ip link</code> to show link properties</li>
+<li><code>ip route</code> to show route properties</li>
+<li><code>ip route show</code></li>
+<li>
+<p><code>ip route add default via 10.0.0.1</code></p>
+</li>
+<li>
+<p><strong><em>Changes made by ip command are NOT PERSISTENT, use NetworkManager instead</em></strong>.</p>
+</li>
+</ul>
+<h2 id="understanding-network-manager">Understanding Network Manager</h2>
+<ul>
+<li>NetworkManager is the system service that manages network configuration.</li>
+<li>Configuration is stored in files in <strong>/etc/NetworkManager/system-connections</strong></li>
+<li>
+<p>Legacy files in <strong>/etc/sysconfig/network-scripts</strong> are still supported but deprecated.</p>
+</li>
+<li>
+<p>Different applications are available to interface with NetworkManager</p>
+</li>
+<li><strong>nmcli</strong> is a powerful command line utility.</li>
+<li><strong>nmtui</strong> offers a convenient text user interface.</li>
+<li>
+<p>GNOME offers graphical tools also.</p>
+</li>
+<li>
+<p>In NetworkManager, devices are network interfaces</p>
+</li>
+<li>Connections are collected of configuration settings for a device, stored in the config file in <code>/etc/NetworkManager/system-connections</code></li>
+<li>
+<p>Only one connection can be active for a device.</p>
+</li>
+<li>
+<p>Permissions to modify settings in NetworkManager are applied through dbus.</p>
+</li>
+<li>Non priv users that are logged in on the console can change network settings</li>
+<li>Non priv users that are logged in through ssh cannot </li>
+<li>Use <code>nmcli general permissions</code> for an overview of current permissions that apply.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@localhost data<span class="o">]</span><span class="c1"># nmcli general permissions </span>
+PERMISSION                                                        VALUE 
+org.freedesktop.NetworkManager.checkpoint-rollback                yes   
+org.freedesktop.NetworkManager.enable-disable-connectivity-check  yes   
+org.freedesktop.NetworkManager.enable-disable-network             yes   
+org.freedesktop.NetworkManager.enable-disable-statistics          yes   
+org.freedesktop.NetworkManager.enable-disable-wifi                yes   
+org.freedesktop.NetworkManager.enable-disable-wimax               yes   
+org.freedesktop.NetworkManager.enable-disable-wwan                yes   
+org.freedesktop.NetworkManager.network-control                    yes   
+org.freedesktop.NetworkManager.reload                             yes   
+org.freedesktop.NetworkManager.settings.modify.global-dns         yes   
+org.freedesktop.NetworkManager.settings.modify.hostname           yes   
+org.freedesktop.NetworkManager.settings.modify.own                yes   
+org.freedesktop.NetworkManager.settings.modify.system             yes   
+org.freedesktop.NetworkManager.sleep-wake                         yes   
+org.freedesktop.NetworkManager.wifi.scan                          yes   
+org.freedesktop.NetworkManager.wifi.share.open                    yes   
+org.freedesktop.NetworkManager.wifi.share.protected               yes   
+</pre></div>
+
+
+<ul>
+<li><strong><em>USE NMTUI instead of NMCLI most of the time in the exam</em></strong></li>
+</ul>
+<h2 id="network-troubleshooting">Network Troubleshooting</h2>
+<ol>
+<li>Use the <code>ping</code> command</li>
+<li><code>ping -c 4 myserver</code>  sends 4 packets then stops</li>
+<li>
+<p><code>ping6 2001:210</code> for ipv6</p>
+<ul>
+<li>When using <code>ping6</code> with link-local addresses, you must include NIC name in the command.</li>
+<li><code>ping6 ff02::1%ens33</code></li>
+</ul>
+</li>
+<li>
+<p><code>ip route</code> prints routing table and<code>ip -6 route</code> shows IPv6 routing table.</p>
+</li>
+<li>
+<p><code>tracepath example.com</code> show the entire networking path and <code>tracepath6 example.com</code> does the same for an IPv6 path (if exists).</p>
+</li>
+<li><code>ss</code> command to analyze stock statistics</li>
+<li><code>ss -tu</code></li>
+<li><code>ss -tuna</code></li>
+<li><code>ss -tunap</code> most recommended, shows tcp, udp, all info, with port numbers.</li>
+</ol>
+            </div>
+        </div>
+
+        <div id="generated-at">
+        Generated at: 2023-01-19 17:59:20
+    </div>
+            
+
+        <div id="footer">
+            Powered by
+            <a href="https://github.com/menduo/mdtree" target="_blank"
+                title="https://github.com/menduo/mdtree">
+                https://github.com/menduo/mdtree
+            </a>
+        </div>
+</div>
+</body>
+
+<script>
+
+</script>
+
+
+</html>
+

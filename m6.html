@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="powered-by" content="https://github.com/menduo/mdtree">
+    <title>PERFORMING ADVANCED SYSTEM ADMINSTRATION TASKS.</title>
+    <style>
+        #sidebar:hover,pre{overflow:auto}#footer,#footer a{color:#eee}body{padding:40px}#layout>header,.btns{width:auto}#sidebar{width:400px;height:100%;position:fixed;top:0;right:0;overflow:hidden;background:#fff;z-index:100;padding:18px;border:1px solid #ddd;border-top:none;border-bottom:none}#sidebar h1{font-size:16px}#sidebar a,#sidebar a:visited{color:#4183c4}#sidebar a:hover{font-size:120%;color:#1e90ff}#custom-toc-container{padding-left:0;padding-bottom:20px}#content-container{padding-left:0;padding-right:430px;margin:0}.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;padding:6px 10px;border-radius:3px}
+#footer{margin:30px auto 10px;}
+#generated-at{margin-top:30px;}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     /** code highliting start **/
+.codehilite .hll{background-color:#ffc}.codehilite{background:#f8f8f8}.codehilite .c{color:#408080;font-style:italic}.codehilite .err{border:1px solid red}.codehilite .k{color:green;font-weight:700}.codehilite .o{color:#666}.codehilite .ch,.codehilite .cm{color:#408080;font-style:italic}.codehilite .cp{color:#BC7A00}.codehilite .c1,.codehilite .cpf,.codehilite .cs{color:#408080;font-style:italic}.codehilite .gd{color:#A00000}.codehilite .ge{font-style:italic}.codehilite .gr{color:red}.codehilite .gh{color:navy;font-weight:700}.codehilite .gi{color:#00A000}.codehilite .go{color:#888}.codehilite .gp{color:navy;font-weight:700}.codehilite .gs{font-weight:700}.codehilite .gu{color:purple;font-weight:700}.codehilite .gt{color:#04D}.codehilite .kc,.codehilite .kd,.codehilite .kn{color:green;font-weight:700}.codehilite .kp{color:green}.codehilite .kr{color:green;font-weight:700}.codehilite .kt{color:#B00040}.codehilite .m{color:#666}.codehilite .s{color:#BA2121}.codehilite .na{color:#7D9029}.codehilite .nb{color:green}.codehilite .nc{color:#00F;font-weight:700}.codehilite .no{color:#800}.codehilite .nd{color:#A2F}.codehilite .ni{color:#999;font-weight:700}.codehilite .ne{color:#D2413A;font-weight:700}.codehilite .nf{color:#00F}.codehilite .nl{color:#A0A000}.codehilite .nn{color:#00F;font-weight:700}.codehilite .nt{color:green;font-weight:700}.codehilite .nv{color:#19177C}.codehilite .ow{color:#A2F;font-weight:700}.codehilite .w{color:#bbb}.codehilite .mb,.codehilite .mf,.codehilite .mh,.codehilite .mi,.codehilite .mo{color:#666}.codehilite .s2,.codehilite .sb,.codehilite .sc{color:#BA2121}.codehilite .sd{color:#BA2121;font-style:italic}.codehilite .se{color:#B62;font-weight:700}.codehilite .sh{color:#BA2121}.codehilite .si{color:#B68;font-weight:700}.codehilite .sx{color:green}.codehilite .sr{color:#B68}.codehilite .s1{color:#BA2121}.codehilite .ss{color:#19177C}.codehilite .bp{color:green}.codehilite .vc,.codehilite .vg,.codehilite .vi{color:#19177C}.codehilite .il{color:#666}
+
+/** code highliting end **/
+/** css from https://github.com/pandao/editor.md */
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format("woff");
+}
+.markdown-body hr:after,.markdown-body hr:before{display:table;content:""}.markdown-body ol,.markdown-body td,.markdown-body th,.markdown-body ul{padding:0}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#333;overflow:hidden;font-family:"Microsoft YaHei",Helvetica,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Monaco,monospace,Tahoma,STXihei,"åŽæ–‡ç»†é»‘",STHeiti,"Helvetica Neue","Droid Sans","wenquanyi micro hei",FreeSans,Arimo,Arial,SimSun,"å®‹ä½“",Heiti,"é»‘ä½“",sans-serif;font-size:16px;line-height:1.6;word-wrap:break-word}.markdown-body strong{font-weight:700}.markdown-body h1{margin:.67em 0}.markdown-body img{border:0}.markdown-body hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}.markdown-body input{color:inherit;margin:0;line-height:normal;font:13px/1.4 Helvetica,arial,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.markdown-body html input[disabled]{cursor:default}.markdown-body input[type=checkbox]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}.markdown-body *{-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body a{background:0 0;color:#4183c4;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline:0;text-decoration:underline}.markdown-body hr{margin:15px 0;overflow:hidden;background:0 0;border:0;border-bottom:1px solid #ddd}.markdown-body hr:after{clear:both}.markdown-body blockquote{margin:0}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body .task-list-item,li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}.markdown-body dd{margin-left:0}.markdown-body code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .octicon{font:normal normal 16px octicons-anchor;line-height:1;display:inline-block;text-decoration:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-body .octicon-link:before{content:'\f05c'}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body .anchor{position:absolute;top:0;left:0;display:block;padding-right:6px;padding-left:30px;margin-left:-30px}.markdown-body .anchor:focus{outline:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{position:relative;margin-top:1em;margin-bottom:16px;font-weight:700;line-height:1.4}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{display:none;color:#000;vertical-align:middle}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{padding-left:8px;margin-left:-30px;text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{display:inline-block}.markdown-body h1{font-size:2.25em;line-height:1.2}.markdown-body h1 .anchor{line-height:1}.markdown-body h2{font-size:1.75em;line-height:1.225}.markdown-body h2 .anchor{line-height:1}.markdown-body h3{font-size:1.5em;line-height:1.43}.markdown-body h3 .anchor,.markdown-body h4 .anchor{line-height:1.2}.markdown-body h4{font-size:1.25em}.markdown-body h5 .anchor,.markdown-body h6 .anchor{line-height:1.1}.markdown-body h5{font-size:1em}.markdown-body h6{font-size:1em;color:#777}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body blockquote{padding:0 15px;color:#777;border-left:4px solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;background-color:#f7f7f7;border-radius:3px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body pre code{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before{content:normal}.markdown-body .pl-c{color:#969896}.markdown-body .pl-c1,.markdown-body .pl-mdh,.markdown-body .pl-mm,.markdown-body .pl-mp,.markdown-body .pl-mr,.markdown-body .pl-s1 .pl-v,.markdown-body .pl-s3,.markdown-body .pl-sc,.markdown-body .pl-sv{color:#0086b3}.markdown-body .pl-e,.markdown-body .pl-en{color:#795da3}.markdown-body .pl-s1 .pl-s2,.markdown-body .pl-smi,.markdown-body .pl-smp,.markdown-body .pl-stj,.markdown-body .pl-vo,.markdown-body .pl-vpf{color:#333}.markdown-body .pl-ent{color:#63a35c}.markdown-body .pl-k,.markdown-body .pl-s,.markdown-body .pl-st{color:#a71d5d}.markdown-body .pl-pds,.markdown-body .pl-s1,.markdown-body .pl-s1 .pl-pse .pl-s2,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-src{color:#df5000}.markdown-body .pl-mo,.markdown-body .pl-v{color:#1d3e81}.markdown-body .pl-id{color:#b52a1d}.markdown-body .pl-ii{background-color:#b52a1d;color:#f8f8f8}.markdown-body .pl-sr .pl-cce{color:#63a35c;font-weight:700}.markdown-body .pl-ml{color:#693a17}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:#1d3e81;font-weight:700}.markdown-body .pl-mq{color:teal}.markdown-body .pl-mi{color:#333;font-style:italic}.markdown-body .pl-mb{color:#333;font-weight:700}.markdown-body .pl-md,.markdown-body .pl-mdhf{background-color:#ffecec;color:#bd2c00}.markdown-body .pl-mdht,.markdown-body .pl-mi1{background-color:#eaffea;color:#55a532}.markdown-body .pl-mdr{color:#795da3;font-weight:700}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{float:left;margin:.3em 0 .25em -1.6em;vertical-align:middle}.markdown-body :checked+.radio-label{z-index:1;position:relative;border-color:#4183c4}.editormd-html-preview,.editormd-preview-container{text-align:left;font-size:14px;line-height:1.6;padding:20px;overflow:auto;width:100%;background-color:#fff}.editormd-html-preview blockquote,.editormd-preview-container blockquote{color:#666;border-left:4px solid #ddd;padding-left:20px;margin-left:0;font-size:14px;font-style:italic}.editormd-html-preview p code,.editormd-preview-container p code{margin-left:5px;margin-right:4px}.editormd-html-preview abbr,.editormd-preview-container abbr{background:#ffd}.editormd-html-preview hr,.editormd-preview-container hr{height:1px;border:none;border-top:1px solid #ddd;background:0 0}.editormd-html-preview code,.editormd-preview-container code{border:1px solid #ddd;background:#f6f6f6;padding:3px;border-radius:3px;font-size:14px}.editormd-html-preview pre,.editormd-preview-container pre{border:1px solid #ddd;background:#f6f6f6;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px}.editormd-html-preview pre code,.editormd-preview-container pre code{padding:0}.editormd-html-preview code,.editormd-html-preview kbd,.editormd-html-preview pre,.editormd-preview-container code,.editormd-preview-container kbd,.editormd-preview-container pre{font-family:"YaHei Consolas Hybrid",Consolas,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,monospace,monospace}.editormd-html-preview table thead tr,.editormd-preview-container table thead tr{background-color:#F8F8F8}.editormd-html-preview p.editormd-tex,.editormd-preview-container p.editormd-tex{text-align:center}.editormd-html-preview span.editormd-tex,.editormd-preview-container span.editormd-tex{margin:0 5px}.editormd-html-preview .emoji,.editormd-preview-container .emoji{width:24px;height:24px}.editormd-html-preview .katex,.editormd-preview-container .katex{font-size:1.4em}.editormd-html-preview .flowchart,.editormd-html-preview .sequence-diagram,.editormd-preview-container .flowchart,.editormd-preview-container .sequence-diagram{margin:0 auto;text-align:center}.editormd-html-preview .flowchart svg,.editormd-html-preview .sequence-diagram svg,.editormd-preview-container .flowchart svg,.editormd-preview-container .sequence-diagram svg{margin:0 auto}.editormd-html-preview .flowchart text,.editormd-html-preview .sequence-diagram text,.editormd-preview-container .flowchart text,.editormd-preview-container .sequence-diagram text{font-size:15px!important;font-family:"YaHei Consolas Hybrid",Consolas,"Microsoft YaHei","Malgun Gothic","Segoe UI",Helvetica,Arial!important}/*! Pretty printing styles. Used with prettify.js. */.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.clo,.opn,.pun{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.kwd,.tag,.typ{font-weight:700}.str{color:#060}.kwd{color:#006}.com{color:#600;font-style:italic}.typ{color:#404}.lit{color:#044}.clo,.opn,.pun{color:#440}.tag{color:#006}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}.editormd-html-preview pre.prettyprint,.editormd-preview-container pre.prettyprint{padding:10px;border:1px solid #ddd;white-space:pre-wrap;word-wrap:break-word}.editormd-html-preview ol.linenums,.editormd-preview-container ol.linenums{color:#999;padding-left:2.5em}.editormd-html-preview ol.linenums li,.editormd-preview-container ol.linenums li{list-style-type:decimal}.editormd-html-preview ol.linenums li code,.editormd-preview-container ol.linenums li code{border:none;background:0 0;padding:0}.editormd-html-preview .editormd-toc-menu,.editormd-preview-container .editormd-toc-menu{margin:8px 0 12px;display:inline-block}.editormd-html-preview .editormd-toc-menu>.markdown-toc,.editormd-preview-container .editormd-toc-menu>.markdown-toc{position:relative;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;border:1px solid #ddd;display:inline-block;font-size:1em}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul{width:160%;min-width:180px;position:absolute;left:-1px;top:-2px;z-index:100;padding:0 10px 10px;display:none;background:#fff;border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li ul{width:100%;min-width:180px;border:1px solid #ddd;display:none;background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn:hover,.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a:hover,.editormd-preview-container .editormd-toc-menu .toc-menu-btn:hover,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a:hover{background-color:#f6f6f6}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a{color:#666;padding:6px 10px;display:block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu>.markdown-toc li,.editormd-preview-container .editormd-toc-menu>.markdown-toc li{position:relative}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul{position:absolute;top:32px;left:10%;display:none;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{pointer-events:pointer-events;position:absolute;left:15px;top:-6px;display:block;content:"";width:0;height:0;border:6px solid transparent;border-width:0 6px 6px;z-index:10}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{border-bottom-color:#ccc}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after{border-bottom-color:#fff;top:-5px}.editormd-html-preview .editormd-toc-menu ul,.editormd-preview-container .editormd-toc-menu ul{list-style:none}.editormd-html-preview .editormd-toc-menu a,.editormd-preview-container .editormd-toc-menu a{text-decoration:none}.editormd-html-preview .editormd-toc-menu h1,.editormd-preview-container .editormd-toc-menu h1{font-size:16px;padding:5px 0 10px 10px;line-height:1;border-bottom:1px solid #eee}.editormd-html-preview .editormd-toc-menu h1 .fa,.editormd-preview-container .editormd-toc-menu h1 .fa{padding-left:10px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn,.editormd-preview-container .editormd-toc-menu .toc-menu-btn{color:#666;min-width:180px;padding:5px 10px;border-radius:4px;display:inline-block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu .toc-menu-btn .fa,.editormd-preview-container .editormd-toc-menu .toc-menu-btn .fa{float:right;padding:3px 0 0 10px;font-size:1.3em}.markdown-body .editormd-toc-menu ul{padding-left:0}.markdown-body .highlight pre,.markdown-body pre{line-height:1.6}hr.editormd-page-break{border:1px dotted #ccc;font-size:0;height:2px}@media only print{hr.editormd-page-break{background:0 0;border:none;height:0}}.editormd-html-preview textarea{display:none}.editormd-html-preview hr.editormd-page-break{background:0 0;border:none;height:0}.editormd-preview-close-btn{color:#fff;padding:4px 6px;font-size:18px;-webkit-border-radius:500px;-moz-border-radius:500px;-ms-border-radius:500px;-o-border-radius:500px;border-radius:500px;display:none;background-color:#ccc;position:absolute;top:25px;right:35px;z-index:19;-webkit-transition:background-color .3s ease-out;-moz-transition:background-color .3s ease-out;transition:background-color .3s ease-out}.editormd-preview-close-btn:hover{background-color:#999}.editormd-preview-active{width:100%;padding:40px}
+
+
+
+    </style>
+    
+</head>
+<body>
+<div id="layout">
+        <div id="sidebar">
+            <h1>Table of Contents</h1>
+            <div id="custom-toc-container">
+                <div class="toc">
+<ul>
+<li><a href="#performing-advanced-system-adminstration-tasks">PERFORMING ADVANCED SYSTEM ADMINSTRATION TASKS.</a></li>
+<li><a href="#managing-the-boot-procedure">Managing the Boot Procedure</a><ul>
+<li><a href="#the-boot-procedure">The Boot Procedure</a></li>
+<li><a href="#modifying-grub2-runtime-parameters">Modifying Grub2 Runtime Parameters</a></li>
+<li><a href="#changing-grub2-persistent-parameters">Changing Grub2 Persistent Parameters</a></li>
+<li><a href="#managing-systemd-targets">Managing Systemd Targets</a></li>
+<li><a href="#setting-the-default-systemd-target">Setting the default systemd target</a></li>
+<li><a href="#booting-into-a-specific-target">Booting into a Specific Target</a></li>
+<li><a href="#lab">LAB</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting-rhel">Troubleshooting RHEL</a><ul>
+<li><a href="#using-troubleshooting-modes">Using Troubleshooting Modes</a></li>
+<li><a href="#changing-the-root-password-when-lost">Changing the Root Password! (when lost)\</a></li>
+<li><a href="#using-the-boot-debug-shell">Using the Boot Debug Shell</a></li>
+<li><a href="#troubleshooting-filesystem-issues">Troubleshooting Filesystem Issues.</a></li>
+<li><a href="#fixing-network-issues">Fixing Network Issues</a></li>
+<li><a href="#managing-performance-issues">Managing Performance Issues</a></li>
+<li><a href="#fixing-memory-shortage">Fixing Memory Shortage</a></li>
+</ul>
+</li>
+<li><a href="#automating-with-bash-scripts">Automating with Bash Scripts</a><ul>
+<li><a href="#executing-conditional-code-with-if-and-test">Executing conditional code with if and test</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </div>
+        </div>
+        <div id="content-container">
+            <div class="markdown-body markdown-content">
+                <h1 id="performing-advanced-system-adminstration-tasks">PERFORMING ADVANCED SYSTEM ADMINSTRATION TASKS.</h1>
+<hr />
+<p><strong><a href="m3.html">Module 3</a> <a href="m4.html">Module 4</a> <a href="m5.html">Module 5</a> <a href="m6.html">Module 6</a> <a href="m7.html">Module 7</a></strong></p>
+<hr />
+<h1 id="managing-the-boot-procedure">Managing the Boot Procedure</h1>
+<h2 id="the-boot-procedure">The Boot Procedure</h2>
+<ul>
+<li>It follows the following sequence:</li>
+<li>Firmware =&gt; Boot Device =&gt; <strong>GRUB</strong> =&gt; Kernel, initramfs =&gt; systemd =&gt; early states =&gt; services =&gt; shell.</li>
+</ul>
+<h2 id="modifying-grub2-runtime-parameters">Modifying Grub2 Runtime Parameters</h2>
+<ul>
+<li>From the Grub2 boot menu, press e to edit runtime boot options to the end of the line that starts with Linux.</li>
+<li><strong>systemd.unit=emergency.target</strong></li>
+<li>
+<p><strong>systemd.unit=resuce.target</strong></p>
+</li>
+<li>
+<p>Press c to enter the Grub2 command mode</p>
+</li>
+<li>From command mode, type help for an overview of avaiable options.</li>
+</ul>
+<p><img alt="Grub Boot Menu" src="m6_1.png" /></p>
+<h2 id="changing-grub2-persistent-parameters">Changing Grub2 Persistent Parameters</h2>
+<ul>
+<li>To edit persistent Grub2 parameters, edit the configuration file in <strong>/etc/default/grub</strong>.</li>
+<li>Removing <strong>rhgb quiet</strong> from /etc/default/grub.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># cat /etc/default/grub</span>
+<span class="nv">GRUB_TIMEOUT</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">GRUB_DISTRIBUTOR</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>sed <span class="s1">&#39;s, release .*$,,g&#39;</span> /etc/system-release<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">GRUB_DEFAULT</span><span class="o">=</span>saved
+<span class="nv">GRUB_DISABLE_SUBMENU</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">GRUB_TERMINAL_OUTPUT</span><span class="o">=</span><span class="s2">&quot;console&quot;</span>
+<span class="nv">GRUB_CMDLINE_LINUX</span><span class="o">=</span><span class="s2">&quot;crashkernel=1G-4G:192M,4G-64G:256M,64G-:512M resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap&quot;</span>
+<span class="nv">GRUB_DISABLE_RECOVERY</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+<span class="nv">GRUB_ENABLE_BLSCFG</span><span class="o">=</span><span class="nb">true</span>
+</pre></div>
+
+
+<ul>
+<li>After writing changes, compile changes to grub.cfg</li>
+<li><strong>grub2-mkconfig -o /boot/grub2/grub.cfg</strong> (for MBR systems)</li>
+<li><strong>grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg</strong> (for EFI systems).</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># grub2-mkconfig -o /boot/grub2/grub.cfg</span>
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-5.14.0-70.30.1.el9_0.x86_64
+Found initrd image: /boot/initramfs-5.14.0-70.30.1.el9_0.x86_64.img
+Found linux image: /boot/vmlinuz-5.14.0-70.22.1.el9_0.x86_64
+Found initrd image: /boot/initramfs-5.14.0-70.22.1.el9_0.x86_64.img
+File descriptor <span class="m">3</span> <span class="o">(</span>pipe:<span class="o">[</span><span class="m">43546</span><span class="o">])</span> leaked on vgs invocation. Parent PID <span class="m">4292</span>: grub2-probe
+File descriptor <span class="m">9</span> <span class="o">(</span>pipe:<span class="o">[</span><span class="m">44543</span><span class="o">])</span> leaked on vgs invocation. Parent PID <span class="m">4292</span>: grub2-probe
+File descriptor <span class="m">3</span> <span class="o">(</span>pipe:<span class="o">[</span><span class="m">43546</span><span class="o">])</span> leaked on vgs invocation. Parent PID <span class="m">4292</span>: grub2-probe
+File descriptor <span class="m">9</span> <span class="o">(</span>pipe:<span class="o">[</span><span class="m">44543</span><span class="o">])</span> leaked on vgs invocation. Parent PID <span class="m">4292</span>: grub2-probe
+Adding boot menu entry <span class="k">for</span> UEFI Firmware Settings ...
+<span class="k">done</span>
+</pre></div>
+
+
+<h2 id="managing-systemd-targets">Managing Systemd Targets</h2>
+<ul>
+<li>A systemd target is a group of unit files.</li>
+<li>Some targets are <em>isolatable</em>, which means that they define the final state a system is starting in.</li>
+<li>emergency.target</li>
+<li>rescue.target</li>
+<li>multi-user.target</li>
+<li>
+<p>graphical.target</p>
+</li>
+<li>
+<p>When enabling a unit, it is added to a specific target.</p>
+</li>
+<li>
+<p>Can use <code>systemctl list-dependencies</code> to see the current target along with other dependencies.</p>
+</li>
+<li>
+<p>For every servie under "[Install]", there is a section <code>WantedBy=xxx.target</code>. A good example can be seen with sshd.service (look at the last line)</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl cat sshd.service</span>
+<span class="c1"># /usr/lib/systemd/system/sshd.service</span>
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>OpenSSH server daemon
+<span class="nv">Documentation</span><span class="o">=</span>man:sshd<span class="o">(</span><span class="m">8</span><span class="o">)</span> man:sshd_config<span class="o">(</span><span class="m">5</span><span class="o">)</span>
+<span class="nv">After</span><span class="o">=</span>network.target sshd-keygen.target
+<span class="nv">Wants</span><span class="o">=</span>sshd-keygen.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="nv">EnvironmentFile</span><span class="o">=</span>-/etc/sysconfig/sshd
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/sshd -D <span class="nv">$OPTIONS</span>
+<span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -HUP <span class="nv">$MAINPID</span>
+<span class="nv">KillMode</span><span class="o">=</span>process
+<span class="nv">Restart</span><span class="o">=</span>on-failure
+<span class="nv">RestartSec</span><span class="o">=</span>42s
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</pre></div>
+
+
+<h2 id="setting-the-default-systemd-target">Setting the default systemd target</h2>
+<ul>
+<li>Use <strong>systemctl get-default</strong> to see the default target.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl get-default</span>
+graphical.target
+</pre></div>
+
+
+<ul>
+<li>Use <strong>systemctl set-default xxx.target</strong> to set a default target.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl set-default multi-user.target </span>
+Removed /etc/systemd/system/default.target.
+Created symlink /etc/systemd/system/default.target → /usr/lib/systemd/system/multi-user.target.
+</pre></div>
+
+
+<h2 id="booting-into-a-specific-target">Booting into a Specific Target</h2>
+<ul>
+<li>On the Grub2 boot prompt, use <strong>systemd.unit=xxx.target</strong> to boot into a specific target.</li>
+<li>To change between targets on a running system, use <strong>systemctl isolate xxx.target</strong>.
+<img alt="Booting into Emergency Mode, via GRUB menu" src="m6_2.png" /></li>
+</ul>
+<h2 id="lab">LAB</h2>
+<ul>
+<li>Configure your system to boot in a multi-user target by default.</li>
+<li>Persistently remove the options that hide startup messages while booting.</li>
+</ul>
+<hr />
+<h1 id="troubleshooting-rhel">Troubleshooting RHEL</h1>
+<h2 id="using-troubleshooting-modes">Using Troubleshooting Modes</h2>
+<p><img alt="Troubleshooting the Boot Procedure" src="m6_3.png" /></p>
+<h2 id="changing-the-root-password-when-lost">Changing the Root Password! (when lost)\</h2>
+<ul>
+<li>Enter Grub menu while booting.</li>
+<li>
+<p>Find the line that loads the linux kernel and add <strong>init=/bin/bash</strong>.
+<img alt="Entering Shell" src="m6_4.png" /></p>
+</li>
+<li>
+<p><strong>mount -o remount, rw /</strong> (making filesytem rewriteable)</p>
+</li>
+<li><strong>passwd root</strong> (changing the password).</li>
+<li><strong>touch /.autorelabel</strong> (for SELinux)</li>
+<li><strong>exec /usr/lib/systemd/sytemd</strong> (to run systemd normally).</li>
+</ul>
+<p><img alt="Changing root password" src="m6_5.png" /></p>
+<h2 id="using-the-boot-debug-shell">Using the Boot Debug Shell</h2>
+<ul>
+<li>It's practically useless.</li>
+<li>If something goes wrong early in the boot procedure, it may be useful to have an option to open a debug shell.</li>
+<li>This is why debug-shell.service is provided.</li>
+<li>If this service is active, it starts a root shell that can be accessed on TTY9 without having to enter a root password.</li>
+<li>Obviously this is useful for troubleshooting and analyzing, but once no longer needed, it should immediately be removed!</li>
+<li><code>systemctl enable --now debug-shell.service</code> to enable debug shell. Reboot. Use CTRL+ALT+F9 to access debug shell.</li>
+</ul>
+<h2 id="troubleshooting-filesystem-issues">Troubleshooting Filesystem Issues.</h2>
+<ul>
+<li>Real corruption does occur, but not often, and is automatically fixed.</li>
+<li>Problems occur when making typo's in /etc/fstab. (<strong>Most Frequent</strong>)</li>
+<li>To fix: if necessary, remount filesystem in read/write state and edit /etc/fstab.</li>
+<li>To fix: if necessary, remount filesytem in read/write state and edit /etc/fstab.</li>
+<li>Fragmentation can be an issue, different tools exist to fix depending on the filesystem:</li>
+<li><strong>xfs_fsr</strong> is the XFS Filesystem Reorganizer, it optimizes XFS file systems.</li>
+<li><strong>e4defrag</strong> can be used to defragment EXT 4.</li>
+</ul>
+<h2 id="fixing-network-issues">Fixing Network Issues</h2>
+<ul>
+<li><strong>Wrong subnet mask</strong>: all nodes in the same network should be in the same subnet.</li>
+<li><strong>Wrong router</strong>: the router must always be in the local network.</li>
+<li><strong>DNS not working</strong>: verify <strong>/etc/resolv.conf</strong> contents.</li>
+<li>Some Network Troubleshooting commands:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@rhcsaserver ~<span class="o">]</span>$ ip addr show
+<span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
+    inet <span class="m">127</span>.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+<span class="m">2</span>: ens160: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc fq_codel state UP group default qlen <span class="m">1000</span>
+    link/ether <span class="m">00</span>:0c:29:93:53:f5 brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    inet <span class="m">192</span>.168.40.130/24 brd <span class="m">192</span>.168.40.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet <span class="m">10</span>.0.0.10/24 brd <span class="m">10</span>.0.0.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe93:53f5/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@rhcsaserver ~<span class="o">]</span>$ ip route show
+default via <span class="m">192</span>.168.40.2 dev ens160 proto dhcp src <span class="m">192</span>.168.40.130 metric <span class="m">100</span> 
+<span class="m">10</span>.0.0.0/24 dev ens160 proto kernel scope link src <span class="m">10</span>.0.0.10 metric <span class="m">100</span> 
+<span class="m">192</span>.168.40.0/24 dev ens160 proto kernel scope link src <span class="m">192</span>.168.40.130 metric <span class="m">100</span> 
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@rhcsaserver ~<span class="o">]</span>$ ping <span class="m">8</span>.8.8.8
+PING <span class="m">8</span>.8.8.8 <span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from <span class="m">8</span>.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">19</span>.9 ms
+<span class="m">64</span> bytes from <span class="m">8</span>.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">16</span>.5 ms
+<span class="m">64</span> bytes from <span class="m">8</span>.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">26</span>.2 ms
+<span class="m">64</span> bytes from <span class="m">8</span>.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">15</span>.1 ms
+<span class="m">64</span> bytes from <span class="m">8</span>.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">5</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">17</span>.9 ms
+^C
+--- <span class="m">8</span>.8.8.8 ping statistics ---
+<span class="m">5</span> packets transmitted, <span class="m">5</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 4008ms
+rtt min/avg/max/mdev <span class="o">=</span> <span class="m">15</span>.102/19.120/26.230/3.890 ms
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@rhcsaserver ~<span class="o">]</span>$ ping google.com
+PING google.com <span class="o">(</span><span class="m">142</span>.251.32.78<span class="o">)</span> <span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from yyz12s07-in-f14.1e100.net <span class="o">(</span><span class="m">142</span>.251.32.78<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">19</span>.0 ms
+<span class="m">64</span> bytes from yyz12s07-in-f14.1e100.net <span class="o">(</span><span class="m">142</span>.251.32.78<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">18</span>.0 ms
+<span class="m">64</span> bytes from yyz12s07-in-f14.1e100.net <span class="o">(</span><span class="m">142</span>.251.32.78<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">14</span>.5 ms
+<span class="m">64</span> bytes from yyz12s07-in-f14.1e100.net <span class="o">(</span><span class="m">142</span>.251.32.78<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span><span class="m">20</span>.6 ms
+^C
+--- google.com ping statistics ---
+<span class="m">4</span> packets transmitted, <span class="m">4</span> received, <span class="m">0</span>% packet loss, <span class="nb">time</span> 3005ms
+rtt min/avg/max/mdev <span class="o">=</span> <span class="m">14</span>.450/17.996/20.581/2.245 ms
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@rhcsaserver ~<span class="o">]</span>$ dig google.com
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.16.23-RH &lt;&lt;&gt;&gt; google.com
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">3384</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> MBZ: 0x0005, udp: <span class="m">4096</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>google.com.            IN  A
+
+<span class="p">;;</span> ANSWER SECTION:
+google.com.     <span class="m">5</span>   IN  A   <span class="m">142</span>.251.32.78
+
+<span class="p">;;</span> Query time: <span class="m">5</span> msec
+<span class="p">;;</span> SERVER: <span class="m">192</span>.168.40.2#53<span class="o">(</span><span class="m">192</span>.168.40.2<span class="o">)</span>
+<span class="p">;;</span> WHEN: Fri Jan <span class="m">06</span> <span class="m">02</span>:00:02 EST <span class="m">2023</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">55</span>
+</pre></div>
+
+
+<h2 id="managing-performance-issues">Managing Performance Issues</h2>
+<ul>
+<li>Troubleshooting performance is an art on it's own.</li>
+<li>Focus on the four key areas of performance.</li>
+<li>memory</li>
+<li>CPU Load</li>
+<li>disk load</li>
+<li>
+<p>network</p>
+</li>
+<li>
+<p>Use <strong>top</strong> to get a generic image, and more specialized tools only if you have a strong indication of what is wrong.</p>
+</li>
+</ul>
+<h2 id="fixing-memory-shortage">Fixing Memory Shortage</h2>
+<ul>
+<li>Memory issues appear if available memory as shown by free is low.</li>
+<li>The definition of  low depends on server workload.</li>
+<li>As a first help to fix memory issues swap space can be used.</li>
+<li>Use <strong>vmstat 2 25</strong> to make sure that adding swap space doesn't lead to too much I/O traffic</li>
+<li><strong>vmstat</strong> is great to see swap in/out. <code>2 25</code> means running the command at 2 second interval, 25 times.</li>
+</ul>
+<hr />
+<h1 id="automating-with-bash-scripts">Automating with Bash Scripts</h1>
+<ul>
+<li>A shell script is an executable file, used to run tasks.</li>
+<li>Shell scripts are used to automate common tasks.</li>
+<li>A shell script can be as simple as a number of commands that is sequentially executed.</li>
+<li>Scripts normally work with variables to make them react differently in different environments.</li>
+<li>Conditional statements such as for, if case, while can be used to execute tasks only in specific conditions.</li>
+<li>Shell scripts are common as they are easy to learn and implement.</li>
+<li>Also, a shell will always be available to interpret code from shell scripts.</li>
+<li>If the script uses internal commands only, it's fast as nothing needs to be loaded.</li>
+<li>There is no need to compile anything.</li>
+<li>
+<p>For more complex work, advanced scripting languages like python, or automation solutions like ansible are commonly used.</p>
+</li>
+<li>
+<p>Sample script:</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span> you have typed <span class="nv">$1</span> as the first argument
+<span class="nb">echo</span> there are other arguments as well, these are all arguments: <span class="nv">$@</span>
+
+<span class="nb">echo</span> what is your name
+<span class="nb">read</span> NAME
+<span class="nb">echo</span> your name is <span class="nv">$NAME</span>
+</pre></div>
+
+
+<ul>
+<li>Output:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ./argument.sh Papa Mama Joey Boo</span>
+you have typed Papa as the first argument
+there are other arguments as well, these are all arguments: Papa Mama Joey Boo
+what is your name
+Rohan Sidharth Rajguru
+your name is Rohan Sidharth Rajguru
+</pre></div>
+
+
+<h2 id="executing-conditional-code-with-if-and-test">Executing conditional code with if and test</h2>
+<ul>
+<li>The <strong>test</strong> command can be used to test many things</li>
+<li>Properties of files</li>
+<li>Contents of strings</li>
+<li>Values of integers</li>
+<li>
+<p>and much more</p>
+</li>
+<li>
+<p><strong>test</strong> is commonly used in <strong>if .. then .. else</strong> statements.</p>
+</li>
+<li>The common use is <strong>test condition</strong>.</li>
+<li>Which can also be written as <strong>[ condition ]</strong>.</li>
+<li>Have a look at <strong>man test</strong> for more options.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="nb">test</span> -z <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="k">then</span>
+        <span class="nb">echo</span> you have to provide an argument
+        <span class="nb">exit</span> <span class="m">3</span>
+<span class="k">fi</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> you have typed hello
+<span class="k">else</span>
+    <span class="nb">echo</span> you types something other than hello
+<span class="k">fi</span>
+
+<span class="c1">#if test -f $1</span>
+<span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="nv">$1</span> is a file
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="nv">$1</span> is not a file
+<span class="k">fi</span>
+</pre></div>
+
+
+<ul>
+<li>Output</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ./conditions.sh hello</span>
+you have typed hello
+hello is not a file
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ./conditions.sh /etc/fstab</span>
+you types something other than hello
+/etc/fstab is a file
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ./conditions.sh </span>
+you have to provide an argument
+</pre></div>
+            </div>
+        </div>
+
+        <div id="generated-at">
+        Generated at: 2023-01-19 17:59:21
+    </div>
+            
+
+        <div id="footer">
+            Powered by
+            <a href="https://github.com/menduo/mdtree" target="_blank"
+                title="https://github.com/menduo/mdtree">
+                https://github.com/menduo/mdtree
+            </a>
+        </div>
+</div>
+</body>
+
+<script>
+
+</script>
+
+
+</html>
+

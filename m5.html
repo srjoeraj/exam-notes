@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="powered-by" content="https://github.com/menduo/mdtree">
+    <title>MANAGING STORAGE</title>
+    <style>
+        #sidebar:hover,pre{overflow:auto}#footer,#footer a{color:#eee}body{padding:40px}#layout>header,.btns{width:auto}#sidebar{width:400px;height:100%;position:fixed;top:0;right:0;overflow:hidden;background:#fff;z-index:100;padding:18px;border:1px solid #ddd;border-top:none;border-bottom:none}#sidebar h1{font-size:16px}#sidebar a,#sidebar a:visited{color:#4183c4}#sidebar a:hover{font-size:120%;color:#1e90ff}#custom-toc-container{padding-left:0;padding-bottom:20px}#content-container{padding-left:0;padding-right:430px;margin:0}.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;padding:6px 10px;border-radius:3px}
+#footer{margin:30px auto 10px;}
+#generated-at{margin-top:30px;}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     /** code highliting start **/
+.codehilite .hll{background-color:#ffc}.codehilite{background:#f8f8f8}.codehilite .c{color:#408080;font-style:italic}.codehilite .err{border:1px solid red}.codehilite .k{color:green;font-weight:700}.codehilite .o{color:#666}.codehilite .ch,.codehilite .cm{color:#408080;font-style:italic}.codehilite .cp{color:#BC7A00}.codehilite .c1,.codehilite .cpf,.codehilite .cs{color:#408080;font-style:italic}.codehilite .gd{color:#A00000}.codehilite .ge{font-style:italic}.codehilite .gr{color:red}.codehilite .gh{color:navy;font-weight:700}.codehilite .gi{color:#00A000}.codehilite .go{color:#888}.codehilite .gp{color:navy;font-weight:700}.codehilite .gs{font-weight:700}.codehilite .gu{color:purple;font-weight:700}.codehilite .gt{color:#04D}.codehilite .kc,.codehilite .kd,.codehilite .kn{color:green;font-weight:700}.codehilite .kp{color:green}.codehilite .kr{color:green;font-weight:700}.codehilite .kt{color:#B00040}.codehilite .m{color:#666}.codehilite .s{color:#BA2121}.codehilite .na{color:#7D9029}.codehilite .nb{color:green}.codehilite .nc{color:#00F;font-weight:700}.codehilite .no{color:#800}.codehilite .nd{color:#A2F}.codehilite .ni{color:#999;font-weight:700}.codehilite .ne{color:#D2413A;font-weight:700}.codehilite .nf{color:#00F}.codehilite .nl{color:#A0A000}.codehilite .nn{color:#00F;font-weight:700}.codehilite .nt{color:green;font-weight:700}.codehilite .nv{color:#19177C}.codehilite .ow{color:#A2F;font-weight:700}.codehilite .w{color:#bbb}.codehilite .mb,.codehilite .mf,.codehilite .mh,.codehilite .mi,.codehilite .mo{color:#666}.codehilite .s2,.codehilite .sb,.codehilite .sc{color:#BA2121}.codehilite .sd{color:#BA2121;font-style:italic}.codehilite .se{color:#B62;font-weight:700}.codehilite .sh{color:#BA2121}.codehilite .si{color:#B68;font-weight:700}.codehilite .sx{color:green}.codehilite .sr{color:#B68}.codehilite .s1{color:#BA2121}.codehilite .ss{color:#19177C}.codehilite .bp{color:green}.codehilite .vc,.codehilite .vg,.codehilite .vi{color:#19177C}.codehilite .il{color:#666}
+
+/** code highliting end **/
+/** css from https://github.com/pandao/editor.md */
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format("woff");
+}
+.markdown-body hr:after,.markdown-body hr:before{display:table;content:""}.markdown-body ol,.markdown-body td,.markdown-body th,.markdown-body ul{padding:0}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#333;overflow:hidden;font-family:"Microsoft YaHei",Helvetica,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Monaco,monospace,Tahoma,STXihei,"åŽæ–‡ç»†é»‘",STHeiti,"Helvetica Neue","Droid Sans","wenquanyi micro hei",FreeSans,Arimo,Arial,SimSun,"å®‹ä½“",Heiti,"é»‘ä½“",sans-serif;font-size:16px;line-height:1.6;word-wrap:break-word}.markdown-body strong{font-weight:700}.markdown-body h1{margin:.67em 0}.markdown-body img{border:0}.markdown-body hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}.markdown-body input{color:inherit;margin:0;line-height:normal;font:13px/1.4 Helvetica,arial,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.markdown-body html input[disabled]{cursor:default}.markdown-body input[type=checkbox]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}.markdown-body *{-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body a{background:0 0;color:#4183c4;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline:0;text-decoration:underline}.markdown-body hr{margin:15px 0;overflow:hidden;background:0 0;border:0;border-bottom:1px solid #ddd}.markdown-body hr:after{clear:both}.markdown-body blockquote{margin:0}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body .task-list-item,li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}.markdown-body dd{margin-left:0}.markdown-body code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .octicon{font:normal normal 16px octicons-anchor;line-height:1;display:inline-block;text-decoration:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-body .octicon-link:before{content:'\f05c'}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body .anchor{position:absolute;top:0;left:0;display:block;padding-right:6px;padding-left:30px;margin-left:-30px}.markdown-body .anchor:focus{outline:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{position:relative;margin-top:1em;margin-bottom:16px;font-weight:700;line-height:1.4}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{display:none;color:#000;vertical-align:middle}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{padding-left:8px;margin-left:-30px;text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{display:inline-block}.markdown-body h1{font-size:2.25em;line-height:1.2}.markdown-body h1 .anchor{line-height:1}.markdown-body h2{font-size:1.75em;line-height:1.225}.markdown-body h2 .anchor{line-height:1}.markdown-body h3{font-size:1.5em;line-height:1.43}.markdown-body h3 .anchor,.markdown-body h4 .anchor{line-height:1.2}.markdown-body h4{font-size:1.25em}.markdown-body h5 .anchor,.markdown-body h6 .anchor{line-height:1.1}.markdown-body h5{font-size:1em}.markdown-body h6{font-size:1em;color:#777}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body blockquote{padding:0 15px;color:#777;border-left:4px solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;background-color:#f7f7f7;border-radius:3px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body pre code{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before{content:normal}.markdown-body .pl-c{color:#969896}.markdown-body .pl-c1,.markdown-body .pl-mdh,.markdown-body .pl-mm,.markdown-body .pl-mp,.markdown-body .pl-mr,.markdown-body .pl-s1 .pl-v,.markdown-body .pl-s3,.markdown-body .pl-sc,.markdown-body .pl-sv{color:#0086b3}.markdown-body .pl-e,.markdown-body .pl-en{color:#795da3}.markdown-body .pl-s1 .pl-s2,.markdown-body .pl-smi,.markdown-body .pl-smp,.markdown-body .pl-stj,.markdown-body .pl-vo,.markdown-body .pl-vpf{color:#333}.markdown-body .pl-ent{color:#63a35c}.markdown-body .pl-k,.markdown-body .pl-s,.markdown-body .pl-st{color:#a71d5d}.markdown-body .pl-pds,.markdown-body .pl-s1,.markdown-body .pl-s1 .pl-pse .pl-s2,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-src{color:#df5000}.markdown-body .pl-mo,.markdown-body .pl-v{color:#1d3e81}.markdown-body .pl-id{color:#b52a1d}.markdown-body .pl-ii{background-color:#b52a1d;color:#f8f8f8}.markdown-body .pl-sr .pl-cce{color:#63a35c;font-weight:700}.markdown-body .pl-ml{color:#693a17}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:#1d3e81;font-weight:700}.markdown-body .pl-mq{color:teal}.markdown-body .pl-mi{color:#333;font-style:italic}.markdown-body .pl-mb{color:#333;font-weight:700}.markdown-body .pl-md,.markdown-body .pl-mdhf{background-color:#ffecec;color:#bd2c00}.markdown-body .pl-mdht,.markdown-body .pl-mi1{background-color:#eaffea;color:#55a532}.markdown-body .pl-mdr{color:#795da3;font-weight:700}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{float:left;margin:.3em 0 .25em -1.6em;vertical-align:middle}.markdown-body :checked+.radio-label{z-index:1;position:relative;border-color:#4183c4}.editormd-html-preview,.editormd-preview-container{text-align:left;font-size:14px;line-height:1.6;padding:20px;overflow:auto;width:100%;background-color:#fff}.editormd-html-preview blockquote,.editormd-preview-container blockquote{color:#666;border-left:4px solid #ddd;padding-left:20px;margin-left:0;font-size:14px;font-style:italic}.editormd-html-preview p code,.editormd-preview-container p code{margin-left:5px;margin-right:4px}.editormd-html-preview abbr,.editormd-preview-container abbr{background:#ffd}.editormd-html-preview hr,.editormd-preview-container hr{height:1px;border:none;border-top:1px solid #ddd;background:0 0}.editormd-html-preview code,.editormd-preview-container code{border:1px solid #ddd;background:#f6f6f6;padding:3px;border-radius:3px;font-size:14px}.editormd-html-preview pre,.editormd-preview-container pre{border:1px solid #ddd;background:#f6f6f6;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px}.editormd-html-preview pre code,.editormd-preview-container pre code{padding:0}.editormd-html-preview code,.editormd-html-preview kbd,.editormd-html-preview pre,.editormd-preview-container code,.editormd-preview-container kbd,.editormd-preview-container pre{font-family:"YaHei Consolas Hybrid",Consolas,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,monospace,monospace}.editormd-html-preview table thead tr,.editormd-preview-container table thead tr{background-color:#F8F8F8}.editormd-html-preview p.editormd-tex,.editormd-preview-container p.editormd-tex{text-align:center}.editormd-html-preview span.editormd-tex,.editormd-preview-container span.editormd-tex{margin:0 5px}.editormd-html-preview .emoji,.editormd-preview-container .emoji{width:24px;height:24px}.editormd-html-preview .katex,.editormd-preview-container .katex{font-size:1.4em}.editormd-html-preview .flowchart,.editormd-html-preview .sequence-diagram,.editormd-preview-container .flowchart,.editormd-preview-container .sequence-diagram{margin:0 auto;text-align:center}.editormd-html-preview .flowchart svg,.editormd-html-preview .sequence-diagram svg,.editormd-preview-container .flowchart svg,.editormd-preview-container .sequence-diagram svg{margin:0 auto}.editormd-html-preview .flowchart text,.editormd-html-preview .sequence-diagram text,.editormd-preview-container .flowchart text,.editormd-preview-container .sequence-diagram text{font-size:15px!important;font-family:"YaHei Consolas Hybrid",Consolas,"Microsoft YaHei","Malgun Gothic","Segoe UI",Helvetica,Arial!important}/*! Pretty printing styles. Used with prettify.js. */.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.clo,.opn,.pun{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.kwd,.tag,.typ{font-weight:700}.str{color:#060}.kwd{color:#006}.com{color:#600;font-style:italic}.typ{color:#404}.lit{color:#044}.clo,.opn,.pun{color:#440}.tag{color:#006}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}.editormd-html-preview pre.prettyprint,.editormd-preview-container pre.prettyprint{padding:10px;border:1px solid #ddd;white-space:pre-wrap;word-wrap:break-word}.editormd-html-preview ol.linenums,.editormd-preview-container ol.linenums{color:#999;padding-left:2.5em}.editormd-html-preview ol.linenums li,.editormd-preview-container ol.linenums li{list-style-type:decimal}.editormd-html-preview ol.linenums li code,.editormd-preview-container ol.linenums li code{border:none;background:0 0;padding:0}.editormd-html-preview .editormd-toc-menu,.editormd-preview-container .editormd-toc-menu{margin:8px 0 12px;display:inline-block}.editormd-html-preview .editormd-toc-menu>.markdown-toc,.editormd-preview-container .editormd-toc-menu>.markdown-toc{position:relative;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;border:1px solid #ddd;display:inline-block;font-size:1em}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul{width:160%;min-width:180px;position:absolute;left:-1px;top:-2px;z-index:100;padding:0 10px 10px;display:none;background:#fff;border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li ul{width:100%;min-width:180px;border:1px solid #ddd;display:none;background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn:hover,.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a:hover,.editormd-preview-container .editormd-toc-menu .toc-menu-btn:hover,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a:hover{background-color:#f6f6f6}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a{color:#666;padding:6px 10px;display:block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu>.markdown-toc li,.editormd-preview-container .editormd-toc-menu>.markdown-toc li{position:relative}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul{position:absolute;top:32px;left:10%;display:none;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{pointer-events:pointer-events;position:absolute;left:15px;top:-6px;display:block;content:"";width:0;height:0;border:6px solid transparent;border-width:0 6px 6px;z-index:10}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{border-bottom-color:#ccc}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after{border-bottom-color:#fff;top:-5px}.editormd-html-preview .editormd-toc-menu ul,.editormd-preview-container .editormd-toc-menu ul{list-style:none}.editormd-html-preview .editormd-toc-menu a,.editormd-preview-container .editormd-toc-menu a{text-decoration:none}.editormd-html-preview .editormd-toc-menu h1,.editormd-preview-container .editormd-toc-menu h1{font-size:16px;padding:5px 0 10px 10px;line-height:1;border-bottom:1px solid #eee}.editormd-html-preview .editormd-toc-menu h1 .fa,.editormd-preview-container .editormd-toc-menu h1 .fa{padding-left:10px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn,.editormd-preview-container .editormd-toc-menu .toc-menu-btn{color:#666;min-width:180px;padding:5px 10px;border-radius:4px;display:inline-block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu .toc-menu-btn .fa,.editormd-preview-container .editormd-toc-menu .toc-menu-btn .fa{float:right;padding:3px 0 0 10px;font-size:1.3em}.markdown-body .editormd-toc-menu ul{padding-left:0}.markdown-body .highlight pre,.markdown-body pre{line-height:1.6}hr.editormd-page-break{border:1px dotted #ccc;font-size:0;height:2px}@media only print{hr.editormd-page-break{background:0 0;border:none;height:0}}.editormd-html-preview textarea{display:none}.editormd-html-preview hr.editormd-page-break{background:0 0;border:none;height:0}.editormd-preview-close-btn{color:#fff;padding:4px 6px;font-size:18px;-webkit-border-radius:500px;-moz-border-radius:500px;-ms-border-radius:500px;-o-border-radius:500px;border-radius:500px;display:none;background-color:#ccc;position:absolute;top:25px;right:35px;z-index:19;-webkit-transition:background-color .3s ease-out;-moz-transition:background-color .3s ease-out;transition:background-color .3s ease-out}.editormd-preview-close-btn:hover{background-color:#999}.editormd-preview-active{width:100%;padding:40px}
+
+
+
+    </style>
+    
+</head>
+<body>
+<div id="layout">
+        <div id="sidebar">
+            <h1>Table of Contents</h1>
+            <div id="custom-toc-container">
+                <div class="toc">
+<ul>
+<li><a href="#managing-storage">MANAGING STORAGE</a></li>
+<li><a href="#working-with-partitions-and-mounts">Working with Partitions and Mounts</a><ul>
+<li><a href="#understanding-disk-layout">Understanding Disk Layout</a></li>
+<li><a href="#exporing-linux-storage-options">Exporing Linux Storage Options</a><ul>
+<li><a href="#linux-block-devices">Linux Block Devices</a></li>
+<li><a href="#understanding-partition-numbering">Understanding Partition Numbering</a></li>
+</ul>
+</li>
+<li><a href="#understanding-gpt-and-mbr-partitions">Understanding GPT and MBR Partitions</a></li>
+<li><a href="#creating-partitions-with-fdisk">Creating Partitions with FDISK.</a></li>
+<li><a href="#creating-and-mounting-file-systems">Creating and Mounting File Systems</a><ul>
+<li><a href="#creating-filesystems">Creating filesystems</a></li>
+<li><a href="#mounting-filesystems">Mounting Filesystems</a></li>
+</ul>
+</li>
+<li><a href="#understanding-etcfstab">Understanding /etc/fstab</a><ul>
+<li><a href="#avoiding-problems-while-booting">Avoiding Problems While Booting</a></li>
+</ul>
+</li>
+<li><a href="#labels-and-uuids">Labels and UUID's</a><ul>
+<li><a href="#xfs-uuids-on-clonned-devices-not-in-exam">XFS UUID's on Clonned Devices (not in exam)</a></li>
+</ul>
+</li>
+<li><a href="#defining-systemd-mounts">Defining Systemd mounts</a></li>
+<li><a href="#creating-a-swap-partition">Creating a Swap Partition</a></li>
+<li><a href="#lab">LAB</a></li>
+</ul>
+</li>
+<li><a href="#using-logical-volume-manager">Using Logical Volume Manager</a><ul>
+<li><a href="#understanding-advanced-storage-solutions">Understanding Advanced Storage Solutions</a></li>
+<li><a href="#creating-lvm-logical-volume">Creating LVM Logical Volume</a></li>
+<li><a href="#understanding-device-mapper-and-lvm-device-names">Understanding Device Mapper and LVM Device Names</a></li>
+<li><a href="#resizing-lvm-logical-volumes">Resizing LVM Logical Volumes.</a></li>
+<li><a href="#using-stratis-snapshots">Using Stratis Snapshots 😅</a></li>
+<li><a href="#lab_1">LAB</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </div>
+        </div>
+        <div id="content-container">
+            <div class="markdown-body markdown-content">
+                <h1 id="managing-storage">MANAGING STORAGE</h1>
+<hr />
+<p><strong><a href="m3.html">Module 3</a> <a href="m4.html">Module 4</a> <a href="m5.html">Module 5</a> <a href="m6.html">Module 6</a> <a href="m7.html">Module 7</a></strong></p>
+<hr />
+<h1 id="working-with-partitions-and-mounts">Working with Partitions and Mounts</h1>
+<hr />
+<h2 id="understanding-disk-layout">Understanding Disk Layout</h2>
+<hr />
+<h2 id="exporing-linux-storage-options">Exporing Linux Storage Options</h2>
+<ul>
+<li>Partitions</li>
+<li>Used to allocate dedicated storage to specific types of data.</li>
+<li>
+<p>not flexible.</p>
+</li>
+<li>
+<p>LVM Logical Volumes</p>
+</li>
+<li>Used at default installation of RHEL.</li>
+<li>
+<p>Adds flexibility to storage (resize, snapshots, and more).</p>
+</li>
+<li>
+<p>Stratis</p>
+</li>
+<li>Next generation Volume Managing Filesystem that uses thin provisioning by default.</li>
+<li>Implemented in user space, which makes API access possible.</li>
+</ul>
+<h3 id="linux-block-devices">Linux Block Devices</h3>
+<ul>
+<li>According to the driver that is used, different block devices can be used.</li>
+<li>Use <strong>lsblk</strong> to get an overview of currently existing devices.</li>
+<li><strong>/dev/sdx</strong> is common for SCSI and SATA disks.</li>
+<li><strong>/dev/vdx</strong> is used in KVM virtual machines.</li>
+<li><strong>/dev/nvmexny</strong> is used for NVME devices.</li>
+</ul>
+<h3 id="understanding-partition-numbering">Understanding Partition Numbering</h3>
+<ul>
+<li>On <strong>sd</strong> and <strong>vd</strong> devices, partitions are numbered in order:</li>
+<li>/dev/sda2 is the second partitions on the first hard disk.</li>
+<li>
+<p>/dev/sdb1 is the first paritions on the second hard disk.</p>
+</li>
+<li>
+<p>On <strong>nvme</strong> devices, partition names are appended ot the device name</p>
+</li>
+<li>/dev/nmve0n1p1 is the first partition on the first hard disk.</li>
+<li>
+<p>/dev/nvme0n3p2 is the second partition on the third hard disk.</p>
+</li>
+<li>
+<p>Use <strong>lsblk</strong> to avoid confusion!</p>
+</li>
+<li><strong>lsblk</strong> reads the kernel partition table in <strong>/proc/partitions</strong>.</li>
+</ul>
+<h2 id="understanding-gpt-and-mbr-partitions">Understanding GPT and MBR Partitions</h2>
+<ul>
+<li>Master Boot Record (MBR) is part of the 1981 PC specification.</li>
+<li>512 bytes to store boot information.</li>
+<li>64 bytes to store partitions.</li>
+<li>Place for 4 partitions only with, max size of 2 TiB.</li>
+<li>
+<p>To use more partitions, extended and logical partitions must be used.</p>
+</li>
+<li>
+<p>GUID Partition Table (GPT) is a newer partiton table (2010).</p>
+</li>
+<li>More space to store partitions.</li>
+<li>Used to overcome MBR limitations.</li>
+<li>128 partitions max.</li>
+</ul>
+<hr />
+<h2 id="creating-partitions-with-fdisk">Creating Partitions with FDISK.</h2>
+<ul>
+<li><strong>fdisk</strong> has been around since the earliest Linux versions.</li>
+<li>Offers easy access to advanced features.</li>
+<li>Completely reworked to support MBR and GPT partitions.</li>
+<li>
+<p>On new disks, create a GPT partition table using <strong>g</strong>.</p>
+</li>
+<li>
+<p><strong>gdisk</strong> was introduced to offer GPT support.</p>
+</li>
+<li>
+<p>Creates GPT partition table by default.</p>
+</li>
+<li>
+<p><strong>parted</strong> was introduced to make partitioning easier.</p>
+</li>
+<li>Can be scripted easily.</li>
+<li>Advanced features are a bit hidden.</li>
+</ul>
+<hr />
+<h2 id="creating-and-mounting-file-systems">Creating and Mounting File Systems</h2>
+<ul>
+<li><strong>XFS</strong> is the default filesystem.</li>
+<li>Fast and Scalable.</li>
+<li>Used CoW to guarntee data integrity. (Copy on Write).</li>
+<li>
+<p>Size can be increased, not decreased.</p>
+</li>
+<li>
+<p><strong>ext4</strong> was default in RHEL 6 and is still used.</p>
+</li>
+<li>Backward compatible to Ext2.</li>
+<li>Used Journal to guarantee data integrity.</li>
+<li>
+<p>Size can be increased and decreased.</p>
+</li>
+<li>
+<p><strong>vfat</strong> offer multi-os support.</p>
+</li>
+<li>
+<p>Used for shared devices.</p>
+</li>
+<li>
+<p><strong>Btrfs</strong> is a new and advanced filesystemd.</p>
+</li>
+<li>Uses CoW.</li>
+<li>Not installed by default on RHEL.</li>
+</ul>
+<h3 id="creating-filesystems">Creating filesystems</h3>
+<ul>
+<li><code>mkfs.xfs</code> creates XFS filesystem.</li>
+<li><code>mkfs.ext4</code> creates an Ext4 filesystem.</li>
+<li><code>mkfs.vfat</code> creates vfat file system.</li>
+<li>Use <code>mkfs.[TAB][TAB]</code> to show a list of available filesystems.</li>
+<li><strong><em>Do not use mkfs as it will create an Ext2 filesystem.</em></strong></li>
+</ul>
+<h3 id="mounting-filesystems">Mounting Filesystems</h3>
+<ul>
+<li>After making the filesytem, you can mount it in runtime using the <code>mount</code> command.</li>
+<li>
+<p><code>mount /dev/vdb1 /mnt/directory1</code></p>
+</li>
+<li>
+<p>Use <code>umount</code> before disconnecting a device.</p>
+</li>
+<li>
+<p>Use <code>lsof /mnt</code> if you get an error about open files.</p>
+</li>
+<li>
+<p>The <strong>mount</strong> command shows all mounted filesystems, including adminstrative kernel mounts.</p>
+</li>
+<li>Use <code>mount | grep '^/'</code> to see relevant information.</li>
+<li>The <strong>findmnt</strong> command shows which filesystem is mounted where in the directory structure.</li>
+</ul>
+<hr />
+<h2 id="understanding-etcfstab">Understanding /etc/fstab</h2>
+<ul>
+<li>/etc/fstab is the  main configuration file to persistently mount partitions</li>
+<li>
+<p><code>/dev/sdb1  /data   ext4    defaults    0   0</code></p>
+</li>
+<li>
+<p>/etc/fstab content is used to generate systemd mounts by the <strong>systemd-fstab-generator</strong> utility.</p>
+</li>
+<li>To update systemd mounts, it is recommended to use <strong>systemctl daemon-reload</strong> after editing /etc/fstab.</li>
+</ul>
+<h3 id="avoiding-problems-while-booting">Avoiding Problems While Booting</h3>
+<ul>
+<li>If an error was found in /etc/fstab, your system will drop a troubleshooting shell while booting.</li>
+<li>After adding lines to /etc/fstab, use <code>mount -a</code> to mount all that hasn't been mounted yet.</li>
+<li>Alternatively use, <code>findmnt --verify</code> to verify syntax.</li>
+</ul>
+<hr />
+<h2 id="labels-and-uuids">Labels and UUID's</h2>
+<ul>
+<li>In datacenter environments, block devices names may change.</li>
+<li>Different solutions exist for persistent naming.</li>
+<li><strong>UUID</strong>: a UUID is automatically generated for each device that contains a filesystem or anything similar.</li>
+<li><strong>Label</strong>: while creating the filesystem, the option -L can be used to set an arbitrary name that can be used for mounting the filesystem.</li>
+<li>
+<p>Unique device names are created in /dev/disk/*.</p>
+</li>
+<li>
+<p><strong>blkid</strong> shows all devices with their naming attributes</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># blkid</span>
+/dev/mapper/rhel-swap: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;aa6ec00a-5365-4136-b639-75d685660365&quot;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&quot;swap&quot;</span>
+/dev/nvme0n1p1: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;70ef3b78-06da-48b7-bcc8-22d4ba0a667c&quot;</span> <span class="nv">BLOCK_SIZE</span><span class="o">=</span><span class="s2">&quot;512&quot;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&quot;xfs&quot;</span> <span class="nv">PARTUUID</span><span class="o">=</span><span class="s2">&quot;cba88220-01&quot;</span>
+/dev/nvme0n1p2: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;Jz6cks-tUQw-TQxF-UiaR-utJq-4yda-pOAyx6&quot;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&quot;LVM2_member&quot;</span> <span class="nv">PARTUUID</span><span class="o">=</span><span class="s2">&quot;cba88220-02&quot;</span>
+/dev/sr0: <span class="nv">BLOCK_SIZE</span><span class="o">=</span><span class="s2">&quot;2048&quot;</span> <span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;2022-08-05-06-19-40-00&quot;</span> <span class="nv">LABEL</span><span class="o">=</span><span class="s2">&quot;RHEL-9-0-0-BaseOS-x86_64&quot;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&quot;iso9660&quot;</span> <span class="nv">PTUUID</span><span class="o">=</span><span class="s2">&quot;60d19322&quot;</span> <span class="nv">PTTYPE</span><span class="o">=</span><span class="s2">&quot;dos&quot;</span>
+/dev/loop0: <span class="nv">BLOCK_SIZE</span><span class="o">=</span><span class="s2">&quot;2048&quot;</span> <span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;2022-08-05-06-19-40-00&quot;</span> <span class="nv">LABEL</span><span class="o">=</span><span class="s2">&quot;RHEL-9-0-0-BaseOS-x86_64&quot;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&quot;iso9660&quot;</span> <span class="nv">PTUUID</span><span class="o">=</span><span class="s2">&quot;60d19322&quot;</span> <span class="nv">PTTYPE</span><span class="o">=</span><span class="s2">&quot;dos&quot;</span>
+/dev/mapper/rhel-root: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&quot;fdadebd7-bf26-4199-a6b7-d75760ca818d&quot;</span> <span class="nv">BLOCK_SIZE</span><span class="o">=</span><span class="s2">&quot;512&quot;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&quot;xfs&quot;</span>
+</pre></div>
+
+
+<ul>
+<li><strong>tune2fs -L</strong> is used to set a lable on an Ext filesystem.</li>
+<li><strong>xfs_admin -L</strong> is used to set a label on an XFS filesytem.</li>
+<li><strong>mkfs.* -L</strong> is used to set a label while creating the filesystem.</li>
+</ul>
+<h4 id="xfs-uuids-on-clonned-devices-not-in-exam">XFS UUID's on Clonned Devices (not in exam)</h4>
+<ul>
+<li>UUID are supposed to be unique.</li>
+<li>If an XFS filesystem is cloned, the UUID is cloned as well.</li>
+<li>Use <strong>xfs_admin -U generate /dev/sdb1</strong> to generate a new UUID.</li>
+</ul>
+<hr />
+<h2 id="defining-systemd-mounts">Defining Systemd mounts</h2>
+<ul>
+<li>Lines in /etc/fstab are converted to systemd mounts.</li>
+<li>
+<p>Check /run/systemd/generator for the automatically generated files.</p>
+</li>
+<li>
+<p>Mounts can be created using systemd .mount files.</p>
+</li>
+<li>Using .mount files allows you to be more specific in defining dependencies.</li>
+<li>Use systemctl cat tmp.mount for an example.</li>
+<li><strong>Using /etc/fstab is okay in the exam</strong>.</li>
+</ul>
+<hr />
+<h2 id="creating-a-swap-partition">Creating a Swap Partition</h2>
+<ul>
+<li>Swap is RAM that is emulated on disk.</li>
+<li>All Linux systems should have at least some swap.</li>
+<li>The amount of swap depends on the use of the server.</li>
+<li>Swap can be created on any block device, including swap files</li>
+<li>Set partition type to linux-swap.</li>
+<li>After creating the swap partition, use <strong>mkswap</strong> to create swap FS.</li>
+<li>Activate using <strong>swapon</strong>.</li>
+</ul>
+<hr />
+<h2 id="lab">LAB</h2>
+<ul>
+<li>To work on this lab, you'll need to create a 10GiB additional hard disk on your vm. This disk needs to be completely available.</li>
+<li>Create a primary parition with a size of 1GiB. Format it with Ext4 and mount it persistently on /mounts/files, using its UUID.</li>
+<li>Create an extended partition that includes all remaining disk space. In this partition, create 500 MiB XFS partition and mount it persistently on /mounts/xfs, using the label myxfs.</li>
+<li>Create a 500 MiB swap partition and mount it persistently.</li>
+</ul>
+<hr />
+<h1 id="using-logical-volume-manager">Using Logical Volume Manager</h1>
+<hr />
+<h2 id="understanding-advanced-storage-solutions">Understanding Advanced Storage Solutions</h2>
+<ul>
+<li>LVM logical Volumes</li>
+<li>Used during default installation of RHEL.</li>
+<li>
+<p>Adds flexibility to storage (resize, snapshots, and more).</p>
+</li>
+<li>
+<p>Stratis</p>
+</li>
+<li>Next generation Volume Managing Filesystem that uses thin provisioning by default.</li>
+<li>
+<p>Implemented in user space, which makes API access possible.</p>
+</li>
+<li>
+<p>Virtual Data Optimizer (<strong>Not part of RHCSA</strong>)</p>
+</li>
+<li>Focused on storing files in the most efficient way.</li>
+<li>Manages deduplicated and compressed storage pools.</li>
+<li>Now intergrated LVM.</li>
+</ul>
+<hr />
+<h2 id="creating-lvm-logical-volume">Creating LVM Logical Volume</h2>
+<ul>
+<li>Create a partition and set partition type to <strong>lvm</strong>.</li>
+<li>Use <strong>pvcreate /dev/sdb1</strong> to create the physical volume.</li>
+<li>Use <strong>vgcreate vgdata /dev/sdb1</strong> to create the volume group.</li>
+<li>Use <strong>lvcreate -n lvdata -L 1G vgdata</strong> to create the logical volume.</li>
+<li>Use <strong>mkfs /dev/vgdata/lvdata</strong> to create a filesystem.</li>
+<li>
+<p>Put in /etc/fstab to mount it persistently.</p>
+</li>
+<li>
+<p><strong>Extents</strong> are the elementary blocks of LVM allocation.</p>
+</li>
+<li>The extent size can be defined while defining the volume group.</li>
+<li>Use <strong>vgcreate -s 8M vgdata /dev/sdb1</strong> to create a volume group with an extent size of 8MB.</li>
+<li>All of the LVM logical volumes built from the volume group will use the same extent size.</li>
+<li>
+<p>Use vgdisplay to show properties of volume groups, including the extent size.</p>
+</li>
+<li>
+<p>Creating a partition using <code>gdisk</code>.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># gdisk /dev/sda</span>
+GPT fdisk <span class="o">(</span>gdisk<span class="o">)</span> version <span class="m">1</span>.0.7
+
+Partition table scan:
+  MBR: not present
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+Creating new GPT entries <span class="k">in</span> memory.
+
+Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+Partition number <span class="o">(</span><span class="m">1</span>-128, default <span class="m">1</span><span class="o">)</span>: <span class="m">1</span>
+First sector <span class="o">(</span><span class="m">34</span>-20971486, <span class="nv">default</span> <span class="o">=</span> <span class="m">2048</span><span class="o">)</span> or <span class="o">{</span>+-<span class="o">}</span>size<span class="o">{</span>KMGTP<span class="o">}</span>: 
+Last sector <span class="o">(</span><span class="m">2048</span>-20971486, <span class="nv">default</span> <span class="o">=</span> <span class="m">20971486</span><span class="o">)</span> or <span class="o">{</span>+-<span class="o">}</span>size<span class="o">{</span>KMGTP<span class="o">}</span>: +2G
+Current <span class="nb">type</span> is <span class="m">8300</span> <span class="o">(</span>Linux filesystem<span class="o">)</span>
+Hex code or GUID <span class="o">(</span>L to show codes, <span class="nv">Enter</span> <span class="o">=</span> <span class="m">8300</span><span class="o">)</span>: L
+Type search string, or &lt;Enter&gt; to show all codes: lvm
+8e00 Linux LVM                           
+Hex code or GUID <span class="o">(</span>L to show codes, <span class="nv">Enter</span> <span class="o">=</span> <span class="m">8300</span><span class="o">)</span>: 8e00
+Changed <span class="nb">type</span> of partition to <span class="s1">&#39;Linux LVM&#39;</span>
+
+Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+Disk /dev/sda: <span class="m">20971520</span> sectors, <span class="m">10</span>.0 GiB
+Model: VMware Virtual S
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span>/512 bytes
+Disk identifier <span class="o">(</span>GUID<span class="o">)</span>: B133BBA7-762F-468D-8035-366CEA93C06D
+Partition table holds up to <span class="m">128</span> entries
+Main partition table begins at sector <span class="m">2</span> and ends at sector <span class="m">33</span>
+First usable sector is <span class="m">34</span>, last usable sector is <span class="m">20971486</span>
+Partitions will be aligned on <span class="m">2048</span>-sector boundaries
+Total free space is <span class="m">16777149</span> sectors <span class="o">(</span><span class="m">8</span>.0 GiB<span class="o">)</span>
+
+Number  Start <span class="o">(</span>sector<span class="o">)</span>    End <span class="o">(</span>sector<span class="o">)</span>  Size       Code  Name
+   <span class="m">1</span>            <span class="m">2048</span>         <span class="m">4196351</span>   <span class="m">2</span>.0 GiB     8E00  Linux LVM
+
+Command <span class="o">(</span>? <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? <span class="o">(</span>Y/N<span class="o">)</span>: y
+OK<span class="p">;</span> writing new GUID partition table <span class="o">(</span>GPT<span class="o">)</span> to /dev/sda.
+The operation has completed successfully.
+
+
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># lsblk</span>
+NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+loop0           <span class="m">7</span>:0    <span class="m">0</span>  <span class="m">7</span>.9G  <span class="m">0</span> loop /repo
+sda             <span class="m">8</span>:0    <span class="m">0</span>   10G  <span class="m">0</span> disk 
+└─sda1          <span class="m">8</span>:1    <span class="m">0</span>    2G  <span class="m">0</span> part 
+sr0            <span class="m">11</span>:0    <span class="m">1</span>  <span class="m">7</span>.9G  <span class="m">0</span> rom  /run/media/student/RHEL-9-0-0-BaseOS-x86_64
+nvme0n1       <span class="m">259</span>:0    <span class="m">0</span>   20G  <span class="m">0</span> disk 
+├─nvme0n1p1   <span class="m">259</span>:1    <span class="m">0</span>    1G  <span class="m">0</span> part /boot
+└─nvme0n1p2   <span class="m">259</span>:2    <span class="m">0</span>   19G  <span class="m">0</span> part 
+  ├─rhel-root <span class="m">253</span>:0    <span class="m">0</span>   17G  <span class="m">0</span> lvm  /
+  └─rhel-swap <span class="m">253</span>:1    <span class="m">0</span>    2G  <span class="m">0</span> lvm  <span class="o">[</span>SWAP<span class="o">]</span>
+</pre></div>
+
+
+<ol>
+<li>Creating physical volume using <code>pvcreate</code>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># pvcreate /dev/sda1</span>
+  Physical volume <span class="s2">&quot;/dev/sda1&quot;</span> successfully created.
+</pre></div>
+
+
+<ol>
+<li>Creating a volume group (named vgdata) with extent size of 8M, using <code>vgcreate</code>.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># vgcreate -s 8M vgdata /dev/sda1</span>
+  Volume group <span class="s2">&quot;vgdata&quot;</span> successfully created
+</pre></div>
+
+
+<ol>
+<li>Creating logical volume (named lvdata) from vgdata. <code>-L</code> is for size and <code>n</code> is for the name of the logical volume.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># lvcreate -L 1G -n lvdata /dev/vgdata</span>
+  Logical volume <span class="s2">&quot;lvdata&quot;</span> created.
+</pre></div>
+
+
+<ol>
+<li><code>lvs</code> and <code>lsblk</code> after creating lvdata.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># lvs</span>
+  LV     VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   rhel   -wi-ao---- &lt;<span class="m">17</span>.00g                                                    
+  swap   rhel   -wi-ao----   <span class="m">2</span>.00g                                                    
+  lvdata vgdata -wi-a-----   <span class="m">1</span>.00g                                                    
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># lsblk</span>
+NAME              MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+loop0               <span class="m">7</span>:0    <span class="m">0</span>  <span class="m">7</span>.9G  <span class="m">0</span> loop /repo
+sda                 <span class="m">8</span>:0    <span class="m">0</span>   10G  <span class="m">0</span> disk 
+└─sda1              <span class="m">8</span>:1    <span class="m">0</span>    2G  <span class="m">0</span> part 
+  └─vgdata-lvdata <span class="m">253</span>:2    <span class="m">0</span>    1G  <span class="m">0</span> lvm  
+sr0                <span class="m">11</span>:0    <span class="m">1</span>  <span class="m">7</span>.9G  <span class="m">0</span> rom  /run/media/student/RHEL-9-0-0-BaseOS-x86_64
+nvme0n1           <span class="m">259</span>:0    <span class="m">0</span>   20G  <span class="m">0</span> disk 
+├─nvme0n1p1       <span class="m">259</span>:1    <span class="m">0</span>    1G  <span class="m">0</span> part /boot
+└─nvme0n1p2       <span class="m">259</span>:2    <span class="m">0</span>   19G  <span class="m">0</span> part 
+  ├─rhel-root     <span class="m">253</span>:0    <span class="m">0</span>   17G  <span class="m">0</span> lvm  /
+  └─rhel-swap     <span class="m">253</span>:1    <span class="m">0</span>    2G  <span class="m">0</span> lvm  <span class="o">[</span>SWAP<span class="o">]</span>
+</pre></div>
+
+
+<ol>
+<li>Adding a file system to lvdata</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># mkfs.vfat /dev/vgdata/lvdata </span>
+mkfs.fat <span class="m">4</span>.2 <span class="o">(</span><span class="m">2021</span>-01-31<span class="o">)</span>
+</pre></div>
+
+
+<ol>
+<li>Mounting lvdata, Adding a entry in /etc/fstab</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># echo &quot;/dev/vgdata/lvdata /mount/lvdata  vfat defaults 0 0&quot; &gt;&gt; /etc/fstab</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># findmnt --verify</span>
+/repo
+   <span class="o">[</span>W<span class="o">]</span> non-bind mount <span class="nb">source</span> /rhel9.iso is a directory or regular file
+
+<span class="m">0</span> parse errors, <span class="m">0</span> errors, <span class="m">1</span> warning
+</pre></div>
+
+
+<h2 id="understanding-device-mapper-and-lvm-device-names">Understanding Device Mapper and LVM Device Names</h2>
+<ul>
+<li>Device mapper is the system that the kernel uses to interface storage devices.</li>
+<li>
+<p>Used by LVM, Stratis, Multipath and more storage systems.</p>
+</li>
+<li>
+<p>Device mapper generates non-persistent names, like /dev/dm-0 and /dev/dm-1.</p>
+</li>
+<li>Persistent names are provided as symlinks through /dev/mapper</li>
+<li>/dev/mapper/vgdata-lvdata</li>
+<li>Alternatively, use the LVM generated symbolic links.</li>
+<li>/dev/vgdata/lvdata</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># ls -l /dev/mapper/vgdata-lvdata /dev/vgdata/lvdata</span>
+lrwxrwxrwx. <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">30</span> <span class="m">01</span>:01 /dev/mapper/vgdata-lvdata -&gt; ../dm-2
+lrwxrwxrwx. <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">30</span> <span class="m">01</span>:01 /dev/vgdata/lvdata -&gt; ../dm-2
+</pre></div>
+
+
+<hr />
+<h2 id="resizing-lvm-logical-volumes">Resizing LVM Logical Volumes.</h2>
+<ul>
+<li>Use <code>vgs</code> to verify the volume group has unused disk space.</li>
+<li>If required, use <code>vgextend</code> to add one or more PVs to the VG.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># vgextend vgfiles /dev/sda3</span>
+  Physical volume <span class="s2">&quot;/dev/sda3&quot;</span> successfully created.
+  Volume group <span class="s2">&quot;vgfiles&quot;</span> successfully extended
+</pre></div>
+
+
+<ul>
+<li>Use <code>lvextend -r -L +1G</code> to grow the LVM logical volume, including the filesystem it's hosting.</li>
+<li><strong>resize2fs</strong> is a resize utility for Ext Filesystems.</li>
+<li>
+<p><strong>xfs_growfs</strong> can be used to grow an XFS filesystem.</p>
+</li>
+<li>
+<p>==Shrinking is possible on Ext4 filesystems. not on XFS.==</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># lvextend -r -l +50%FREE /dev/vgfiles/lvfiles</span>
+fsck from util-linux <span class="m">2</span>.37.4
+/dev/mapper/vgfiles-lvfiles: clean, <span class="m">11</span>/65280 files, <span class="m">8843</span>/261120 blocks
+  Size of logical volume vgfiles/lvfiles changed from <span class="m">1020</span>.00 MiB <span class="o">(</span><span class="m">255</span> extents<span class="o">)</span> to &lt;<span class="m">1</span>.50 GiB <span class="o">(</span><span class="m">383</span> extents<span class="o">)</span>.
+  Logical volume vgfiles/lvfiles successfully resized.
+resize2fs <span class="m">1</span>.46.5 <span class="o">(</span><span class="m">30</span>-Dec-2021<span class="o">)</span>
+Resizing the filesystem on /dev/mapper/vgfiles-lvfiles to <span class="m">392192</span> <span class="o">(</span>4k<span class="o">)</span> blocks.
+The filesystem on /dev/mapper/vgfiles-lvfiles is now <span class="m">392192</span> <span class="o">(</span>4k<span class="o">)</span> blocks long.
+
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># lvs</span>
+  LV      VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root    rhel    -wi-ao---- &lt;<span class="m">17</span>.00g                                                    
+  swap    rhel    -wi-ao----   <span class="m">2</span>.00g                                                    
+  lvdata  vgdata  -wi-ao----   <span class="m">1</span>.00g                                                    
+  lvfiles vgfiles -wi-a-----  &lt;<span class="m">1</span>.50g   
+  <span class="sb">```</span>
+
+ ---
+ <span class="c1">## Reducing Volume Groups</span>
+ - If a volume groups consists of multiple PVs, a PV can be removed fromt eh VG <span class="k">if</span> the remaining PVs have sufficient free space to allocate its extents.
+ - This procedure will not work <span class="k">if</span> the remaining PVs are fully used already.
+ - First, you<span class="s1">&#39;ll have to use **pvmove** to move used extents from the volume you want to remove to remaining volume(s).</span>
+<span class="s1"> - Next, **vgreduce** can be used to complete the removal.</span>
+
+<span class="s1">---</span>
+<span class="s1">## LAB</span>
+<span class="s1">- To perform the tasks in this lab, add a new 10GiB disk to your virtual machine.</span>
+<span class="s1">  - Create an LVM logical volume with the name lvdb and a size fo 1GiB. Also create the VG and PV that are required for this LV.</span>
+<span class="s1">  - Format this LV with XFS filesystem and mount it persistently on /mounts/lvdb.</span>
+
+<span class="s1">----</span>
+<span class="s1"># Managing Stratis</span>
+
+<span class="s1">---</span>
+
+<span class="s1">## Understanding the Storage Stack.</span>
+<span class="s1">- The block device layer allows RHEL to use different storage solutions by including the appropriate driver in the Linux kernel.</span>
+<span class="s1">- Multipath is an optional component that is used in storage network to provide redundancy to different block devices.</span>
+<span class="s1">- Partitions make it possible to allocate different storage units on a block device.</span>
+<span class="s1">- RAID allows for the creation of redundant storage volumes.</span>
+<span class="s1">- LVM creates dynamic volumes from one or more block devices.</span>
+<span class="s1">- Storage volumes can be used for different purposes.</span>
+<span class="s1">  - File systems</span>
+<span class="s1">  - Database</span>
+<span class="s1">  - Ceph OSD&#39;</span>s
+
+- LVM can be used with LUKS encryption to provide device-based block encryption.
+- LVM can be used with VDO deduplication and compression as a feature of logical volumes.
+- LUKS and VDO can be used without LVM also.
+
+---
+
+<span class="c1">## Creating Statis Volumes</span>
+- Stratis volumes always use the XFS filesystem.
+- Stratis volumes are thin provisioned by nature.
+- Volume storage is allocated from the stratis pool.
+- Each stratis volume needs a minimal size of 4GiB.
+- Because of the thin provisioning, stratis tools must be used to monitor available storage space.
+
+- Installing stratis <span class="sb">`</span>dnf install stratis-cli stratisd<span class="sb">`</span> enabling stratis <span class="sb">`</span>systemctl <span class="nb">enable</span> --now stratisd<span class="sb">`</span>.
+- Creating a stratis pool named mypool:
+<span class="sb">```</span>bash
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># stratis pool create mypool /dev/sdb</span>
+</pre></div>
+
+
+<ul>
+<li>Listing stratis pools:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># stratis pool list</span>
+Name                Total / Used / Free    Properties                                   UUID   Alerts
+mypool   <span class="m">10</span> GiB / <span class="m">517</span>.39 MiB / <span class="m">9</span>.49 GiB   ~Ca,~Cr, Op   0b19cc1a-e484-463b-b2b4-3f09c6c0c0e2   WS001    
+</pre></div>
+
+
+<ul>
+<li>Adding more block devices to the stratis pool.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># stratis pool add-data mypool /dev/sdc</span>
+</pre></div>
+
+
+<ul>
+<li>List all block devices added to stratis pool</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># stratis blockdev list</span>
+Pool Name   Device Node   Physical Size   Tier
+mypool      /dev/sdb             <span class="m">10</span> GiB   DATA
+mypool      /dev/sdc             <span class="m">10</span> GiB   DATA
+</pre></div>
+
+
+<ul>
+<li>Create filestem on stratis pool</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># stratis  fs create mypool myfs</span>
+</pre></div>
+
+
+<ul>
+<li>To list all stratis filesystems</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># stratis fs list</span>
+Pool     Filesystem   Total / Used / Free             Created             Device                     UUID                                
+mypool   myfs         <span class="m">1</span> TiB / <span class="m">546</span> MiB / <span class="m">1023</span>.47 GiB   Dec <span class="m">30</span> <span class="m">2022</span> <span class="m">20</span>:04   /dev/stratis/mypool/myfs   7bdeb431-8cef-4d42-9051-13f1c8b1ade1
+</pre></div>
+
+
+<ul>
+<li>Mounting it, via /etc/fstab</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="nv">UUID</span><span class="o">=</span>7bdeb431-8cef-4d42-9051-13f1c8b1ade1 /mount/stratis/mypool xfs x-systemd.requires<span class="o">=</span>stratisd.service <span class="m">0</span> <span class="m">0</span> 
+</pre></div>
+
+
+<ul>
+<li><strong>Do not use standard tools to monitor stratis</strong>. Use <code>stratis</code> only.</li>
+</ul>
+<hr />
+<h2 id="using-stratis-snapshots">Using Stratis Snapshots 😅</h2>
+<ul>
+<li>A stratis snapshot is a metadata copy that allows you to access the state of the snapshot at any time.</li>
+<li>A snapshot is NOT a backup, but can be helpful in accessing deleted files.</li>
+<li>A snapshot is mounted by its devioce name, not by UUID.</li>
+</ul>
+<hr />
+<h2 id="lab_1">LAB</h2>
+<ul>
+<li>Create a stratis pool with a size of 10 GiB, with the name stratispool, containing 2 filesystems :myfiles and myprograms.</li>
+<li>Mount these volumes persistently  on /myfiles and /myprograms.</li>
+<li>Copy all files from /etc/ that have a name strating with an a, c, or f to /myfiles</li>
+<li>Create a snapshot of the myfiles filesystem</li>
+<li>Delete all files from /myfiles that have a name starting with an a</li>
+<li>Verify that you can still access these files from the snapshot.</li>
+</ul>
+<hr />
+            </div>
+        </div>
+
+        <div id="generated-at">
+        Generated at: 2023-01-19 17:59:21
+    </div>
+            
+
+        <div id="footer">
+            Powered by
+            <a href="https://github.com/menduo/mdtree" target="_blank"
+                title="https://github.com/menduo/mdtree">
+                https://github.com/menduo/mdtree
+            </a>
+        </div>
+</div>
+</body>
+
+<script>
+
+</script>
+
+
+</html>
+

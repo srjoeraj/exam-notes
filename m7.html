@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="powered-by" content="https://github.com/menduo/mdtree">
+    <title>MANAGING AND SECURING NETWORK SERVICES</title>
+    <style>
+        #sidebar:hover,pre{overflow:auto}#footer,#footer a{color:#eee}body{padding:40px}#layout>header,.btns{width:auto}#sidebar{width:400px;height:100%;position:fixed;top:0;right:0;overflow:hidden;background:#fff;z-index:100;padding:18px;border:1px solid #ddd;border-top:none;border-bottom:none}#sidebar h1{font-size:16px}#sidebar a,#sidebar a:visited{color:#4183c4}#sidebar a:hover{font-size:120%;color:#1e90ff}#custom-toc-container{padding-left:0;padding-bottom:20px}#content-container{padding-left:0;padding-right:430px;margin:0}.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;padding:6px 10px;border-radius:3px}
+#footer{margin:30px auto 10px;}
+#generated-at{margin-top:30px;}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     /** code highliting start **/
+.codehilite .hll{background-color:#ffc}.codehilite{background:#f8f8f8}.codehilite .c{color:#408080;font-style:italic}.codehilite .err{border:1px solid red}.codehilite .k{color:green;font-weight:700}.codehilite .o{color:#666}.codehilite .ch,.codehilite .cm{color:#408080;font-style:italic}.codehilite .cp{color:#BC7A00}.codehilite .c1,.codehilite .cpf,.codehilite .cs{color:#408080;font-style:italic}.codehilite .gd{color:#A00000}.codehilite .ge{font-style:italic}.codehilite .gr{color:red}.codehilite .gh{color:navy;font-weight:700}.codehilite .gi{color:#00A000}.codehilite .go{color:#888}.codehilite .gp{color:navy;font-weight:700}.codehilite .gs{font-weight:700}.codehilite .gu{color:purple;font-weight:700}.codehilite .gt{color:#04D}.codehilite .kc,.codehilite .kd,.codehilite .kn{color:green;font-weight:700}.codehilite .kp{color:green}.codehilite .kr{color:green;font-weight:700}.codehilite .kt{color:#B00040}.codehilite .m{color:#666}.codehilite .s{color:#BA2121}.codehilite .na{color:#7D9029}.codehilite .nb{color:green}.codehilite .nc{color:#00F;font-weight:700}.codehilite .no{color:#800}.codehilite .nd{color:#A2F}.codehilite .ni{color:#999;font-weight:700}.codehilite .ne{color:#D2413A;font-weight:700}.codehilite .nf{color:#00F}.codehilite .nl{color:#A0A000}.codehilite .nn{color:#00F;font-weight:700}.codehilite .nt{color:green;font-weight:700}.codehilite .nv{color:#19177C}.codehilite .ow{color:#A2F;font-weight:700}.codehilite .w{color:#bbb}.codehilite .mb,.codehilite .mf,.codehilite .mh,.codehilite .mi,.codehilite .mo{color:#666}.codehilite .s2,.codehilite .sb,.codehilite .sc{color:#BA2121}.codehilite .sd{color:#BA2121;font-style:italic}.codehilite .se{color:#B62;font-weight:700}.codehilite .sh{color:#BA2121}.codehilite .si{color:#B68;font-weight:700}.codehilite .sx{color:green}.codehilite .sr{color:#B68}.codehilite .s1{color:#BA2121}.codehilite .ss{color:#19177C}.codehilite .bp{color:green}.codehilite .vc,.codehilite .vg,.codehilite .vi{color:#19177C}.codehilite .il{color:#666}
+
+/** code highliting end **/
+/** css from https://github.com/pandao/editor.md */
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format("woff");
+}
+.markdown-body hr:after,.markdown-body hr:before{display:table;content:""}.markdown-body ol,.markdown-body td,.markdown-body th,.markdown-body ul{padding:0}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#333;overflow:hidden;font-family:"Microsoft YaHei",Helvetica,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Monaco,monospace,Tahoma,STXihei,"åŽæ–‡ç»†é»‘",STHeiti,"Helvetica Neue","Droid Sans","wenquanyi micro hei",FreeSans,Arimo,Arial,SimSun,"å®‹ä½“",Heiti,"é»‘ä½“",sans-serif;font-size:16px;line-height:1.6;word-wrap:break-word}.markdown-body strong{font-weight:700}.markdown-body h1{margin:.67em 0}.markdown-body img{border:0}.markdown-body hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}.markdown-body input{color:inherit;margin:0;line-height:normal;font:13px/1.4 Helvetica,arial,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.markdown-body html input[disabled]{cursor:default}.markdown-body input[type=checkbox]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}.markdown-body *{-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body a{background:0 0;color:#4183c4;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline:0;text-decoration:underline}.markdown-body hr{margin:15px 0;overflow:hidden;background:0 0;border:0;border-bottom:1px solid #ddd}.markdown-body hr:after{clear:both}.markdown-body blockquote{margin:0}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body .task-list-item,li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}.markdown-body dd{margin-left:0}.markdown-body code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .octicon{font:normal normal 16px octicons-anchor;line-height:1;display:inline-block;text-decoration:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-body .octicon-link:before{content:'\f05c'}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body .anchor{position:absolute;top:0;left:0;display:block;padding-right:6px;padding-left:30px;margin-left:-30px}.markdown-body .anchor:focus{outline:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{position:relative;margin-top:1em;margin-bottom:16px;font-weight:700;line-height:1.4}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{display:none;color:#000;vertical-align:middle}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{padding-left:8px;margin-left:-30px;text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{display:inline-block}.markdown-body h1{font-size:2.25em;line-height:1.2}.markdown-body h1 .anchor{line-height:1}.markdown-body h2{font-size:1.75em;line-height:1.225}.markdown-body h2 .anchor{line-height:1}.markdown-body h3{font-size:1.5em;line-height:1.43}.markdown-body h3 .anchor,.markdown-body h4 .anchor{line-height:1.2}.markdown-body h4{font-size:1.25em}.markdown-body h5 .anchor,.markdown-body h6 .anchor{line-height:1.1}.markdown-body h5{font-size:1em}.markdown-body h6{font-size:1em;color:#777}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body blockquote{padding:0 15px;color:#777;border-left:4px solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;background-color:#f7f7f7;border-radius:3px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body pre code{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before{content:normal}.markdown-body .pl-c{color:#969896}.markdown-body .pl-c1,.markdown-body .pl-mdh,.markdown-body .pl-mm,.markdown-body .pl-mp,.markdown-body .pl-mr,.markdown-body .pl-s1 .pl-v,.markdown-body .pl-s3,.markdown-body .pl-sc,.markdown-body .pl-sv{color:#0086b3}.markdown-body .pl-e,.markdown-body .pl-en{color:#795da3}.markdown-body .pl-s1 .pl-s2,.markdown-body .pl-smi,.markdown-body .pl-smp,.markdown-body .pl-stj,.markdown-body .pl-vo,.markdown-body .pl-vpf{color:#333}.markdown-body .pl-ent{color:#63a35c}.markdown-body .pl-k,.markdown-body .pl-s,.markdown-body .pl-st{color:#a71d5d}.markdown-body .pl-pds,.markdown-body .pl-s1,.markdown-body .pl-s1 .pl-pse .pl-s2,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-src{color:#df5000}.markdown-body .pl-mo,.markdown-body .pl-v{color:#1d3e81}.markdown-body .pl-id{color:#b52a1d}.markdown-body .pl-ii{background-color:#b52a1d;color:#f8f8f8}.markdown-body .pl-sr .pl-cce{color:#63a35c;font-weight:700}.markdown-body .pl-ml{color:#693a17}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:#1d3e81;font-weight:700}.markdown-body .pl-mq{color:teal}.markdown-body .pl-mi{color:#333;font-style:italic}.markdown-body .pl-mb{color:#333;font-weight:700}.markdown-body .pl-md,.markdown-body .pl-mdhf{background-color:#ffecec;color:#bd2c00}.markdown-body .pl-mdht,.markdown-body .pl-mi1{background-color:#eaffea;color:#55a532}.markdown-body .pl-mdr{color:#795da3;font-weight:700}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{float:left;margin:.3em 0 .25em -1.6em;vertical-align:middle}.markdown-body :checked+.radio-label{z-index:1;position:relative;border-color:#4183c4}.editormd-html-preview,.editormd-preview-container{text-align:left;font-size:14px;line-height:1.6;padding:20px;overflow:auto;width:100%;background-color:#fff}.editormd-html-preview blockquote,.editormd-preview-container blockquote{color:#666;border-left:4px solid #ddd;padding-left:20px;margin-left:0;font-size:14px;font-style:italic}.editormd-html-preview p code,.editormd-preview-container p code{margin-left:5px;margin-right:4px}.editormd-html-preview abbr,.editormd-preview-container abbr{background:#ffd}.editormd-html-preview hr,.editormd-preview-container hr{height:1px;border:none;border-top:1px solid #ddd;background:0 0}.editormd-html-preview code,.editormd-preview-container code{border:1px solid #ddd;background:#f6f6f6;padding:3px;border-radius:3px;font-size:14px}.editormd-html-preview pre,.editormd-preview-container pre{border:1px solid #ddd;background:#f6f6f6;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px}.editormd-html-preview pre code,.editormd-preview-container pre code{padding:0}.editormd-html-preview code,.editormd-html-preview kbd,.editormd-html-preview pre,.editormd-preview-container code,.editormd-preview-container kbd,.editormd-preview-container pre{font-family:"YaHei Consolas Hybrid",Consolas,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,monospace,monospace}.editormd-html-preview table thead tr,.editormd-preview-container table thead tr{background-color:#F8F8F8}.editormd-html-preview p.editormd-tex,.editormd-preview-container p.editormd-tex{text-align:center}.editormd-html-preview span.editormd-tex,.editormd-preview-container span.editormd-tex{margin:0 5px}.editormd-html-preview .emoji,.editormd-preview-container .emoji{width:24px;height:24px}.editormd-html-preview .katex,.editormd-preview-container .katex{font-size:1.4em}.editormd-html-preview .flowchart,.editormd-html-preview .sequence-diagram,.editormd-preview-container .flowchart,.editormd-preview-container .sequence-diagram{margin:0 auto;text-align:center}.editormd-html-preview .flowchart svg,.editormd-html-preview .sequence-diagram svg,.editormd-preview-container .flowchart svg,.editormd-preview-container .sequence-diagram svg{margin:0 auto}.editormd-html-preview .flowchart text,.editormd-html-preview .sequence-diagram text,.editormd-preview-container .flowchart text,.editormd-preview-container .sequence-diagram text{font-size:15px!important;font-family:"YaHei Consolas Hybrid",Consolas,"Microsoft YaHei","Malgun Gothic","Segoe UI",Helvetica,Arial!important}/*! Pretty printing styles. Used with prettify.js. */.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.clo,.opn,.pun{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.kwd,.tag,.typ{font-weight:700}.str{color:#060}.kwd{color:#006}.com{color:#600;font-style:italic}.typ{color:#404}.lit{color:#044}.clo,.opn,.pun{color:#440}.tag{color:#006}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}.editormd-html-preview pre.prettyprint,.editormd-preview-container pre.prettyprint{padding:10px;border:1px solid #ddd;white-space:pre-wrap;word-wrap:break-word}.editormd-html-preview ol.linenums,.editormd-preview-container ol.linenums{color:#999;padding-left:2.5em}.editormd-html-preview ol.linenums li,.editormd-preview-container ol.linenums li{list-style-type:decimal}.editormd-html-preview ol.linenums li code,.editormd-preview-container ol.linenums li code{border:none;background:0 0;padding:0}.editormd-html-preview .editormd-toc-menu,.editormd-preview-container .editormd-toc-menu{margin:8px 0 12px;display:inline-block}.editormd-html-preview .editormd-toc-menu>.markdown-toc,.editormd-preview-container .editormd-toc-menu>.markdown-toc{position:relative;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;border:1px solid #ddd;display:inline-block;font-size:1em}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul{width:160%;min-width:180px;position:absolute;left:-1px;top:-2px;z-index:100;padding:0 10px 10px;display:none;background:#fff;border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li ul{width:100%;min-width:180px;border:1px solid #ddd;display:none;background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn:hover,.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a:hover,.editormd-preview-container .editormd-toc-menu .toc-menu-btn:hover,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a:hover{background-color:#f6f6f6}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a{color:#666;padding:6px 10px;display:block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu>.markdown-toc li,.editormd-preview-container .editormd-toc-menu>.markdown-toc li{position:relative}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul{position:absolute;top:32px;left:10%;display:none;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{pointer-events:pointer-events;position:absolute;left:15px;top:-6px;display:block;content:"";width:0;height:0;border:6px solid transparent;border-width:0 6px 6px;z-index:10}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{border-bottom-color:#ccc}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after{border-bottom-color:#fff;top:-5px}.editormd-html-preview .editormd-toc-menu ul,.editormd-preview-container .editormd-toc-menu ul{list-style:none}.editormd-html-preview .editormd-toc-menu a,.editormd-preview-container .editormd-toc-menu a{text-decoration:none}.editormd-html-preview .editormd-toc-menu h1,.editormd-preview-container .editormd-toc-menu h1{font-size:16px;padding:5px 0 10px 10px;line-height:1;border-bottom:1px solid #eee}.editormd-html-preview .editormd-toc-menu h1 .fa,.editormd-preview-container .editormd-toc-menu h1 .fa{padding-left:10px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn,.editormd-preview-container .editormd-toc-menu .toc-menu-btn{color:#666;min-width:180px;padding:5px 10px;border-radius:4px;display:inline-block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu .toc-menu-btn .fa,.editormd-preview-container .editormd-toc-menu .toc-menu-btn .fa{float:right;padding:3px 0 0 10px;font-size:1.3em}.markdown-body .editormd-toc-menu ul{padding-left:0}.markdown-body .highlight pre,.markdown-body pre{line-height:1.6}hr.editormd-page-break{border:1px dotted #ccc;font-size:0;height:2px}@media only print{hr.editormd-page-break{background:0 0;border:none;height:0}}.editormd-html-preview textarea{display:none}.editormd-html-preview hr.editormd-page-break{background:0 0;border:none;height:0}.editormd-preview-close-btn{color:#fff;padding:4px 6px;font-size:18px;-webkit-border-radius:500px;-moz-border-radius:500px;-ms-border-radius:500px;-o-border-radius:500px;border-radius:500px;display:none;background-color:#ccc;position:absolute;top:25px;right:35px;z-index:19;-webkit-transition:background-color .3s ease-out;-moz-transition:background-color .3s ease-out;transition:background-color .3s ease-out}.editormd-preview-close-btn:hover{background-color:#999}.editormd-preview-active{width:100%;padding:40px}
+
+
+
+    </style>
+    
+</head>
+<body>
+<div id="layout">
+        <div id="sidebar">
+            <h1>Table of Contents</h1>
+            <div id="custom-toc-container">
+                <div class="toc">
+<ul>
+<li><a href="#managing-and-securing-network-services">MANAGING AND SECURING NETWORK SERVICES</a></li>
+<li><a href="#managing-ssh">Managing SSH</a><ul>
+<li><a href="#setting-up-ssh-key-based-login">Setting up SSH key-based Login</a></li>
+<li><a href="#defining-ssh-client-configuration">Defining SSH Client Configuration</a></li>
+<li><a href="#understanding-common-ssh-server-options">Understanding Common SSH Server options</a></li>
+<li><a href="#copying-files-securely">Copying Files Securely</a></li>
+<li><a href="#securely-synchronizing-files">Securely Synchronizing Files</a></li>
+</ul>
+</li>
+<li><a href="#running-http-services">Running HTTP Services.</a></li>
+<li><a href="#securing-rhel-with-selinux">Securing RHEL with SELINUX</a><ul>
+<li><a href="#using-selinux-modes">Using SELinux Modes</a><ul>
+<li><a href="#managing-selinux-states-while-booting">Managing SELinux states while booting</a></li>
+</ul>
+</li>
+<li><a href="#exploring-selinux-components">Exploring SELinux Components</a></li>
+<li><a href="#using-file-context-labels">Using File Context Labels</a><ul>
+<li><a href="#understanding-context-labels">Understanding Context Labels</a></li>
+<li><a href="#understanding-default-file-context">Understanding Default File Context</a></li>
+<li><a href="#managing-file-context-labels">Managing File Context Labels</a></li>
+<li><a href="#demo">Demo!</a></li>
+</ul>
+</li>
+<li><a href="#finding-the-right-context">Finding the Right Context.</a></li>
+<li><a href="#managing-selinux-port-access">Managing SELinux Port Access.</a></li>
+<li><a href="#using-booleans">Using Booleans</a></li>
+<li><a href="#analyzing-selinux-log-messages">Analyzing SELinux Log Messages</a></li>
+<li><a href="#troubleshooting-selinux">Troubleshooting SELinux</a></li>
+<li><a href="#lab">LAB</a></li>
+</ul>
+</li>
+<li><a href="#applying-network-security">Applying Network Security</a><ul>
+<li><a href="#understanding-rhel-firewalling">Understanding RHEL Firewalling</a></li>
+<li><a href="#exploring-firewalld-components">Exploring Firewalld Components</a></li>
+<li><a href="#configuring-firewall-with-firewall-cmd">Configuring Firewall with firewall-cmd</a></li>
+<li><a href="#lab_1">LAB</a></li>
+</ul>
+</li>
+<li><a href="#running-automatic-installations">Running Automatic Installations</a></li>
+<li><a href="#configuring-time-services">Configuring Time services.</a><ul>
+<li><a href="#lab_2">LAB</a></li>
+<li><a href="#using-remote-filesystems-and-automount">Using remote filesystems and automount.</a></li>
+<li><a href="#mounting-nfs-shares">Mounting NFS Shares</a></li>
+<li><a href="#understanding-automount">Understanding Automount.</a></li>
+</ul>
+</li>
+<li><a href="#running-containers">Running Containers</a><ul>
+<li><a href="#understanding-red-hat-continer-tools">Understanding Red Hat Continer Tools</a></li>
+<li><a href="#managing-images">Managing Images</a><ul>
+<li><a href="#configuring-registry-access">Configuring Registry Access</a></li>
+<li><a href="#using-containerfile">Using Containerfile</a></li>
+<li><a href="#building-an-image-using-a-container-file">Building an Image using a container file.</a></li>
+</ul>
+</li>
+<li><a href="#-install-the-container-tools-package">- Install the container-tools package.</a></li>
+<li><a href="#running-contianers">Running Contianers</a></li>
+<li><a href="#mapping-ports-and-configuration-variables">Mapping Ports and Configuration Variables</a></li>
+<li><a href="#providing-persistent-storage">Providing Persistent Storage</a></li>
+<li><a href="#starting-containers-as-systemd-services">Starting Containers as Systemd Services</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </div>
+        </div>
+        <div id="content-container">
+            <div class="markdown-body markdown-content">
+                <h1 id="managing-and-securing-network-services">MANAGING AND SECURING NETWORK SERVICES</h1>
+<hr />
+<p><strong><a href="m3.html">Module 3</a> <a href="m4.html">Module 4</a> <a href="m5.html">Module 5</a> <a href="m6.html">Module 6</a> <a href="m7.html">Module 7</a></strong></p>
+<hr />
+<h1 id="managing-ssh">Managing SSH</h1>
+<h2 id="setting-up-ssh-key-based-login">Setting up SSH key-based Login</h2>
+<ul>
+<li><code>ssh-keygen</code> creates a public/private key pair for the current user.</li>
+<li>Settings a passphrase for the private key makes it more secure but less convenient.</li>
+</ul>
+<h2 id="defining-ssh-client-configuration">Defining SSH Client Configuration</h2>
+<ul>
+<li>SSH client options can be set on the command line</li>
+<li><code>ssh -X</code> enables X forwarding. Forwarded sessions are subject to X11 security controls.</li>
+<li>
+<p><code>ssh -Y</code> enables trusted X forwarding.</p>
+</li>
+<li>
+<p>SSH client options can be set persistently in <strong>/etc/ssh/ssh_config</strong>.</p>
+</li>
+</ul>
+<h2 id="understanding-common-ssh-server-options">Understanding Common SSH Server options</h2>
+<ul>
+<li>Server options are set in /etc/ssh/ssh_config</li>
+<li>Port 22</li>
+<li>PermitRootLogin</li>
+<li>PubkeyAuthentication</li>
+<li>PasswordAuthentication</li>
+<li>X11Forwarding</li>
+<li>
+<p>AllowUsers</p>
+</li>
+<li>
+<p>Do restart ssh service after making any changes.</p>
+</li>
+</ul>
+<h2 id="copying-files-securely">Copying Files Securely</h2>
+<ul>
+<li><code>scp</code> can be used to securely copy files over the network, using the sshd process.</li>
+<li><code>scp file1 file2 student@server:/home/student</code></li>
+<li>
+<p><code>scp -r root@remoteserver:/tmp/files</code></p>
+</li>
+<li>
+<p><code>sftp</code> offers an FTP client interface to securely transfer files via SSH.</p>
+</li>
+<li>Use <code>put /my/file</code> to upload a file.</li>
+<li><code>get /your/file</code> to download a file to the current directory.</li>
+<li>Use <code>exit</code> to close sftp session.</li>
+</ul>
+<h2 id="securely-synchronizing-files">Securely Synchronizing Files</h2>
+<ul>
+<li><strong>rsync</strong> is using SSH to sync files.</li>
+<li>If source and target files already exists, rsync will only sync their differences.</li>
+<li>The rsync command can be used with many options of which the following are the most common.</li>
+<li><code>-r</code> will recursive sync directory tree.</li>
+<li><code>-l</code> sync symlinks.</li>
+<li><code>-p</code> perserves symlinks.</li>
+<li><code>-n</code> will do a dry run before actually syncing</li>
+<li><code>-a</code> uses archive mode, which equivalent to <code>-rlpngoD</code></li>
+<li><code>-A</code> uses archive mode and also sysnc ACLs</li>
+<li><code>-X</code> will sync SELinux context as well.</li>
+</ul>
+<hr />
+<h1 id="running-http-services">Running HTTP Services.</h1>
+<ul>
+<li>Apache (httpd) is a common web server on linux.</li>
+<li>Nginx is another common web server.</li>
+<li>The main httpd config file is <strong>/etc/httpd/conf/httpd.conf</strong>.</li>
+<li>Additonal drop-in files can be stored in /<strong>etc/httpd/conf.d/</strong>.</li>
+<li>The default DocumentRoot is <strong>/var/www/html</strong>.</li>
+<li>Apache looks for a file with the name index.html in this directory.</li>
+</ul>
+<hr />
+<h1 id="securing-rhel-with-selinux">Securing RHEL with SELINUX</h1>
+<ul>
+<li>Linux security is built on UNIX security.</li>
+<li>UNIX security consists of different solutions that were never developed with current IT security needs in mind.</li>
+<li>Most of these solutions focus on a part of the operating system.</li>
+<li>SELinux provides a complete and mandatory security solution.</li>
+<li><strong>The principle is that if it isn't specifically allowed, it will be denied.</strong></li>
+<li>As a result, "unknown" services will always need additional configuration to enable them in an environment where SELinux is enabled.</li>
+<li>Known services work well with with the standard SELinux configuration.</li>
+</ul>
+<h2 id="using-selinux-modes">Using SELinux Modes</h2>
+<p><img alt="SELinux Modes" src="m7_1.png" />
+- <code>getenforce</code> shows current SELinux state.
+- <code>setenforce</code> allows to change SELinux mode from permissive to enforcing and vice versa.</p>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># getenforce</span>
+Enforcing
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># setenforce permissive</span>
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># getenforce</span>
+Permissive
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># setenforce enforcing</span>
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># getenforce </span>
+Enforcing
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># setenforce 0</span>
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># getenforce</span>
+Permissive
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># setenforce 1</span>
+<span class="o">[</span>root@rhcsaserver html<span class="o">]</span><span class="c1"># getenforce </span>
+Enforcing
+</pre></div>
+
+
+<h3 id="managing-selinux-states-while-booting">Managing SELinux states while booting</h3>
+<ul>
+<li>SELinux state can be set at boot time, using kernel parameter.</li>
+<li><strong>enforcing=0</strong> will start in permissive mode.</li>
+<li><strong>enforcing=1</strong> will start in enforcing mode.</li>
+<li><strong>selinux=0</strong> disables SELinux.</li>
+<li>
+<p><strong>selinux=1</strong> enabled SELinux.</p>
+</li>
+<li>
+<p>Access the grub boot loader prompt to change these settings while booting.</p>
+</li>
+</ul>
+<h2 id="exploring-selinux-components">Exploring SELinux Components</h2>
+<ul>
+<li>SELinux works with context labels.</li>
+<li>Context labels define specific permissions.</li>
+<li>Context labels are applied to source objects and target objects.</li>
+<li>Source objects are</li>
+<li>Users</li>
+<li>Processes</li>
+<li>Target objects are</li>
+<li>Files and directories</li>
+<li>
+<p>Ports</p>
+</li>
+<li>
+<p>The SELinux policy has many rules to define which source context has access to which target context.</p>
+</li>
+<li>Context Management is about applying contexts to mostly files, directories and ports.</li>
+<li>You'll need to apply a context that mateches a specific rule.</li>
+<li>Booleans allow parts of the SELinux policy to be written to allow or disallow specific functionality in an easy way.</li>
+</ul>
+<p><img alt="SELinux Components Overiew" src="m7_2.png" /></p>
+<h2 id="using-file-context-labels">Using File Context Labels</h2>
+<h3 id="understanding-context-labels">Understanding Context Labels</h3>
+<ul>
+<li>Every object is labeled with a context label.</li>
+<li><strong>user</strong>: user specific context.</li>
+<li><strong>role</strong>: role specific context.</li>
+<li>
+<p><strong>type</strong>: flags which type of operation is allowed on this object.</p>
+</li>
+<li>
+<blockquote>
+<p>In most configurations, only context type matters, so you can safely ignore user and role for RHCSA</p>
+</blockquote>
+</li>
+<li>
+<p>Many commands support a <strong>-Z</strong> option to show current context information.</p>
+</li>
+<li>Context types are used in the rules in the policy to define which source object has access to which target object.</li>
+</ul>
+<h3 id="understanding-default-file-context">Understanding Default File Context</h3>
+<ul>
+<li>Most service don't need additional SELinux configuration if default settings are used.</li>
+<li>When files are created in a directory, they typically inherit the context of the parent directory.</li>
+<li>When files are copied, they typically inherit the context of the parent directory.</li>
+<li>When files are moved they keep the original context.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># cp /etc/hosts hosts</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># ls -Z /etc/hosts hosts</span>
+      system_u:object_r:net_conf_t:s0 /etc/hosts  unconfined_u:object_r:admin_home_t:s0 hosts
+
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># mv hosts /var/www/html</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># ls -Z /etc/hosts  /var/www/html/hosts </span>
+      system_u:object_r:net_conf_t:s0 /etc/hosts  unconfined_u:object_r:admin_home_t:s0 /var/www/html/hosts
+</pre></div>
+
+
+<h3 id="managing-file-context-labels">Managing File Context Labels</h3>
+<ul>
+<li>Use <strong>semanage fcontext</strong> to set the file context label.</li>
+<li>This will write the context to the SELinux Policy but it is nto written yet to the filesystem.</li>
+<li>Use <code>semanage fcontext -a</code> to set a new context label.</li>
+<li>
+<p>Use <code>semange fcontext -m</code> to modify an existing context label.</p>
+</li>
+<li>
+<p>To enforce the policy setting on the file system., use <code>restorecon</code>.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># restorecon -Rv /var/www/html</span>
+Relabeled /var/www/html/hosts from unconfined_u:object_r:admin_home_t:s0 to unconfined_u:object_r:httpd_sys_content_t:s0
+</pre></div>
+
+
+<ul>
+<li>Alternatively use <code>touch /.autorelabel</code> to relabel all files to the context that is specified in the policy.</li>
+<li><strong>See <code>man semanage-fcontext</code> for documentation</strong>.</li>
+<li>It also has examples, to see how things go.</li>
+<li>Do NOT use chcon as the changes it makes may be overwritten.</li>
+<li>Use <code>semenage fcontext -I -C</code> to show only settings that have changed in the current policy.</li>
+</ul>
+<h3 id="demo">Demo!</h3>
+<ul>
+<li>Chaning httpd document root in <code>/etc/httpd/conf/httpd.conf</code>.</li>
+<li>Create a file index.html in /web.</li>
+<li>Restart httpd service.</li>
+<li>Try accessing the web page via curl <code>curl localhost</code>. Should give apache test page.</li>
+<li>To check whether webpage is not accessible due to SELinux, Switch SELinux to permissive mode.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># setenforce 0</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># curl localhost</span>
+hello this is index.html at /web
+</pre></div>
+
+
+<ul>
+<li>Thus the reason, is SELinux.</li>
+<li>Let's have a look at the audit log, where SELinux related logs are logged in with type AVC.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># grep AVC /var/log/audit/audit.log </span>
+<span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1673277029</span>.122:824<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">42132</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/web/index.html&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;dm-0&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">52200</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1673277029</span>.122:825<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">42132</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/web/index.html&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;dm-0&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">52200</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1673277046</span>.548:830<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">42132</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/web/index.html&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;dm-0&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">52200</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1673277046</span>.548:831<span class="o">)</span>: avc:  denied  <span class="o">{</span> <span class="nb">read</span> <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">42132</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;index.html&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;dm-0&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">52200</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1673277046</span>.548:831<span class="o">)</span>: avc:  denied  <span class="o">{</span> open <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">42132</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/web/index.html&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;dm-0&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">52200</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span><span class="m">1673277046</span>.548:832<span class="o">)</span>: avc:  denied  <span class="o">{</span> map <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">42132</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&quot;httpd&quot;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;/web/index.html&quot;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;dm-0&quot;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">52200</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+
+
+<ul>
+<li>From the last entry, we can see that the context of /web/index.html should be httpd_t but, it is default_t.</li>
+<li>We can fix this as follows:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># semanage fcontext -a -t httpd_sys_content_t &quot;/web(/.*)?&quot;</span>
+
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># restorecon -Rv /web</span>
+Relabeled /web from unconfined_u:object_r:default_t:s0 to unconfined_u:object_r:httpd_sys_content_t:s0
+Relabeled /web/index.html from unconfined_u:object_r:default_t:s0 to unconfined_u:object_r:httpd_sys_content_t:s0
+
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># setenforce 1</span>
+
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># curl localhost</span>
+hello this is index.html at /web
+</pre></div>
+
+
+<h2 id="finding-the-right-context">Finding the Right Context.</h2>
+<ul>
+<li>If you apply a non-default configuration, check the default configuration context setting.</li>
+<li>Read man pages form <strong>selinux-policy-doc</strong></li>
+<li>Use <code>sealert</code>.</li>
+</ul>
+<h2 id="managing-selinux-port-access">Managing SELinux Port Access.</h2>
+<ul>
+<li>Network ports are also provided with SELinux context label.</li>
+<li>The SELinux policy is configured to allow default port access.</li>
+<li>For any non-default port access, use <strong>semanage port</strong> to apply the right label to the port.</li>
+<li>Use the examples section in <code>man semanage-port</code> for examples.</li>
+<li>EXAMPLES</li>
+<li>List all port definitions <code>semanage port -l</code></li>
+<li>Allow Apache to listen on tcp port 81 <code>semanage port -a -t http_port_t -p tcp 81</code></li>
+<li>Allow sshd to listen on tcp port 8991 <code>semanage port -a -t ssh_port_t -p tcp 8991</code></li>
+</ul>
+<h2 id="using-booleans">Using Booleans</h2>
+<ul>
+<li>A boolean is an easy-to-use configuration switch to enable or disable specific part of SELinux policy.</li>
+<li>For an overview of all booleans, use <code>semanage boolen -l</code> or <code>getsebool -a</code>.</li>
+<li>To set booleans, use <code>setsebool -P boolean [on|off\]</code>.</li>
+</ul>
+<h2 id="analyzing-selinux-log-messages">Analyzing SELinux Log Messages</h2>
+<ul>
+<li>SELinux uses <strong>auditd</strong> to write log messages to the audit log.</li>
+<li>Messages in the audit log may be hard to interpret.</li>
+<li>Ensure that <code>sealert</code> is available, it  interprets messages from the audit log, applies SELinux AI, and writes meaningful messages to /var/log/messages.</li>
+<li>Run the sealert command, including the UUID message ot get advice on how to troubleshoot specific issues.</li>
+</ul>
+<h2 id="troubleshooting-selinux">Troubleshooting SELinux</h2>
+<ol>
+<li>If you think SELinux is blocking access, start by using <code>setenforce 0</code> and try again. If it works now, you have confirmned that SELinux is blocking the requested activity.</li>
+<li>Use <code>grep AVC /var/log/audit/audit.log</code> to see raw audit messages. Look at the source context and the target context.</li>
+<li>Install selinux-policy-doc, using <code>dnf install selinux-policy-doc</code> for additional man pages, and try to understand what you need to do.</li>
+<li>Confirm by using <code>journalctl | grep sealert</code> and read the alert message that was generated.</li>
+</ol>
+<h2 id="lab">LAB</h2>
+<ul>
+<li>Configure the Apache web server to bind to port 82.</li>
+<li>Use mv /etc/hosts /var/www/html and ensure that the file gets an SELinux context that makes it readable by the Apache web server.</li>
+</ul>
+<hr />
+<h1 id="applying-network-security">Applying Network Security</h1>
+<ul>
+<li>A network socket is a connection end point, consiting of an IP address followed by a port.</li>
+<li>Socket also exit as UNIX socket, which are endpoints in communication with services on Linux/UNIX.</li>
+<li><code>ss</code> is the standard tool to show socket information.</li>
+<li><code>ss</code> will show all connections.</li>
+<li><code>ss -tu</code> shows connnected TCP and UDP sockets.</li>
+<li><code>ss -tua</code> adds sockets that are in listening state.</li>
+<li><code>ss -tln</code> shows TCP sockets that re in listening state only, without resolving host names.</li>
+<li><code>ss -tulpn</code> shows TCP and UDP sockets in listening state, and adds process name or PID to the output.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># ss -tunapl</span>
+Netid      State       Recv-Q      Send-Q           Local Address:Port            Peer Address:Port      Process                                                                                                  
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                      <span class="m">0</span>.0.0.0:111                  <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;rpcbind&quot;</span>,pid<span class="o">=</span><span class="m">1057</span>,fd<span class="o">=</span><span class="m">5</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;systemd&quot;</span>,pid<span class="o">=</span><span class="m">1</span>,fd<span class="o">=</span><span class="m">43</span><span class="o">))</span>                                               
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                    <span class="m">127</span>.0.0.1:323                  <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;chronyd&quot;</span>,pid<span class="o">=</span><span class="m">1272</span>,fd<span class="o">=</span><span class="m">5</span><span class="o">))</span>                                                                       
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                      <span class="m">0</span>.0.0.0:5353                 <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;avahi-daemon&quot;</span>,pid<span class="o">=</span><span class="m">1192</span>,fd<span class="o">=</span><span class="m">12</span><span class="o">))</span>                                                                 
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                      <span class="m">0</span>.0.0.0:60927                <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;avahi-daemon&quot;</span>,pid<span class="o">=</span><span class="m">1192</span>,fd<span class="o">=</span><span class="m">14</span><span class="o">))</span>                                                                 
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                         <span class="o">[</span>::<span class="o">]</span>:111                     <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;rpcbind&quot;</span>,pid<span class="o">=</span><span class="m">1057</span>,fd<span class="o">=</span><span class="m">7</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;systemd&quot;</span>,pid<span class="o">=</span><span class="m">1</span>,fd<span class="o">=</span><span class="m">47</span><span class="o">))</span>                                               
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                        <span class="o">[</span>::1<span class="o">]</span>:323                     <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;chronyd&quot;</span>,pid<span class="o">=</span><span class="m">1272</span>,fd<span class="o">=</span><span class="m">6</span><span class="o">))</span>                                                                       
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                         <span class="o">[</span>::<span class="o">]</span>:5353                    <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;avahi-daemon&quot;</span>,pid<span class="o">=</span><span class="m">1192</span>,fd<span class="o">=</span><span class="m">13</span><span class="o">))</span>                                                                 
+udp        UNCONN      <span class="m">0</span>           <span class="m">0</span>                         <span class="o">[</span>::<span class="o">]</span>:50433                   <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;avahi-daemon&quot;</span>,pid<span class="o">=</span><span class="m">1192</span>,fd<span class="o">=</span><span class="m">15</span><span class="o">))</span>                                                                 
+tcp        LISTEN      <span class="m">0</span>           <span class="m">4096</span>                   <span class="m">0</span>.0.0.0:111                  <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;rpcbind&quot;</span>,pid<span class="o">=</span><span class="m">1057</span>,fd<span class="o">=</span><span class="m">4</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;systemd&quot;</span>,pid<span class="o">=</span><span class="m">1</span>,fd<span class="o">=</span><span class="m">42</span><span class="o">))</span>                                               
+tcp        LISTEN      <span class="m">0</span>           <span class="m">128</span>                    <span class="m">0</span>.0.0.0:22                   <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;sshd&quot;</span>,pid<span class="o">=</span><span class="m">1460</span>,fd<span class="o">=</span><span class="m">3</span><span class="o">))</span>                                                                          
+tcp        LISTEN      <span class="m">0</span>           <span class="m">128</span>                  <span class="m">127</span>.0.0.1:631                  <span class="m">0</span>.0.0.0:*          users:<span class="o">((</span><span class="s2">&quot;cupsd&quot;</span>,pid<span class="o">=</span><span class="m">1457</span>,fd<span class="o">=</span><span class="m">7</span><span class="o">))</span>                                                                         
+tcp        LISTEN      <span class="m">0</span>           <span class="m">4096</span>                      <span class="o">[</span>::<span class="o">]</span>:111                     <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;rpcbind&quot;</span>,pid<span class="o">=</span><span class="m">1057</span>,fd<span class="o">=</span><span class="m">6</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;systemd&quot;</span>,pid<span class="o">=</span><span class="m">1</span>,fd<span class="o">=</span><span class="m">44</span><span class="o">))</span>                                               
+tcp        LISTEN      <span class="m">0</span>           <span class="m">511</span>                          *:82                         *:*          users:<span class="o">((</span><span class="s2">&quot;httpd&quot;</span>,pid<span class="o">=</span><span class="m">4721</span>,fd<span class="o">=</span><span class="m">4</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;httpd&quot;</span>,pid<span class="o">=</span><span class="m">4720</span>,fd<span class="o">=</span><span class="m">4</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;httpd&quot;</span>,pid<span class="o">=</span><span class="m">4719</span>,fd<span class="o">=</span><span class="m">4</span><span class="o">)</span>,<span class="o">(</span><span class="s2">&quot;httpd&quot;</span>,pid<span class="o">=</span><span class="m">4717</span>,fd<span class="o">=</span><span class="m">4</span><span class="o">))</span> 
+tcp        LISTEN      <span class="m">0</span>           <span class="m">128</span>                       <span class="o">[</span>::<span class="o">]</span>:22                      <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;sshd&quot;</span>,pid<span class="o">=</span><span class="m">1460</span>,fd<span class="o">=</span><span class="m">4</span><span class="o">))</span>                                                                          
+tcp        LISTEN      <span class="m">0</span>           <span class="m">128</span>                      <span class="o">[</span>::1<span class="o">]</span>:631                     <span class="o">[</span>::<span class="o">]</span>:*          users:<span class="o">((</span><span class="s2">&quot;cupsd&quot;</span>,pid<span class="o">=</span><span class="m">1457</span>,fd<span class="o">=</span><span class="m">6</span><span class="o">))</span>    
+</pre></div>
+
+
+<h2 id="understanding-rhel-firewalling">Understanding RHEL Firewalling</h2>
+<ul>
+<li>The linux kernel provides the netfilter framework to take care of firewall related network oeprations:</li>
+<li>packet filtering</li>
+<li>network address translation</li>
+<li>
+<p>port forwarding</p>
+</li>
+<li>
+<p>Netfilter forwards specific operations to kernel modules</p>
+</li>
+<li><code>nftables</code> is the framework that applies firewalling.</li>
+<li><code>firewalld</code> is a service managed by systemd, which RHEl uses as the front end to manage nftables firewalls.</li>
+</ul>
+<h2 id="exploring-firewalld-components">Exploring Firewalld Components</h2>
+<ul>
+<li>Firewalld is using different components to make firewalling easier.</li>
+<li><strong>Service</strong>: the main component, contains one or more ports as well as optional kernel modules that should be loaded.</li>
+<li><strong>Zone</strong>: a default configuration to which network cards can be assigned to apply specific settings.</li>
+<li><strong>Ports</strong> optional elements to allow access to specific ports.</li>
+<li>Additional components are available as well, but not frequently used in a base firewall configuration.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># firewall-cmd --list-all</span>
+public <span class="o">(</span>active<span class="o">)</span>
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens160
+  sources: 
+  services: cockpit dhcpv6-client ssh
+  ports: 
+  protocols: 
+  forward: yes
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules:
+</pre></div>
+
+
+<h2 id="configuring-firewall-with-firewall-cmd">Configuring Firewall with firewall-cmd</h2>
+<ul>
+<li>The <code>firewall-cmd</code> command is used to write firewall configuration.</li>
+<li>Use the option <code>--permanent</code> to write to persistent (but not to runtime).</li>
+<li>Without <code>--permanent</code> the rule is written to runtime. (but no persistent).</li>
+<li><code>firewall-cmd --get-services</code></li>
+<li><code>firewall-cmd -add-service httpd</code></li>
+<li><code>firewall-cmd --add-service httpd --permanent</code></li>
+</ul>
+<h2 id="lab_1">LAB</h2>
+<ul>
+<li>Configure firewalld such that remote access to the SSH and FTP processes is allowed. Make sure the configuration is applied immediately as well as persistently.</li>
+</ul>
+<hr />
+<h1 id="running-automatic-installations">Running Automatic Installations</h1>
+<h1 id="configuring-time-services">Configuring Time services.</h1>
+<ul>
+<li>While booting the system gets its time from the hardware clock.</li>
+<li>System time is set next according to the hardware clock.</li>
+<li>Internet time can be used to syn time.</li>
+<li><code>hwclock</code> is used to set hardware time.</li>
+<li>Also use it to sync time</li>
+<li><code>hwclock --systohc</code></li>
+<li>
+<p><code>hwclock --hctosys</code></p>
+</li>
+<li>
+<p><code>date</code> is use to show and set time.</p>
+</li>
+<li>
+<p><code>timedatectl</code> is used to manage time and time zone configuration.</p>
+</li>
+<li>
+<p><code>timedatectl</code> is a new utility that allows you to manage all aspects of system time.</p>
+</li>
+<li><code>timedatectl status</code> will show all time properties currently used.</li>
+<li><code>timedatectl set-time</code> change time.</li>
+<li><code>timedatectl set-timezone</code> change timezone.</li>
+<li>
+<p><code>timedatectl set-ntp</code> enables or disables ntp time synchronization.</p>
+</li>
+<li>
+<p>To sync time using NTP, an NTP service must be configured.</p>
+</li>
+<li><strong>chronyd</strong> is the default RHEL 9 NTP service.</li>
+<li>Use /etc/chrony.conf to specify synchronization parameters.</li>
+<li><strong>pool 2.rhel.pool.ntp.org iburst</strong> configures a pool of ntp servers.</li>
+<li><strong>server myserver.example.com</strong> configures a single NTP time soruce.</li>
+<li>
+<p>Use <strong>iburst</strong> to permit fast synchronization.</p>
+</li>
+<li>
+<p>After modifying its contents use <code>systemctl restart chronyd</code> to restart the chronyd service.</p>
+</li>
+<li>Use <strong>chronyc sources</strong> to verify proper synchronization.</li>
+</ul>
+<h2 id="lab_2">LAB</h2>
+<ul>
+<li>
+<p>Configure your system to sync time with ther servers in pool.ntp.org.</p>
+</li>
+<li>
+<p><strong>Answer</strong>: In /etc/chrony.conf, add/replace this <code>pool pool.ntp.org iburst</code>. Restart the chronyd service.</p>
+</li>
+</ul>
+<hr />
+<h2 id="using-remote-filesystems-and-automount">Using remote filesystems and automount.</h2>
+<h2 id="mounting-nfs-shares">Mounting NFS Shares</h2>
+<ul>
+<li>Make sure that <code>nfs-utils</code> package is installed.</li>
+<li>Use <code>showmount -e nfsserver</code> to show exports.</li>
+<li>Use <code>mount nfs_server_name:/share /mnt</code> to mount.</li>
+<li>Use <code>mount</code> to verify.</li>
+</ul>
+<h2 id="understanding-automount">Understanding Automount.</h2>
+<ul>
+<li>In <strong>/etc/auto.master</strong> you'll identify the directory that automount should manage, and the file that is used for additional mount information.</li>
+<li>
+<p><strong>/data  /etc/auto.nfsdata</strong></p>
+</li>
+<li>
+<p>In <strong>/etc/auto.nfsdata</strong> you'll identify the subdirectories on which to mount and what to mount exactly.</p>
+</li>
+<li>
+<p><strong>files -rw nfsserver:/nfsdata</strong></p>
+</li>
+<li>
+<p>Ensure the autofs service is started:</p>
+</li>
+<li><strong>systemctl enable --now autofs</strong></li>
+</ul>
+<blockquote>
+<p>TIP: check /etc/auto.misc for syntax examples on the exam.</p>
+</blockquote>
+<hr />
+<h1 id="running-containers">Running Containers</h1>
+<ul>
+<li>A container is like an app on a smartphone; it's a package that contains all that is needed to run an application.</li>
+<li>This makes containers the solution for the dependency challenge.</li>
+<li>Continers are started from container images.</li>
+<li>
+<p>Images are provided through images registries.</p>
+</li>
+<li>
+<p>Continers rely on features provided by the Linux operating sytem</p>
+</li>
+<li>Control groups set limits to the amount of resources that can be used.</li>
+<li>Namesapces provide isolation to ensure the container only has access to its own data and configuration.</li>
+<li>
+<p>SELinux enforces security.</p>
+</li>
+<li>
+<p>Containers need a user ID to be started on the host computer.</p>
+</li>
+<li><strong>Root containers</strong> are started by the root user.</li>
+<li><strong>Rootless containers</strong> are started as a non-root user.</li>
+<li>
+<p>Rootless containers can generate a UID dynmaically or be preconfigured to use a specific UID.</p>
+</li>
+<li>
+<p>Rootless containers have a few limitations:</p>
+</li>
+<li>No unilimted access to the filesystems.</li>
+<li>
+<p>Can't bind to privileged network ports.</p>
+</li>
+<li>
+<p>Complex applications are typically composed of multiple containers.</p>
+</li>
+<li>Normally one contianer runs one application.</li>
+<li>This offers the benefit of better manageability.</li>
+<li>To mange microservices, orchestration platforms like Kubernetes or Red Hat Openshift are used.</li>
+</ul>
+<h2 id="understanding-red-hat-continer-tools">Understanding Red Hat Continer Tools</h2>
+<ul>
+<li><strong>podman</strong> manages and containers and container images.</li>
+<li><strong>buildah</strong> is an advanced tool to create container images.</li>
+<li><strong>skopeo</strong> is an advanced tool to manage, copy, delete and sign images.</li>
+</ul>
+<h2 id="managing-images">Managing Images</h2>
+<ul>
+<li>Conatiner images are used to package container applications with all of their dependencies.</li>
+<li>Images are built according to the Open Continers Initiative (OCI) specification.</li>
+<li>
+<p>The OCI standard gurantees compatibility so that images can be used in different environments, like <strong>podman</strong> on RHEL or <strong>docker</strong>.</p>
+</li>
+<li>
+<p><strong>Container images are offered through registries</strong>.</p>
+</li>
+<li>Public registries as hub.docker.com provide access to community-provided container images.</li>
+<li>Private registries can be treated to host container images internally.</li>
+<li>Images optimized for use in Red Hat environments are provided through quay.io</li>
+<li>Red Hat distributes certified images that are accessible only with Red Hat credentials.</li>
+<li>registry.redhat.io is for official Red Hat products.</li>
+<li>
+<p>registry.connect.redhat.com is for third-party products.</p>
+</li>
+<li>
+<p>Red Hat container catalog (https://catalog.redhat.com) is a web interface to the Red Hat images.</p>
+</li>
+<li>Use <code>podman login registry.redhat.io</code> to login to a registry.</li>
+<li>Use <code>podman login registry.redhat.io --get-login</code> to get your current login credentials</li>
+</ul>
+<h3 id="configuring-registry-access">Configuring Registry Access</h3>
+<ul>
+<li>Registry access is configured in <strong>/etc/containers/registries.conf</strong></li>
+<li>Default registrie are in <strong>[registries.search]</strong> section.</li>
+<li>Registries that don't have an SSL certificate are in <strong>[registries.insecure]</strong>.</li>
+</ul>
+<h3 id="using-containerfile">Using Containerfile</h3>
+<ul>
+<li>A Containerfile (previously known as Dockerfile) is a text file, with instructions to build a container image.</li>
+<li>Containerfiles have instructions to build a continer image.</li>
+<li>Containerfiles have insturctions to build a custom container based on a base image such as the UBI image.</li>
+<li>UBI is the Universal Base Image, an image that Red Hat uses for all of its products.</li>
+</ul>
+<h3 id="building-an-image-using-a-container-file">Building an Image using a container file.</h3>
+<h2 id="-install-the-container-tools-package">- Install the <code>container-tools</code> package.</h2>
+<h2 id="running-contianers">Running Contianers</h2>
+<h2 id="mapping-ports-and-configuration-variables">Mapping Ports and Configuration Variables</h2>
+<h2 id="providing-persistent-storage">Providing Persistent Storage</h2>
+<h2 id="starting-containers-as-systemd-services">Starting Containers as Systemd Services</h2>
+            </div>
+        </div>
+
+        <div id="generated-at">
+        Generated at: 2023-01-19 17:59:21
+    </div>
+            
+
+        <div id="footer">
+            Powered by
+            <a href="https://github.com/menduo/mdtree" target="_blank"
+                title="https://github.com/menduo/mdtree">
+                https://github.com/menduo/mdtree
+            </a>
+        </div>
+</div>
+</body>
+
+<script>
+
+</script>
+
+
+</html>
+

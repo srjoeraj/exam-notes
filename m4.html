@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="powered-by" content="https://github.com/menduo/mdtree">
+    <title>Performing Daily Administration Tasks</title>
+    <style>
+        #sidebar:hover,pre{overflow:auto}#footer,#footer a{color:#eee}body{padding:40px}#layout>header,.btns{width:auto}#sidebar{width:400px;height:100%;position:fixed;top:0;right:0;overflow:hidden;background:#fff;z-index:100;padding:18px;border:1px solid #ddd;border-top:none;border-bottom:none}#sidebar h1{font-size:16px}#sidebar a,#sidebar a:visited{color:#4183c4}#sidebar a:hover{font-size:120%;color:#1e90ff}#custom-toc-container{padding-left:0;padding-bottom:20px}#content-container{padding-left:0;padding-right:430px;margin:0}.markdown-body{box-sizing:border-box;min-width:200px;max-width:980px;margin:0 auto}pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;padding:6px 10px;border-radius:3px}
+#footer{margin:30px auto 10px;}
+#generated-at{margin-top:30px;}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     /** code highliting start **/
+.codehilite .hll{background-color:#ffc}.codehilite{background:#f8f8f8}.codehilite .c{color:#408080;font-style:italic}.codehilite .err{border:1px solid red}.codehilite .k{color:green;font-weight:700}.codehilite .o{color:#666}.codehilite .ch,.codehilite .cm{color:#408080;font-style:italic}.codehilite .cp{color:#BC7A00}.codehilite .c1,.codehilite .cpf,.codehilite .cs{color:#408080;font-style:italic}.codehilite .gd{color:#A00000}.codehilite .ge{font-style:italic}.codehilite .gr{color:red}.codehilite .gh{color:navy;font-weight:700}.codehilite .gi{color:#00A000}.codehilite .go{color:#888}.codehilite .gp{color:navy;font-weight:700}.codehilite .gs{font-weight:700}.codehilite .gu{color:purple;font-weight:700}.codehilite .gt{color:#04D}.codehilite .kc,.codehilite .kd,.codehilite .kn{color:green;font-weight:700}.codehilite .kp{color:green}.codehilite .kr{color:green;font-weight:700}.codehilite .kt{color:#B00040}.codehilite .m{color:#666}.codehilite .s{color:#BA2121}.codehilite .na{color:#7D9029}.codehilite .nb{color:green}.codehilite .nc{color:#00F;font-weight:700}.codehilite .no{color:#800}.codehilite .nd{color:#A2F}.codehilite .ni{color:#999;font-weight:700}.codehilite .ne{color:#D2413A;font-weight:700}.codehilite .nf{color:#00F}.codehilite .nl{color:#A0A000}.codehilite .nn{color:#00F;font-weight:700}.codehilite .nt{color:green;font-weight:700}.codehilite .nv{color:#19177C}.codehilite .ow{color:#A2F;font-weight:700}.codehilite .w{color:#bbb}.codehilite .mb,.codehilite .mf,.codehilite .mh,.codehilite .mi,.codehilite .mo{color:#666}.codehilite .s2,.codehilite .sb,.codehilite .sc{color:#BA2121}.codehilite .sd{color:#BA2121;font-style:italic}.codehilite .se{color:#B62;font-weight:700}.codehilite .sh{color:#BA2121}.codehilite .si{color:#B68;font-weight:700}.codehilite .sx{color:green}.codehilite .sr{color:#B68}.codehilite .s1{color:#BA2121}.codehilite .ss{color:#19177C}.codehilite .bp{color:green}.codehilite .vc,.codehilite .vg,.codehilite .vi{color:#19177C}.codehilite .il{color:#666}
+
+/** code highliting end **/
+/** css from https://github.com/pandao/editor.md */
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format("woff");
+}
+.markdown-body hr:after,.markdown-body hr:before{display:table;content:""}.markdown-body ol,.markdown-body td,.markdown-body th,.markdown-body ul{padding:0}.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#333;overflow:hidden;font-family:"Microsoft YaHei",Helvetica,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Monaco,monospace,Tahoma,STXihei,"åŽæ–‡ç»†é»‘",STHeiti,"Helvetica Neue","Droid Sans","wenquanyi micro hei",FreeSans,Arimo,Arial,SimSun,"å®‹ä½“",Heiti,"é»‘ä½“",sans-serif;font-size:16px;line-height:1.6;word-wrap:break-word}.markdown-body strong{font-weight:700}.markdown-body h1{margin:.67em 0}.markdown-body img{border:0}.markdown-body hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}.markdown-body input{color:inherit;margin:0;line-height:normal;font:13px/1.4 Helvetica,arial,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"}.markdown-body html input[disabled]{cursor:default}.markdown-body input[type=checkbox]{-moz-box-sizing:border-box;box-sizing:border-box;padding:0}.markdown-body *{-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body a{background:0 0;color:#4183c4;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline:0;text-decoration:underline}.markdown-body hr{margin:15px 0;overflow:hidden;background:0 0;border:0;border-bottom:1px solid #ddd}.markdown-body hr:after{clear:both}.markdown-body blockquote{margin:0}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ol ol ol,.markdown-body ol ul ol,.markdown-body ul ol ol,.markdown-body ul ul ol{list-style-type:lower-alpha}.markdown-body .task-list-item,li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}.markdown-body dd{margin-left:0}.markdown-body code{font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace}.markdown-body pre{font:12px Consolas,"Liberation Mono",Menlo,Courier,monospace;word-wrap:normal}.markdown-body .octicon{font:normal normal 16px octicons-anchor;line-height:1;display:inline-block;text-decoration:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-body .octicon-link:before{content:'\f05c'}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body .anchor{position:absolute;top:0;left:0;display:block;padding-right:6px;padding-left:30px;margin-left:-30px}.markdown-body .anchor:focus{outline:0}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{position:relative;margin-top:1em;margin-bottom:16px;font-weight:700;line-height:1.4}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{display:none;color:#000;vertical-align:middle}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{padding-left:8px;margin-left:-30px;text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{display:inline-block}.markdown-body h1{font-size:2.25em;line-height:1.2}.markdown-body h1 .anchor{line-height:1}.markdown-body h2{font-size:1.75em;line-height:1.225}.markdown-body h2 .anchor{line-height:1}.markdown-body h3{font-size:1.5em;line-height:1.43}.markdown-body h3 .anchor,.markdown-body h4 .anchor{line-height:1.2}.markdown-body h4{font-size:1.25em}.markdown-body h5 .anchor,.markdown-body h6 .anchor{line-height:1.1}.markdown-body h5{font-size:1em}.markdown-body h6{font-size:1em;color:#777}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body blockquote{padding:0 15px;color:#777;border-left:4px solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body table{border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;-moz-box-sizing:border-box;box-sizing:border-box}.markdown-body code{padding:.2em 0;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;background-color:#f7f7f7;border-radius:3px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body pre code{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before{content:normal}.markdown-body .pl-c{color:#969896}.markdown-body .pl-c1,.markdown-body .pl-mdh,.markdown-body .pl-mm,.markdown-body .pl-mp,.markdown-body .pl-mr,.markdown-body .pl-s1 .pl-v,.markdown-body .pl-s3,.markdown-body .pl-sc,.markdown-body .pl-sv{color:#0086b3}.markdown-body .pl-e,.markdown-body .pl-en{color:#795da3}.markdown-body .pl-s1 .pl-s2,.markdown-body .pl-smi,.markdown-body .pl-smp,.markdown-body .pl-stj,.markdown-body .pl-vo,.markdown-body .pl-vpf{color:#333}.markdown-body .pl-ent{color:#63a35c}.markdown-body .pl-k,.markdown-body .pl-s,.markdown-body .pl-st{color:#a71d5d}.markdown-body .pl-pds,.markdown-body .pl-s1,.markdown-body .pl-s1 .pl-pse .pl-s2,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sra,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-src{color:#df5000}.markdown-body .pl-mo,.markdown-body .pl-v{color:#1d3e81}.markdown-body .pl-id{color:#b52a1d}.markdown-body .pl-ii{background-color:#b52a1d;color:#f8f8f8}.markdown-body .pl-sr .pl-cce{color:#63a35c;font-weight:700}.markdown-body .pl-ml{color:#693a17}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{color:#1d3e81;font-weight:700}.markdown-body .pl-mq{color:teal}.markdown-body .pl-mi{color:#333;font-style:italic}.markdown-body .pl-mb{color:#333;font-weight:700}.markdown-body .pl-md,.markdown-body .pl-mdhf{background-color:#ffecec;color:#bd2c00}.markdown-body .pl-mdht,.markdown-body .pl-mi1{background-color:#eaffea;color:#55a532}.markdown-body .pl-mdr{color:#795da3;font-weight:700}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px Consolas,"Liberation Mono",Menlo,Courier,monospace;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item input{float:left;margin:.3em 0 .25em -1.6em;vertical-align:middle}.markdown-body :checked+.radio-label{z-index:1;position:relative;border-color:#4183c4}.editormd-html-preview,.editormd-preview-container{text-align:left;font-size:14px;line-height:1.6;padding:20px;overflow:auto;width:100%;background-color:#fff}.editormd-html-preview blockquote,.editormd-preview-container blockquote{color:#666;border-left:4px solid #ddd;padding-left:20px;margin-left:0;font-size:14px;font-style:italic}.editormd-html-preview p code,.editormd-preview-container p code{margin-left:5px;margin-right:4px}.editormd-html-preview abbr,.editormd-preview-container abbr{background:#ffd}.editormd-html-preview hr,.editormd-preview-container hr{height:1px;border:none;border-top:1px solid #ddd;background:0 0}.editormd-html-preview code,.editormd-preview-container code{border:1px solid #ddd;background:#f6f6f6;padding:3px;border-radius:3px;font-size:14px}.editormd-html-preview pre,.editormd-preview-container pre{border:1px solid #ddd;background:#f6f6f6;padding:10px;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px}.editormd-html-preview pre code,.editormd-preview-container pre code{padding:0}.editormd-html-preview code,.editormd-html-preview kbd,.editormd-html-preview pre,.editormd-preview-container code,.editormd-preview-container kbd,.editormd-preview-container pre{font-family:"YaHei Consolas Hybrid",Consolas,"Meiryo UI","Malgun Gothic","Segoe UI","Trebuchet MS",Helvetica,monospace,monospace}.editormd-html-preview table thead tr,.editormd-preview-container table thead tr{background-color:#F8F8F8}.editormd-html-preview p.editormd-tex,.editormd-preview-container p.editormd-tex{text-align:center}.editormd-html-preview span.editormd-tex,.editormd-preview-container span.editormd-tex{margin:0 5px}.editormd-html-preview .emoji,.editormd-preview-container .emoji{width:24px;height:24px}.editormd-html-preview .katex,.editormd-preview-container .katex{font-size:1.4em}.editormd-html-preview .flowchart,.editormd-html-preview .sequence-diagram,.editormd-preview-container .flowchart,.editormd-preview-container .sequence-diagram{margin:0 auto;text-align:center}.editormd-html-preview .flowchart svg,.editormd-html-preview .sequence-diagram svg,.editormd-preview-container .flowchart svg,.editormd-preview-container .sequence-diagram svg{margin:0 auto}.editormd-html-preview .flowchart text,.editormd-html-preview .sequence-diagram text,.editormd-preview-container .flowchart text,.editormd-preview-container .sequence-diagram text{font-size:15px!important;font-family:"YaHei Consolas Hybrid",Consolas,"Microsoft YaHei","Malgun Gothic","Segoe UI",Helvetica,Arial!important}/*! Pretty printing styles. Used with prettify.js. */.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.clo,.opn,.pun{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.kwd,.tag,.typ{font-weight:700}.str{color:#060}.kwd{color:#006}.com{color:#600;font-style:italic}.typ{color:#404}.lit{color:#044}.clo,.opn,.pun{color:#440}.tag{color:#006}.atn{color:#404}.atv{color:#060}}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}.editormd-html-preview pre.prettyprint,.editormd-preview-container pre.prettyprint{padding:10px;border:1px solid #ddd;white-space:pre-wrap;word-wrap:break-word}.editormd-html-preview ol.linenums,.editormd-preview-container ol.linenums{color:#999;padding-left:2.5em}.editormd-html-preview ol.linenums li,.editormd-preview-container ol.linenums li{list-style-type:decimal}.editormd-html-preview ol.linenums li code,.editormd-preview-container ol.linenums li code{border:none;background:0 0;padding:0}.editormd-html-preview .editormd-toc-menu,.editormd-preview-container .editormd-toc-menu{margin:8px 0 12px;display:inline-block}.editormd-html-preview .editormd-toc-menu>.markdown-toc,.editormd-preview-container .editormd-toc-menu>.markdown-toc{position:relative;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;border:1px solid #ddd;display:inline-block;font-size:1em}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul{width:160%;min-width:180px;position:absolute;left:-1px;top:-2px;z-index:100;padding:0 10px 10px;display:none;background:#fff;border:1px solid #ddd;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li ul{width:100%;min-width:180px;border:1px solid #ddd;display:none;background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn:hover,.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a:hover,.editormd-preview-container .editormd-toc-menu .toc-menu-btn:hover,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a:hover{background-color:#f6f6f6}.editormd-html-preview .editormd-toc-menu>.markdown-toc>ul>li a,.editormd-preview-container .editormd-toc-menu>.markdown-toc>ul>li a{color:#666;padding:6px 10px;display:block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu>.markdown-toc li,.editormd-preview-container .editormd-toc-menu>.markdown-toc li{position:relative}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul{position:absolute;top:32px;left:10%;display:none;-webkit-box-shadow:0 3px 5px rgba(0,0,0,.2);-moz-box-shadow:0 3px 5px rgba(0,0,0,.2);-ms-box-shadow:0 3px 5px rgba(0,0,0,.2);-o-box-shadow:0 3px 5px rgba(0,0,0,.2);box-shadow:0 3px 5px rgba(0,0,0,.2)}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{pointer-events:pointer-events;position:absolute;left:15px;top:-6px;display:block;content:"";width:0;height:0;border:6px solid transparent;border-width:0 6px 6px;z-index:10}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:before,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:before{border-bottom-color:#ccc}.editormd-html-preview .editormd-toc-menu>.markdown-toc li>ul:after,.editormd-preview-container .editormd-toc-menu>.markdown-toc li>ul:after{border-bottom-color:#fff;top:-5px}.editormd-html-preview .editormd-toc-menu ul,.editormd-preview-container .editormd-toc-menu ul{list-style:none}.editormd-html-preview .editormd-toc-menu a,.editormd-preview-container .editormd-toc-menu a{text-decoration:none}.editormd-html-preview .editormd-toc-menu h1,.editormd-preview-container .editormd-toc-menu h1{font-size:16px;padding:5px 0 10px 10px;line-height:1;border-bottom:1px solid #eee}.editormd-html-preview .editormd-toc-menu h1 .fa,.editormd-preview-container .editormd-toc-menu h1 .fa{padding-left:10px}.editormd-html-preview .editormd-toc-menu .toc-menu-btn,.editormd-preview-container .editormd-toc-menu .toc-menu-btn{color:#666;min-width:180px;padding:5px 10px;border-radius:4px;display:inline-block;-webkit-transition:background-color .5s ease-out;-moz-transition:background-color .5s ease-out;transition:background-color .5s ease-out}.editormd-html-preview .editormd-toc-menu .toc-menu-btn .fa,.editormd-preview-container .editormd-toc-menu .toc-menu-btn .fa{float:right;padding:3px 0 0 10px;font-size:1.3em}.markdown-body .editormd-toc-menu ul{padding-left:0}.markdown-body .highlight pre,.markdown-body pre{line-height:1.6}hr.editormd-page-break{border:1px dotted #ccc;font-size:0;height:2px}@media only print{hr.editormd-page-break{background:0 0;border:none;height:0}}.editormd-html-preview textarea{display:none}.editormd-html-preview hr.editormd-page-break{background:0 0;border:none;height:0}.editormd-preview-close-btn{color:#fff;padding:4px 6px;font-size:18px;-webkit-border-radius:500px;-moz-border-radius:500px;-ms-border-radius:500px;-o-border-radius:500px;border-radius:500px;display:none;background-color:#ccc;position:absolute;top:25px;right:35px;z-index:19;-webkit-transition:background-color .3s ease-out;-moz-transition:background-color .3s ease-out;transition:background-color .3s ease-out}.editormd-preview-close-btn:hover{background-color:#999}.editormd-preview-active{width:100%;padding:40px}
+
+
+
+    </style>
+    
+</head>
+<body>
+<div id="layout">
+        <div id="sidebar">
+            <h1>Table of Contents</h1>
+            <div id="custom-toc-container">
+                <div class="toc">
+<ul>
+<li><a href="#performing-daily-administration-tasks">Performing Daily Administration Tasks</a></li>
+<li><a href="#managing-software">Managing Software</a><ul>
+<li><a href="#understanding-rpm-packages">Understanding RPM Packages</a></li>
+<li><a href="#setting-up-repository-access">Setting up Repository Access</a></li>
+<li><a href="#manually-configuring-repository-access">Manually Configuring Repository Access</a><ul>
+<li><a href="#confguring-your-own-repo-not-to-be-done-in-the-exam-but-for-these-labs">Confguring your own repo (not to be done in the exam but for these labs)</a></li>
+<li><a href="#using-gpg-keys">Using GPG Keys</a></li>
+</ul>
+</li>
+<li><a href="#managing-packages-with-dnf">Managing Packages with dnf</a></li>
+<li><a href="#using-dnf-groups">Using dnf Groups</a></li>
+<li><a href="#exploring-modules-and-application-streams">Exploring Modules and Application Streams</a></li>
+<li><a href="#managing-dnf-updates-and-history">Managing dnf Updates and History</a></li>
+<li><a href="#using-subscription-manager">Using subscription-manager</a><ul>
+<li><a href="#understanding-entitlement-certificates">Understanding Entitlement Certificates.</a></li>
+</ul>
+</li>
+<li><a href="#lab">LAB</a></li>
+</ul>
+</li>
+<li><a href="#monitoring-activity">Monitoring Activity</a><ul>
+<li><a href="#managing-shell-jobs">Managing shell jobs</a></li>
+<li><a href="#understanding-process-states">Understanding Process states</a></li>
+<li><a href="#observing-process-information-with-ps">Observing Process Information with ps</a></li>
+<li><a href="#monitoring-memmory-use">Monitoring memmory use</a></li>
+<li><a href="#observing-cpu-load">Observing CPU Load</a></li>
+<li><a href="#monitoring-system-activity-with-top">Monitoring System Activity with TOP</a></li>
+</ul>
+</li>
+<li><a href="#monitoring-processes">Monitoring Processes</a><ul>
+<li><a href="#using-signals-to-manage-process-states">Using Signals to Manage Process States</a><ul>
+<li><a href="#killing-zombies">Killing Zombies</a></li>
+</ul>
+</li>
+<li><a href="#managing-process-priority">Managing Process Priority</a><ul>
+<li><a href="#managing-nice">Managing nice</a></li>
+<li><a href="#disabling-cpu-cores-in-linux">Disabling cpu cores in linux</a></li>
+</ul>
+</li>
+<li><a href="#using-tuned-profiles">Using tuned Profiles</a><ul>
+<li><a href="#understanding-tuned">Understanding Tuned</a></li>
+<li><a href="#creating-custom-profiles">Creating custom profiles</a></li>
+</ul>
+</li>
+<li><a href="#managing-user-sessions-and-processes">Managing User Sessions and Processes.</a><ul>
+<li><a href="#using-loginctl">Using loginctl</a></li>
+</ul>
+</li>
+<li><a href="#lab_1">LAB</a></li>
+</ul>
+</li>
+<li><a href="#working-with-systemd">Working with Systemd</a><ul>
+<li><a href="#exploring-systemd-units">Exploring Systemd Units</a><ul>
+<li><a href="#understanding-unit-types">Understanding Unit Types</a></li>
+</ul>
+</li>
+<li><a href="#managing-systemd-services">Managing Systemd Services</a></li>
+<li><a href="#modifying-systemd-unit-configuration">Modifying Systemd Unit Configuration</a><ul>
+<li><a href="#understanding-unit-dependencies">Understanding Unit Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#masking-services">Masking Services</a></li>
+<li><a href="#lab_2">LAB</a></li>
+</ul>
+</li>
+<li><a href="#task-scheduling">Task Scheduling</a><ul>
+<li><a href="#rhel-9-scheduling-options">RHEL 9 Scheduling Options</a></li>
+<li><a href="#scheduling-tasks-with-systemd-timers">Scheduling Tasks with Systemd Timers 💀</a><ul>
+<li><a href="#understanding-timer-activation">Understanding Timer Activation</a></li>
+<li><a href="#creating-a-custom-service-and-timer">Creating a custom service and timer.</a></li>
+</ul>
+</li>
+<li><a href="#scheduling-tasks-with-cron">Scheduling Tasks with Cron</a><ul>
+<li><a href="#understanding-cron-time-specification">Understanding Cron Time Specification</a></li>
+</ul>
+</li>
+<li><a href="#understanding-anacron">Understanding anacron</a></li>
+<li><a href="#using-at">Using at</a></li>
+<li><a href="#understanding-temporary-files">Understanding Temporary files 💀</a><ul>
+<li><a href="#demo-showing-mangement-of-temp-files">Demo, showing mangement of temp files</a></li>
+</ul>
+</li>
+<li><a href="#lab_3">LAB</a></li>
+</ul>
+</li>
+<li><a href="#understanding-logging">Understanding Logging</a><ul>
+<li><a href="#exploring-rhel-logging-options">Exploring RHEL Logging Options</a></li>
+<li><a href="#using-systemd-journald">Using systemd-journald</a></li>
+<li><a href="#preserving-the-systemd-journal">Preserving the Systemd Journal</a></li>
+<li><a href="#configuring-rsyslogd">Configuring rsyslogd</a><ul>
+<li><a href="#understanding-facilities">Understanding Facilities</a></li>
+<li><a href="#using-logrotate">Using logrotate</a></li>
+</ul>
+</li>
+<li><a href="#lab_4">LAB</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+            </div>
+        </div>
+        <div id="content-container">
+            <div class="markdown-body markdown-content">
+                <h1 id="performing-daily-administration-tasks">Performing Daily Administration Tasks</h1>
+<hr />
+<p><strong><a href="m3.html">Module 3</a> <a href="m4.html">Module 4</a> <a href="m5.html">Module 5</a> <a href="m6.html">Module 6</a> <a href="m7.html">Module 7</a></strong></p>
+<hr />
+<h1 id="managing-software">Managing Software</h1>
+<h2 id="understanding-rpm-packages">Understanding RPM Packages</h2>
+<ul>
+<li>software on RHEL is installed using packages in RPM format</li>
+<li>An RPM package containts a compressed archive, as well as package metadata.</li>
+<li>In the metadata, package dependencies are identified.</li>
+<li>To handle dependency management, RHEL uses repositories for package installation</li>
+<li>If a dependency was found, it is installed automatically from the repository.</li>
+<li>
+<p>Installed packages are registered in the RPM database.</p>
+</li>
+<li>
+<p>The <code>rpm</code> command can be used for some package management tasks.</p>
+</li>
+<li>Some commands query the RPM database</li>
+<li><code>rpm -qa</code> shows all packages that are currently installed in the system.</li>
+<li><code>rpm -qa flename</code> show from which package filename was installed.</li>
+<li><code>rpm -ql</code> lists files installed from a package.</li>
+<li><code>rpm -q --scripts</code> shows script executed while installing the package.</li>
+<li>
+<p><code>rpm -q --changelog</code> shows the change log for a package</p>
+</li>
+<li>
+<p>Querying package files is also possible</p>
+</li>
+<li>
+<p>Add <code>-p</code> to any of the commands above.</p>
+</li>
+<li>
+<p>Contents of an RPM package can be extracted to the current directory (without installing)</p>
+</li>
+<li><code>rpm2cpio mypackage-1.0.rpm | cpio -tv</code> will show the contents of a package</li>
+<li><code>rpm2cpio mypackage-1.0.rpm | cpio -idmv</code> extracts the package contents to the current directory.</li>
+</ul>
+<hr />
+<h2 id="setting-up-repository-access">Setting up Repository Access</h2>
+<ul>
+<li>A repo is a collection of RPM package files with  an index that contains repo contents.</li>
+<li>Repos are often offered through web sites, but local repos can also be created .</li>
+<li>The <code>dnf</code> command is used as the default command to install packages from repositories.</li>
+<li>In RHEL 9 <code>dnf</code> is prefered over the <code>yum</code> command which was used in the previous versions of RHEL.</li>
+<li>
+<p><code>dnf</code> and <code>yum</code> are offering the same functionalities (they are symlinks to the same binaries).</p>
+</li>
+<li>
+<p>To access repos, a RHEL system must be registered, using <code>subscription-manager</code>.</p>
+</li>
+<li><code>subscription-manager</code> tries to access the online Red Hat repos</li>
+<li>As an alternative to online repos, repos can be offered through Red Hat Satellite.</li>
+<li>If no Internet connection, nor RedHat Satellite are available, no repos will be available by default.</li>
+<li>In that case, you'll have to manually configure repository access.</li>
+</ul>
+<h2 id="manually-configuring-repository-access">Manually Configuring Repository Access</h2>
+<ul>
+<li>To access repositories, that are offered through subsciption manager, use <code>dnf config-manager --enable name-of-the-repositories</code> to add repo access.</li>
+<li>Third party repos can be added using a repo file in **/etc/yum.repos.d/ or using dnf config-manager</li>
+</ul>
+<h3 id="confguring-your-own-repo-not-to-be-done-in-the-exam-but-for-these-labs">Confguring your own repo (not to be done in the exam but for these labs)</h3>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># lsblk</span>
+NAME          MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sr0            <span class="m">11</span>:0    <span class="m">1</span>  <span class="m">7</span>.9G  <span class="m">0</span> rom  /run/media/student/RHEL-9-0-0-BaseOS-x86_64
+nvme0n1       <span class="m">259</span>:0    <span class="m">0</span>   20G  <span class="m">0</span> disk 
+├─nvme0n1p1   <span class="m">259</span>:1    <span class="m">0</span>    1G  <span class="m">0</span> part /boot
+└─nvme0n1p2   <span class="m">259</span>:2    <span class="m">0</span>   19G  <span class="m">0</span> part 
+  ├─rhel-root <span class="m">253</span>:0    <span class="m">0</span>   17G  <span class="m">0</span> lvm  /
+  └─rhel-swap <span class="m">253</span>:1    <span class="m">0</span>    2G  <span class="m">0</span> lvm  <span class="o">[</span>SWAP<span class="o">]</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dd if=/dev/sr0 of=/rhel9.iso bs=1M</span>
+<span class="m">8092</span>+0 records <span class="k">in</span>
+<span class="m">8092</span>+0 records out
+<span class="m">8485076992</span> bytes <span class="o">(</span><span class="m">8</span>.5 GB, <span class="m">7</span>.9 GiB<span class="o">)</span> copied, <span class="m">35</span>.5806 s, <span class="m">238</span> MB/s
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># </span>
+
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># mkdir /repo</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># cp /etc/fstab /etc/fstab.bak</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># echo &quot;/rhel9.iso /repo iso9660 defaults 0 0&quot; &gt;&gt; /etc/fstab</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># mount -a</span>
+mount: /repo: WARNING: <span class="nb">source</span> write-protected, mounted read-only.
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># ls /repo</span>
+AppStream  EFI   extra_files.json  images    media.repo               RPM-GPG-KEY-redhat-release
+BaseOS     EULA  GPL               isolinux  RPM-GPG-KEY-redhat-beta
+</pre></div>
+
+
+<ul>
+<li><code>dnf config-manager --add-repo="file::///repo/BaseOS</code></li>
+<li><code>dnf config-manager --add-repo="file:///repo/AppStream</code></li>
+<li><code>ls /etc/yum.repos.d</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf config-manager --add-repo=&quot;file:///repo/BaseOS&quot;</span>
+Updating Subscription Management repositories.
+Unable to <span class="nb">read</span> consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Adding repo from: file:///repo/BaseOS
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf config-manager --add-repo=&quot;file:///repo/AppStream&quot;</span>
+Updating Subscription Management repositories.
+Unable to <span class="nb">read</span> consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Adding repo from: file:///repo/AppStream
+
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf repolist</span>
+Updating Subscription Management repositories.
+Unable to <span class="nb">read</span> consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+repo id                        repo name
+repo_AppStream                 created by dnf config-manager from file:///repo/AppStream
+repo_BaseOS                    created by dnf config-manager from file:///repo/BaseOS
+
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># ls /etc/yum.repos.d/</span>
+redhat.repo  repo_AppStream.repo  repo_BaseOS.repo
+</pre></div>
+
+
+<h3 id="using-gpg-keys">Using GPG Keys</h3>
+<ul>
+<li>To ensure, that packages have not been tampered with, GPG keys can be used.</li>
+<li>A repo GPG key is used to sign all packages and before installing the package, its signatured is checked.</li>
+<li>To do this, you'll need a local GPG key to be present</li>
+<li>To make accessing trusted repositories easier, use the <strong>gpgcheck=0</strong> option in the repo client file.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># cat /etc/yum.repos.d/repo_BaseOS.repo </span>
+<span class="o">[</span>repo_BaseOS<span class="o">]</span>
+<span class="nv">name</span><span class="o">=</span>created by dnf config-manager from file:///repo/BaseOS
+<span class="nv">baseurl</span><span class="o">=</span>file:///repo/BaseOS
+<span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+
+
+<h2 id="managing-packages-with-dnf">Managing Packages with dnf</h2>
+<ul>
+<li>dnf was created to be intuitive</li>
+<li><code>dnf list</code> lists installed and avail packages</li>
+<li>
+<p>`dnf list 'selinux*'</p>
+</li>
+<li>
+<p><code>dnf search</code> searches in name and summary. Use <code>dnf search all</code> to search in description as well</p>
+</li>
+<li><code>dnf search seinfo</code></li>
+<li>
+<p><code>dnf search all seinfo</code></p>
+</li>
+<li>
+<p><code>dnf provides</code> searches in package file lists, for the package that provides a specific file</p>
+</li>
+<li><code>dnf provides */Containerfile</code></li>
+<li>
+<p><strong>here "*/" is mandatory</strong>  </p>
+</li>
+<li>
+<p><code>dnf install</code> installs packages as well as any dependencies.</p>
+</li>
+<li><code>dnf remove</code> removes packages, as well as packages depending on this package - potentially dangerous.</li>
+<li><code>dnf update</code> compares curent package version with the package version listed in the repository and updates if necessary.</li>
+<li><code>dnf update kernel</code> will install the new kernel and keep the old kernel as backup.</li>
+</ul>
+<h2 id="using-dnf-groups">Using dnf Groups</h2>
+<ul>
+<li>A dnf group is a collection of packages</li>
+<li>A regular group is just a collection of packages</li>
+<li>An environment group is used to install a specific usage pattern, and may consist of packages and groups.</li>
+<li>Use <strong>dnf group list</strong> to see list of groups</li>
+<li>Some groups are normally only installed through environment groups and not seprately and for that reason don't show with using dnf group list</li>
+<li>
+<p>Use <code>dnf group list hidden</code> to see hidden groups as well.</p>
+</li>
+<li>
+<p>Use <code>dnf group info &lt;groupname&gt;</code> to see packages within a group.</p>
+</li>
+<li>Packages are marked as mandatory, default or optional.</li>
+<li>While using <code>dnf group install</code> only mandatory and default packages are installed.</li>
+<li>To install optional packages also, use <code>dnf group install --with-optional</code></li>
+<li>As group names often contain spaces, the entire group name must be referred ito using double qoutes.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf group info &quot;Virtualization Host&quot;</span>
+Updating Subscription Management repositories.
+Unable to <span class="nb">read</span> consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Last metadata expiration check: <span class="m">0</span>:19:05 ago on Tue <span class="m">08</span> Nov <span class="m">2022</span> <span class="m">03</span>:53:46 PM.
+Environment Group: Virtualization Host
+ Description: Minimal virtualization host.
+ Mandatory Groups:
+   Base
+   Core
+   Standard
+   Virtualization Hypervisor
+   Virtualization Tools
+ Optional Groups:
+   Debugging Tools
+   Network File System Client
+   Remote Management <span class="k">for</span> Linux
+   Virtualization Platform
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf group install --with-optional &quot;Virtualization Host&quot;</span>
+</pre></div>
+
+
+<h2 id="exploring-modules-and-application-streams">Exploring Modules and Application Streams</h2>
+<ul>
+<li><code>dnf</code> uses modularity, meaning that different versions of the same package can be maintained in the same repository</li>
+<li>Modularity is useful for packages that have a lifetime that differs from the core operating system packages</li>
+<li>RHEL 9 offers two main repos:</li>
+<li><strong>BaseOS</strong> has core OS content for RHEL. Packages in BaseOS share the OS lifecycle.</li>
+<li>
+<p><strong>AppStream</strong> is used for packages that don't have the same lifecycle as RHEL.</p>
+</li>
+<li>
+<p>AppStream packages are offered as indivisual packages or as modules</p>
+</li>
+<li>In RHEL 9 no modules are provided by default, they may be offered separately later.</li>
+<li>In a module, different streams can be offered, where each package version has its own stream.</li>
+<li>Module profiles provide common installation patterns, such as server, client and more.</li>
+</ul>
+<h2 id="managing-dnf-updates-and-history">Managing dnf Updates and History</h2>
+<ul>
+<li>All transactions that dnf performs are logged to **/var/log/dnf.rpm.log</li>
+<li><code>dnf history</code> for summary of all installation and removal transactions</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf history</span>
+Updating Subscription Management repositories.
+Unable to <span class="nb">read</span> consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+ID     <span class="p">|</span> Command line                                       <span class="p">|</span> Date and <span class="nb">time</span>    <span class="p">|</span> Action<span class="o">(</span>s<span class="o">)</span>      <span class="p">|</span> Altered
+---------------------------------------------------------------------------------------------------------
+     <span class="m">3</span> <span class="p">|</span> group install --with-optional Virtualization Host  <span class="p">|</span> <span class="m">2022</span>-11-08 <span class="m">16</span>:13 <span class="p">|</span> Install        <span class="p">|</span>  <span class="m">193</span> EE
+     <span class="m">2</span> <span class="p">|</span> install nmap                                       <span class="p">|</span> <span class="m">2022</span>-11-08 <span class="m">15</span>:53 <span class="p">|</span> Install        <span class="p">|</span>    <span class="m">1</span>   
+     <span class="m">1</span> <span class="p">|</span>                                                    <span class="p">|</span> <span class="m">2022</span>-10-03 <span class="m">12</span>:54 <span class="p">|</span> Install        <span class="p">|</span> <span class="m">1187</span> EE
+</pre></div>
+
+
+<ul>
+<li><code>dnf history undo n</code> to undo a specific action.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf history undo 2</span>
+Updating Subscription Management repositories.
+Unable to <span class="nb">read</span> consumer identity
+
+This system is not registered with an entitlement server. You can use subscription-manager to register.
+
+Last metadata expiration check: <span class="m">0</span>:59:01 ago on Tue <span class="m">08</span> Nov <span class="m">2022</span> <span class="m">03</span>:53:46 PM.
+Dependencies resolved.
+<span class="o">=========================================================================================================</span>
+ Package            Architecture         Version                     Repository                     <span class="nv">Size</span>
+<span class="o">=========================================================================================================</span>
+Removing:
+ nmap               x86_64               <span class="m">3</span>:7.91-10.el9               @repo_AppStream                <span class="m">24</span> M
+
+Transaction <span class="nv">Summary</span>
+<span class="o">=========================================================================================================</span>
+Remove  <span class="m">1</span> Package
+
+Freed space: <span class="m">24</span> M
+Is this ok <span class="o">[</span>y/N<span class="o">]</span>: y
+Running transaction check
+Transaction check succeeded.
+Running transaction <span class="nb">test</span>
+Transaction <span class="nb">test</span> succeeded.
+Running transaction
+  Preparing        :                                                                                 <span class="m">1</span>/1 
+  Erasing          : nmap-3:7.91-10.el9.x86_64                                                       <span class="m">1</span>/1 
+  Running scriptlet: nmap-3:7.91-10.el9.x86_64                                                       <span class="m">1</span>/1 
+  Verifying        : nmap-3:7.91-10.el9.x86_64                                                       <span class="m">1</span>/1 
+Installed products updated.
+
+Removed:
+  nmap-3:7.91-10.el9.x86_64                                                                              
+
+Complete!
+</pre></div>
+
+
+<h2 id="using-subscription-manager">Using subscription-manager</h2>
+<ul>
+<li>To use RHEL, you need to register the system and attach a subscription</li>
+<li>
+<p>Before completing this procedure, you'll have no repos access</p>
+</li>
+<li>
+<p>To register, use <code>subscription-manager register</code></p>
+</li>
+<li>You'll be prompted for the username of the user account to whichthe subscription is connected.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># subscription-manager register</span>
+Registering to: subscription.rhsm.redhat.com:443/subscription
+Username: rajgurujoey
+Password: 
+The system has been registered with ID: 3fff9a4a-bd66-4007-81ea-c44f88c65e7a
+The registered system name is: rhcsaserver.example.com
+</pre></div>
+
+
+<ul>
+<li>To attach a subscription, use <code>subscription-manager attach --auto</code></li>
+<li>To unregister a system use <code>subscription-manager unregister</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># dnf repolist</span>
+Updating Subscription Management repositories.
+
+This system is registered with an entitlement server, but is not receiving updates. You can use subscription-manager to assign subscriptions.
+
+repo id                        repo name
+repo_AppStream                 created by dnf config-manager from file:///repo/AppStream
+repo_BaseOS                    created by dnf config-manager from file:///repo/BaseOS
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># subscription-manager attach</span>
+Installed Product Current Status:
+Product Name: Red Hat Enterprise Linux <span class="k">for</span> x86_64
+Status:       Subscribed
+</pre></div>
+
+
+<h3 id="understanding-entitlement-certificates">Understanding Entitlement Certificates.</h3>
+<ul>
+<li>After attaching subscriptions to a system, entitlement certificates are created.</li>
+<li><strong>/etc/pki/product</strong> indicates the installed Red Hat products.</li>
+<li><strong>/etc/pki/consumer</strong> identifies the Red Hat account for registration.</li>
+<li>
+<p><strong>/etc/pki/entitlement</strong> indicates which subscription is attached.</p>
+</li>
+<li>
+<p>Use the <code>rct</code> command to check current entitlements</p>
+<ul>
+<li><code>rct cat-cert /etc/pki/entitlement/1948814745453889792.pem</code></li>
+<li>subscription-manager will not be part of the RHCSA exam as, you need to be online to be able to use it and the test if offline.</li>
+</ul>
+</li>
+</ul>
+<h2 id="lab">LAB</h2>
+<ul>
+<li>Ensure your system is using a repo for base packagesa as well as application streams.</li>
+<li>Find all packages that contain the seinfo program file and install it.</li>
+<li>Download the httpd package from the repositories wihtout installing it, and query to see if there are any scripts in it.</li>
+</ul>
+<hr />
+<h1 id="monitoring-activity">Monitoring Activity</h1>
+<ul>
+<li>All tasks are started as processes</li>
+<li>Processes have a PID</li>
+<li>Common Processes Management tasks include scheduling priority and sending signals</li>
+<li>Some processes are starting multiple threads, <strong>indivisual threads cannot be managed.</strong></li>
+<li>Tasks that are started from a shell, can be managed as jobs.</li>
+<li>Shell jobs can be started in the foreground and background</li>
+</ul>
+<h2 id="managing-shell-jobs">Managing shell jobs</h2>
+<ul>
+<li>Use <code>command &amp;</code> to start a job in the background.</li>
+<li>To move a job to the background </li>
+<li><strong>CTRL + Z</strong> stop the job</li>
+<li>type <strong>bg</strong> to move it to the background.</li>
+<li>Use <code>jobs</code> for a complete overview of running jobs.</li>
+</ul>
+<h2 id="understanding-process-states">Understanding Process states</h2>
+<ul>
+<li>When a new process is started (forked), it is scheduled and after being scheduled, it will get a runnable state (R).</li>
+<li>Runnable processes will get a time slice, which allows them to get a running state, in either kernel space or user space.</li>
+<li>Runnable processes can get preempted or rescheduled</li>
+<li>
+<p>In that case, they will return to a runnable state and wait in the queue for a new time slice.</p>
+</li>
+<li>
+<p>A runnable process can be stopped by (ctrl + z) and will show as TASK_STOPPED(T), and after being stopped it can recieve another signal to resume and return to a runnable state.</p>
+</li>
+<li>
+<p>While running, the process may have to wait</p>
+</li>
+<li>
+<p>This is alos referred to as "blocking" state, but there is no "blocking" sate in the linux kernel.</p>
+</li>
+<li>
+<p>Waiting processes can have different flags</p>
+</li>
+<li><strong>TASK_INTERRUPTIBLE</strong>: process waiting for hardware request, system resource or a signal</li>
+<li><strong>TASK_UNINTERRUTIBLE (D)</strong>: process is waiting but does not respond to signal.</li>
+<li><strong>TASK_KILLABLE (K)</strong>: the process is waiting but may be killed.</li>
+<li>
+<p>**TASK_REPORT_IDLE (I): Used for kernel threads, this process will not count for the load average.</p>
+</li>
+<li>
+<p>When a process exits, it will briefly enter the EXIT_ZOMBIE (Z) state. This is where it signals, the parent process that it exists and all resources except the PID are released.</p>
+</li>
+<li>
+<p>In the next stage the process will enter the EXIT_DEAD (X) state. IN this state it will be reaped and all remaining process are cleaned up.</p>
+</li>
+<li>
+<p>A process becomes a zombie when it has completed its task, but the parent process hasn't collected its execution status.</p>
+</li>
+<li>
+<p>Zombie are already dead so they can't and don't have to be killed.</p>
+</li>
+<li>
+<p>The most important disadvantage, is that Zombies occupy a PID.</p>
+</li>
+<li>To get rid of the Zombie, the parent process must collect the child execution status.</li>
+<li>Send SIGCHLD to the parent to ask the parent to reap the Zombie </li>
+<li>kill the parent process</li>
+<li>When the parent is killed, the zombie becomes an orphan and will be adopted by the init process.</li>
+</ul>
+<h2 id="observing-process-information-with-ps">Observing Process Information with <code>ps</code></h2>
+<ul>
+<li>The <code>ps</code> command has two different dialects: BSD and System V.</li>
+<li>In BSD, options do not have a leading -</li>
+<li>
+<p>In System V, options do have a leading -</p>
+</li>
+<li>
+<p>Therefore <code>ps -L</code> and <code>ps L</code> are two completely different commands!.</p>
+</li>
+<li><code>ps</code> shows an overview of current process.</li>
+<li><code>ps aux</code> shows an overview of all process.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>student@rhcsaserver ~<span class="o">]</span>$ ps aux <span class="p">|</span> head -10
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           <span class="m">1</span>  <span class="m">0</span>.4  <span class="m">0</span>.4 <span class="m">106672</span> <span class="m">16496</span> ?        Ss   <span class="m">16</span>:18   <span class="m">0</span>:01 /usr/lib/systemd/systemd rhgb --switched-root --system --deserialize <span class="m">31</span>
+root           <span class="m">2</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        S    <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>kthreadd<span class="o">]</span>
+root           <span class="m">3</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>rcu_gp<span class="o">]</span>
+root           <span class="m">4</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>rcu_par_gp<span class="o">]</span>
+root           <span class="m">5</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I    <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0-events<span class="o">]</span>
+root           <span class="m">6</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:0H-events_highpri<span class="o">]</span>
+root           <span class="m">7</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I    <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>kworker/0:1-events_power_efficient<span class="o">]</span>
+root           <span class="m">8</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I    <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>kworker/u256:0-events_unbound<span class="o">]</span>
+root           <span class="m">9</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> ?        I&lt;   <span class="m">16</span>:18   <span class="m">0</span>:00 <span class="o">[</span>mm_percpu_wq<span class="o">]</span>
+</pre></div>
+
+
+<ul>
+<li><code>ps -fax</code> shows hierachial relations between processes.</li>
+<li><code>ps -fU linda</code> shows all processes owned by linda.</li>
+<li><code>ps -f --forest -C sshd</code> shows a process tree for a specific process</li>
+<li><code>ps L</code> shows format specifiers</li>
+<li><code>ps -eo pid, ppid, user, cmd</code> <em>uses some of the specifers to show a list of processes.</em></li>
+</ul>
+<h2 id="monitoring-memmory-use">Monitoring memmory use</h2>
+<ul>
+<li>Linux places as many files as possible in cache to gurantee fast access to the files.</li>
+<li>For that reason, Linux memory often shows as saturated. </li>
+<li>Swap is used as an overflow buffer of emulated RAM on disk.</li>
+<li>The Linux Kernel moves inactive applications memory to swap first.</li>
+<li>Inactive cache memory will just be dropped.</li>
+<li>Use <code>free -m</code> to get details about current memory usage.</li>
+<li>
+<p>More detailed memory information is in <strong>/proc/meminfo</strong>.</p>
+</li>
+<li>
+<p>While writing files, a write cache (buffer) is used</p>
+</li>
+<li>
+<p>This write cache is periodically  committed to disk by the <strong>pdflush</strong> kernel thread.</p>
+</li>
+<li>
+<p>As a result after committing a file write, it's not immediately secure.</p>
+</li>
+<li>To ensure that a file is commited to disk immediately, use the <code>sync</code> command.</li>
+</ul>
+<h2 id="observing-cpu-load">Observing CPU Load</h2>
+<ul>
+<li>CPU load is checked through <code>uptime</code></li>
+<li>CPU load is expressed as the average number of runnable processes over the last 1, 5 and 15 minutes</li>
+<li><strong>As a rough guideline, this number should not exceed the number of CPU cores on a system</strong>.</li>
+<li>Use <code>lscpu</code> to check the number of CPU cores.</li>
+</ul>
+<h2 id="monitoring-system-activity-with-top">Monitoring System Activity with TOP</h2>
+<ul>
+<li><code>top</code> is a dashboard that allows you to monitor current system activity.</li>
+<li>Press <strong>f</strong> to show and select from available dispaly fields.</li>
+<li>Type <strong>M</strong> to filter on memory usage.</li>
+<li>Press <strong>W</strong> to save new dispaly settings</li>
+<li><code>htop</code> is a common alternative for top, but not installed by default, thus learn to use top.</li>
+</ul>
+<hr />
+<h1 id="monitoring-processes">Monitoring Processes</h1>
+<h2 id="using-signals-to-manage-process-states">Using Signals to Manage Process States</h2>
+<ul>
+<li>A signal allows the operating system to interrupt a process from software and ask it to do something.</li>
+<li>Interrupts are comparable to signals, but are generated from hardware.</li>
+<li>A limited amount of signals can be used and is documented in <strong>man 7 signals</strong>.</li>
+<li>Not all signals work in all cases.</li>
+<li>The kill command is used to send signals to PID's.</li>
+<li>You can also use K from top.</li>
+<li>
+<p>Different kill-like commands exist like <code>pkill</code> and <code>killall</code>.</p>
+</li>
+<li>
+<p><strong>Difference between <code>kill PID</code> and <code>kill -9 PID</code>: The former will stop the process, and gracefully kill it. The later however, will kill it instantly, thus be careful when using <code>kill -9</code>.</strong></p>
+</li>
+<li>
+<p><code>killall dd</code> will kill all process with the name/command dd.</p>
+</li>
+</ul>
+<h3 id="killing-zombies">Killing Zombies</h3>
+<ul>
+<li>Install git, and download the rhcsa repo from sandervangupt.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># git clone https://github.com/sandervanvugt/rhcsa</span>
+</pre></div>
+
+
+<ul>
+<li>Run the <code>.zombie</code> script.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ./zombie &amp;</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">40875</span>
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># PID = 40875 - Parent</span>
+<span class="nv">PID</span> <span class="o">=</span> <span class="m">40876</span> - Child
+</pre></div>
+
+
+<ul>
+<li>Now the PID of the zombie, can be found out using:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ps aux | grep defunct</span>
+root       <span class="m">40876</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> pts/0    Z    <span class="m">09</span>:58   <span class="m">0</span>:00 <span class="o">[</span>zombie<span class="o">]</span> &lt;defunct&gt;
+root       <span class="m">40878</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221668</span>  <span class="m">2380</span> pts/0    S+   <span class="m">09</span>:58   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto defunct
+</pre></div>
+
+
+<ul>
+<li>Now doing <code>kill</code> on the zombie process does nothing:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># kill 40876</span>
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ps aux | grep defunct</span>
+root       <span class="m">40876</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> pts/0    Z    <span class="m">09</span>:58   <span class="m">0</span>:00 <span class="o">[</span>zombie<span class="o">]</span> &lt;defunct&gt;
+root       <span class="m">41020</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221668</span>  <span class="m">2408</span> pts/0    S+   <span class="m">10</span>:14   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto defunct
+</pre></div>
+
+
+<ul>
+<li>By using <code>ps fax | less</code> we can have a look at the parent process of the zombie.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="mi">40875</span><span class="w"> </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="n">S</span><span class="w">      </span><span class="mi">0</span><span class="err">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span><span class="w">               </span><span class="err">\</span><span class="n">_</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">zombie</span><span class="w"></span>
+<span class="w">  </span><span class="mi">40876</span><span class="w"> </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="n">Z</span><span class="w">      </span><span class="mi">0</span><span class="err">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span><span class="w">               </span><span class="o">|</span><span class="w">   </span><span class="err">\</span><span class="n">_</span><span class="w"> </span><span class="o">[</span><span class="n">zombie</span><span class="o">]</span><span class="w"> </span><span class="o">&lt;</span><span class="n">defunct</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="mi">41027</span><span class="w"> </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="n">R</span><span class="o">+</span><span class="w">     </span><span class="mi">0</span><span class="err">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span><span class="w">               </span><span class="err">\</span><span class="n">_</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">fax</span><span class="w"></span>
+<span class="w">  </span><span class="mi">41028</span><span class="w"> </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="n">S</span><span class="o">+</span><span class="w">     </span><span class="mi">0</span><span class="err">:</span><span class="mi">00</span><span class="w">  </span><span class="o">|</span><span class="w">               </span><span class="err">\</span><span class="n">_</span><span class="w"> </span><span class="k">less</span><span class="w"></span>
+</pre></div>
+
+
+<ul>
+<li>To kill the zombie, we can simply kill the parent's child processes. <strong>SIGCHLD</strong> and then kill the parent process. (note: This can take some time to reflect).</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># kill -SIGCHLD 40875</span>
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ps aux | grep defunct</span>
+root       <span class="m">40876</span>  <span class="m">0</span>.0  <span class="m">0</span>.0      <span class="m">0</span>     <span class="m">0</span> pts/0    Z    <span class="m">09</span>:58   <span class="m">0</span>:00 <span class="o">[</span>zombie<span class="o">]</span> &lt;defunct&gt;
+root       <span class="m">41046</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221668</span>  <span class="m">2328</span> pts/0    S+   <span class="m">10</span>:18   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto defunct
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># kill 40875</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span>+  Terminated              ./zombie
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># ps aux | grep defunct</span>
+root       <span class="m">41056</span>  <span class="m">0</span>.0  <span class="m">0</span>.0 <span class="m">221668</span>  <span class="m">2268</span> pts/0    S+   <span class="m">10</span>:20   <span class="m">0</span>:00 grep --color<span class="o">=</span>auto defunct
+</pre></div>
+
+
+<h2 id="managing-process-priority">Managing Process Priority</h2>
+<ul>
+<li>Linux <strong>Cgroups</strong> provide a framework to apply resource restrictions to Linux systems.</li>
+<li>Cgroups can limit the amount of CPU cycles, available memory, and more.</li>
+<li>
+<p>If processes are equal from a perspective of Cgroups, the Linux <code>nice</code> and <code>renice</code> commands can be used to manage priority.</p>
+</li>
+<li>
+<p>In Cgroups, the linux system is <strong>divided in 3 slices</strong>:</p>
+</li>
+<li><strong>System</strong>: all systemd processes.</li>
+<li><strong>User</strong>: all user processes.</li>
+<li>
+<p><strong>Machine</strong>: Virtual Machies and containers.</p>
+</li>
+<li>
+<p>Each slice has an equal CPU weight.</p>
+</li>
+<li>That means that if one or more processes within a slice, requests a maximum amount of CPU cycles, each slice will get an equal amount of CPU shares.</li>
+<li>
+<p>So 20 systemd processes together gets as much as one user process that claims full CPU usage!.</p>
+</li>
+<li>
+<p>In systemd, the CPUWeight can be set on individual systemd units.</p>
+</li>
+</ul>
+<h3 id="managing-nice">Managing nice</h3>
+<ul>
+<li>If no specific Cgroups are defined, Linux <code>nice</code> and <code>renice</code> can be used to define CPU priority.</li>
+<li>To change priorities of non-realtime processes, the nice and renice commands can be used.</li>
+<li>==Nice vules range from -20 to 19==</li>
+<li>
+<p><strong>Negative value is higher priority</strong> -20 max priority and 19 is the lowest.</p>
+<blockquote>
+<p>Users can only set their processes to a lower priority, to increase priority root access needed.</p>
+</blockquote>
+</li>
+<li>
+<p>Priority is always relative to other processes.</p>
+</li>
+<li>
+<p>Running two process with priorities of -10, and 10</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># nice -n 10 dd if=/dev/zero of=/dev/null &amp;</span>
+<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="m">41651</span>
+<span class="o">[</span>root@rhcsaserver rhcsa<span class="o">]</span><span class="c1"># nice -n -10 dd if=/dev/zero of=/dev/null &amp;</span>
+<span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="m">41653</span>
+</pre></div>
+
+
+<h3 id="disabling-cpu-cores-in-linux">Disabling cpu cores in linux</h3>
+<ul>
+<li>go to /sys/devices/cpuNumber/</li>
+<li>change the value in online file from 1 to 0.</li>
+</ul>
+<h2 id="using-tuned-profiles">Using tuned Profiles</h2>
+<ul>
+<li>Kernel tunables are provided through the /proc/sys directory in the /proc pseudo file system.</li>
+<li>Different files <strong>/proc/sys</strong> directory contain the current settings as its value.</li>
+<li>Change the current value by echoing a new value into the file:</li>
+<li><code>cat /proc/sys/vm/swappiness</code></li>
+<li><code>echo 40 &gt; /proc/sys/vm/swapiness</code></li>
+<li>
+<p>The file above defines how eager the kernel is to use the swap space if it runs out of  RAM.</p>
+</li>
+<li>
+<p><strong>To make settings persistent, write them to a file in <code>/etc/sysctl.d</code></strong></p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span>cat &gt;&gt;swappiness.conf <span class="s">&lt;&lt;EOF</span>
+<span class="s">vm.swappiness = 40</span>
+<span class="s">EOF</span>
+</pre></div>
+
+
+<ul>
+<li>To list all kernel tunables with their values</li>
+</ul>
+<div class="codehilite"><pre><span></span>sysctl -a
+</pre></div>
+
+
+<ul>
+<li>There are q quite a lot of kernel tunables</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver cpu<span class="o">]</span><span class="c1"># sysctl -a | wc</span>
+   <span class="m">1012</span>    <span class="m">3176</span>   <span class="m">37293</span>
+</pre></div>
+
+
+<ul>
+<li>To get value of a specific kernel tunable</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver cpu<span class="o">]</span><span class="c1"># sysctl vm.swappiness</span>
+vm.swappiness <span class="o">=</span> <span class="m">60</span>
+</pre></div>
+
+
+<ul>
+<li>To make persistent change for a kernel tunable</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver cpu<span class="o">]</span><span class="c1"># cd /etc/sysctl.d</span>
+<span class="o">[</span>root@rhcsaserver sysctl.d<span class="o">]</span><span class="c1"># ls</span>
+<span class="m">99</span>-sysctl.conf
+<span class="o">[</span>root@rhcsaserver sysctl.d<span class="o">]</span><span class="c1"># cat &gt;&gt; swappiness.conf &lt;&lt;EOF</span>
+&gt; vm.swappiness <span class="o">=</span> <span class="m">40</span>
+&gt; EOF
+<span class="o">[</span>root@rhcsaserver sysctl.d<span class="o">]</span><span class="c1"># ls</span>
+<span class="m">99</span>-sysctl.conf  swappiness.conf
+<span class="o">[</span>root@rhcsaserver sysctl.d<span class="o">]</span><span class="c1"># cat swappiness.conf </span>
+vm.swappiness <span class="o">=</span> <span class="m">40</span>
+</pre></div>
+
+
+<ul>
+<li>Change not seem immediately, but seen after reboot:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># sysctl vm.swappiness</span>
+vm.swappiness <span class="o">=</span> <span class="m">40</span>
+</pre></div>
+
+
+<ul>
+<li>To make the change immediate, without doing reboot:</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ sysctl -p /etc/sysctl.d/swappiness.conf
+</pre></div>
+
+
+<h3 id="understanding-tuned">Understanding Tuned</h3>
+<ul>
+<li>To make system tuning easier, <strong>tuned</strong> is provided.</li>
+<li>tuned is a systemd service that works with different profiles.</li>
+<li><code>tuned-adm list</code> shows current profiles</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># tuned-adm list</span>
+Cannot talk to TuneD daemon via DBus. Is TuneD daemon running?
+Available profiles:
+- accelerator-performance     - Throughput performance based tuning with disabled higher latency STOP states
+- balanced                    - General non-specialized tuned profile
+- desktop                     - Optimize <span class="k">for</span> the desktop use-case
+- hpc-compute                 - Optimize <span class="k">for</span> HPC compute workloads
+- intel-sst                   - Configure <span class="k">for</span> Intel Speed Select Base Frequency
+- latency-performance         - Optimize <span class="k">for</span> deterministic performance at the cost of increased power consumption
+- network-latency             - Optimize <span class="k">for</span> deterministic performance at the cost of increased power consumption, focused on low latency network performance
+- network-throughput          - Optimize <span class="k">for</span> streaming network throughput, generally only necessary on older CPUs or 40G+ networks
+- optimize-serial-console     - Optimize <span class="k">for</span> serial console use.
+- powersave                   - Optimize <span class="k">for</span> low power consumption
+- throughput-performance      - Broadly applicable tuning that provides excellent performance across a variety of common server workloads
+- virtual-guest               - Optimize <span class="k">for</span> running inside a virtual guest
+- virtual-host                - Optimize <span class="k">for</span> running KVM guests
+No current active profile.
+</pre></div>
+
+
+<ul>
+<li><code>tuned-adm profile &lt;profile-name&gt;</code> sets another profile as default</li>
+<li>Each profile contains a file with the name tuned.conf, that has a wide range of performance related settings</li>
+<li>The <code>reapply_sysctl=1</code> in <strong>/etc/tuned/tuned-main.conf</strong> ensures that, in case of conflict, the <strong>sysctl</strong> parameter wins.</li>
+</ul>
+<h3 id="creating-custom-profiles">Creating custom profiles</h3>
+<ul>
+<li>Custom <strong>tuned</strong> profiles are stored in directories <strong>/etc/tuned</strong>.</li>
+<li>Each profile should have a file tuned.conf, containing the requested performance settings.</li>
+<li>After creating the directory with the corresponding tuned.conf, it will automatically be picked up.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># mkdir /etc/tuned/myprofile</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># cat &gt;&gt; /etc/tuned/myprofile/tuned.conf &lt;&lt;EOF</span>
+&gt; <span class="o">[</span>sysctl<span class="o">]</span>
+&gt; vm.swappiness <span class="o">=</span> <span class="m">66</span>
+&gt; EOF
+</pre></div>
+
+
+<ul>
+<li>Enabling the profile</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># tuned-adm profile myprofile</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># tuned-adm list</span>
+Available profiles:
+- accelerator-performance     - Throughput performance based tuning with disabled higher latency STOP states
+- balanced                    - General non-specialized tuned profile
+- desktop                     - Optimize <span class="k">for</span> the desktop use-case
+- hpc-compute                 - Optimize <span class="k">for</span> HPC compute workloads
+- intel-sst                   - Configure <span class="k">for</span> Intel Speed Select Base Frequency
+- latency-performance         - Optimize <span class="k">for</span> deterministic performance at the cost of increased power consumption
+- myprofile
+- network-latency             - Optimize <span class="k">for</span> deterministic performance at the cost of increased power consumption, focused on low latency network performance
+- network-throughput          - Optimize <span class="k">for</span> streaming network throughput, generally only necessary on older CPUs or 40G+ networks
+- optimize-serial-console     - Optimize <span class="k">for</span> serial console use.
+- powersave                   - Optimize <span class="k">for</span> low power consumption
+- throughput-performance      - Broadly applicable tuning that provides excellent performance across a variety of common server workloads
+- virtual-guest               - Optimize <span class="k">for</span> running inside a virtual guest
+- virtual-host                - Optimize <span class="k">for</span> running KVM guests
+Current active profile: myprofile
+</pre></div>
+
+
+<h2 id="managing-user-sessions-and-processes">Managing User Sessions and Processes.</h2>
+<ul>
+<li>Use <code>ps -u username</code> to show processes owned by a specific user.</li>
+<li>Use <code>pkill -u username</code> to remove processes owned by a specific user.</li>
+</ul>
+<h3 id="using-loginctl">Using loginctl</h3>
+<ul>
+<li><strong>loginctl</strong> is a part of <strong>systemd</strong>, which manages users and sessions.</li>
+<li>One user can have multiple sessions open simultaneously</li>
+<li>Opened tty5, logged in as anna, run vim, then swithced back to tty2.</li>
+<li><code>loginctl list-users</code> and <code>loginctl list-sessions</code> shows user and sessions.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># loginctl list-users</span>
+ UID USER   
+<span class="m">1000</span> student
+<span class="m">1001</span> anna
+
+<span class="m">2</span> users listed.
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># loginctl list-sessions</span>
+SESSION  UID USER    SEAT  TTY 
+      <span class="m">2</span> <span class="m">1000</span> student seat0 tty2
+      <span class="m">4</span> <span class="m">1001</span> anna    seat0 tty5
+
+<span class="m">2</span> sessions listed.
+</pre></div>
+
+
+<ul>
+<li><code>loginctl user-status &lt;UID&gt;</code> shows a tree of processes currently opened by this user.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># loginctl user-status 1001</span>
+anna <span class="o">(</span><span class="m">1001</span><span class="o">)</span>
+           Since: Thu <span class="m">2022</span>-12-22 <span class="m">13</span>:29:34 EST<span class="p">;</span> 2min 26s ago
+           State: online
+        Sessions: *4
+          Linger: no
+            Unit: user-1001.slice
+                  ├─session-4.scope
+                  │ ├─3653 <span class="s2">&quot;login -- anna&quot;</span>
+                  │ ├─3745 -bash
+                  │ ├─3785 vim
+                  │ └─3786 /bin/bash
+                  └─user@1001.service
+                    └─init.scope
+                      ├─3719 /usr/lib/systemd/systemd --user
+                      └─3723 <span class="s2">&quot;(sd-pam)&quot;</span>
+
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">3719</span><span class="o">]</span>: Listening on PipeWire Multimedia System Socket.
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">3719</span><span class="o">]</span>: Starting Create User<span class="s1">&#39;s Volatile Files and Directo&gt;</span>
+<span class="s1">Dec 22 13:29:34 rhcsaserver.example.com systemd[3719]: Listening on D-Bus User Message Bus Socket.</span>
+<span class="s1">Dec 22 13:29:34 rhcsaserver.example.com systemd[3719]: Reached target Sockets.</span>
+<span class="s1">Dec 22 13:29:34 rhcsaserver.example.com systemd[3719]: Finished Create User&#39;</span>s Volatile Files and Directo&gt;
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">3719</span><span class="o">]</span>: Reached target Basic System.
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">3719</span><span class="o">]</span>: Reached target Main User Target.
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">3719</span><span class="o">]</span>: Startup finished <span class="k">in</span> 136ms.
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com login<span class="o">[</span><span class="m">3653</span><span class="o">]</span>: pam_unix<span class="o">(</span>login:session<span class="o">)</span>: session opened <span class="k">for</span> user an&gt;
+Dec <span class="m">22</span> <span class="m">13</span>:29:34 rhcsaserver.example.com login<span class="o">[</span><span class="m">3653</span><span class="o">]</span>: LOGIN ON tty5 BY anna
+</pre></div>
+
+
+<ul>
+<li><code>loginctl terminate-session</code> and <code>loginctl terminate-user</code> can be used to stop current sessions or users.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># loginctl terminate-user anna</span>
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># loginctl list-users</span>
+ UID USER   
+<span class="m">1000</span> student
+<span class="m">1001</span> anna
+
+<span class="m">2</span> users listed.
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># loginctl user-status 1001</span>
+Failed to get user: User ID <span class="m">1001</span> is not logged <span class="k">in</span> or lingering
+</pre></div>
+
+
+<h2 id="lab_1">LAB</h2>
+<ul>
+<li>Create a user linda and open a shell as this user.</li>
+<li>As linda run two background processes, sleep 600; one of them with the highest possible priority, the other one with the lowest possible priority.</li>
+<li>Use the most efficient way to terminate all current sessions for user linda.</li>
+</ul>
+<hr />
+<h1 id="working-with-systemd">Working with Systemd</h1>
+<h2 id="exploring-systemd-units">Exploring Systemd Units</h2>
+<ul>
+<li>Systemd is started as the ==first process== after loading the kernel and is the manager of everything.</li>
+<li>It is used for starting services like the secure shell server, a web server etc.</li>
+<li>Apart from services, systemd takes care of many more items.</li>
+<li>The items started by systemd are referred to as <strong>units</strong>.</li>
+<li><code>systemctl</code> is the main management tool for systemd.</li>
+<li>To get an overview of all types of units that are available use, <code>systemctl -t help</code>.</li>
+</ul>
+<h3 id="understanding-unit-types">Understanding Unit Types</h3>
+<ul>
+<li>Service units are used to start processes.</li>
+<li>Socket units monitor activity on a port and start the corresponding Service unit when needed.</li>
+<li>Timer units are used to start services periodically.</li>
+<li>Path Units can start service units when activity is detected in the file system.</li>
+<li>Mount units are used to mount file systems</li>
+<li>
+<p>Other unit types are available, though less relevant for RHCSA.</p>
+</li>
+<li>
+<p>Service units are often used to start daemon processes.</p>
+</li>
+<li>Other types of Service units are avaialble as well</li>
+<li><strong>Type=oneshot</strong> can be used to start any command through systemd.</li>
+</ul>
+<h2 id="managing-systemd-services">Managing Systemd Services</h2>
+<ul>
+<li><strong>systemctl status</strong> shows the current status of any unit</li>
+<li><code>systemctl status sshd</code></li>
+<li>The <strong>Active</strong>: line in the output shows the current status.</li>
+<li>
+<p>The <strong>Loaded</strong>: line in the output shows which configuration is loaded, and whether the unit is enabled for automatic starting.</p>
+</li>
+<li>
+<p>Adding <code>--now</code> to <code>disable</code> and <code>enable</code> commands let's go of the need to use <code>start</code> and <code>stop</code> commands.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl enable --now sshd</span>
+Created symlink /etc/systemd/system/multi-user.target.wants/sshd.service → /usr/lib/systemd/system/sshd.service.
+<span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl status sshd</span>
+● sshd.service - OpenSSH server daemon
+     Loaded: loaded <span class="o">(</span>/usr/lib/systemd/system/sshd.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+     Active: active <span class="o">(</span>running<span class="o">)</span> since Thu <span class="m">2022</span>-12-22 <span class="m">15</span>:44:53 EST<span class="p">;</span> 16s ago
+       Docs: man:sshd<span class="o">(</span><span class="m">8</span><span class="o">)</span>
+             man:sshd_config<span class="o">(</span><span class="m">5</span><span class="o">)</span>
+   Main PID: <span class="m">5143</span> <span class="o">(</span>sshd<span class="o">)</span>
+      Tasks: <span class="m">1</span> <span class="o">(</span>limit: <span class="m">22931</span><span class="o">)</span>
+     Memory: <span class="m">1</span>.7M
+        CPU: 10ms
+     CGroup: /system.slice/sshd.service
+             └─5143 <span class="s2">&quot;sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups&quot;</span>
+
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting OpenSSH server daemon...
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">5143</span><span class="o">]</span>: Server listening on <span class="m">0</span>.0.0.0 port <span class="m">22</span>.
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">5143</span><span class="o">]</span>: Server listening on :: port <span class="m">22</span>.
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started OpenSSH server daemon.
+</pre></div>
+
+
+<h2 id="modifying-systemd-unit-configuration">Modifying Systemd Unit Configuration</h2>
+<ul>
+<li>Default system-provided systemd unit files are in <strong>/usr/bin/systemd/system</strong>.</li>
+<li>Custom unit files are in <strong>/etc/systemd/system</strong>.</li>
+<li>Run-time automatically-generated unit files are in <strong>/run/systemd</strong>.</li>
+<li>==While modifying a unit file, <strong>do NOT</strong> edit the file in /usr/lib/systemd/system** that is used as an overlay file. Instead use <code>systemctl edit unit.service</code> to edit unit files==.</li>
+<li>Use <code>systemctl show</code> to show available parameters.</li>
+<li>
+<p>Using <code>systemctl reload</code> may be required.</p>
+</li>
+<li>
+<p>Viewing service files</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl cat httpd.service</span>
+<span class="c1"># /usr/lib/systemd/system/httpd.service</span>
+<span class="c1"># See httpd.service(8) for more information on using the httpd service.</span>
+
+<span class="c1"># Modifying this file in-place is not recommended, because changes</span>
+<span class="c1"># will be overwritten during package upgrades.  To customize the</span>
+<span class="c1"># behaviour, run &quot;systemctl edit httpd&quot; to create an override unit.</span>
+
+<span class="c1"># For example, to pass additional options (such as -D definitions) to</span>
+<span class="c1"># the httpd binary at startup, create an override unit (as is done by</span>
+<span class="c1"># systemctl edit) and enter the following:</span>
+
+<span class="c1">#       [Service]</span>
+<span class="c1">#       Environment=OPTIONS=-DMY_DEFINE</span>
+
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>The Apache HTTP Server
+<span class="nv">Wants</span><span class="o">=</span>httpd-init.service
+<span class="nv">After</span><span class="o">=</span>network.target remote-fs.target nss-lookup.target httpd-init.service
+<span class="nv">Documentation</span><span class="o">=</span>man:httpd.service<span class="o">(</span><span class="m">8</span><span class="o">)</span>
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="nv">Environment</span><span class="o">=</span><span class="nv">LANG</span><span class="o">=</span>C
+
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/httpd <span class="nv">$OPTIONS</span> -DFOREGROUND
+<span class="nv">ExecReload</span><span class="o">=</span>/usr/sbin/httpd <span class="nv">$OPTIONS</span> -k graceful
+...
+</pre></div>
+
+
+<ul>
+<li>Tunables that can be added to a serive</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl show httpd.service</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="nv">ExitType</span><span class="o">=</span>main
+<span class="nv">Restart</span><span class="o">=</span>no
+<span class="nv">NotifyAccess</span><span class="o">=</span>main
+<span class="nv">RestartUSec</span><span class="o">=</span>100ms
+<span class="nv">TimeoutStartUSec</span><span class="o">=</span>1min 30s
+<span class="nv">TimeoutStopUSec</span><span class="o">=</span>1min 30s
+<span class="nv">TimeoutAbortUSec</span><span class="o">=</span>1min 30s
+<span class="nv">TimeoutStartFailureMode</span><span class="o">=</span>terminate
+<span class="nv">TimeoutStopFailureMode</span><span class="o">=</span>terminate
+<span class="nv">RuntimeMaxUSec</span><span class="o">=</span>infinity
+<span class="nv">RuntimeRandomizedExtraUSec</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">WatchdogUSec</span><span class="o">=</span>infinity
+<span class="nv">WatchdogTimestampMonotonic</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">RootDirectoryStartOnly</span><span class="o">=</span>no
+<span class="nv">RemainAfterExit</span><span class="o">=</span>no
+<span class="nv">GuessMainPID</span><span class="o">=</span>yes
+<span class="nv">MainPID</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">ControlPID</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">FileDescriptorStoreMax</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">NFileDescriptorStore</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">StatusErrno</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">Result</span><span class="o">=</span>success
+<span class="nv">ReloadResult</span><span class="o">=</span>success
+<span class="nv">CleanResult</span><span class="o">=</span>success
+<span class="nv">UID</span><span class="o">=[</span>not set<span class="o">]</span>
+...
+</pre></div>
+
+
+<ul>
+<li>Add the following lines, to make a service restart after being killed/inactive/stopped etc.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">RestartSec</span><span class="o">=</span>5s
+</pre></div>
+
+
+<h3 id="understanding-unit-dependencies">Understanding Unit Dependencies</h3>
+<ul>
+<li>Systemd units normally depend on other units.</li>
+<li>Use <code>systemctl list-dependencies</code> for a complete overview of all currently loaded units and their dependencies.</li>
+</ul>
+<div class="codehilite"><pre><span></span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl list-dependencies </span>
+default.target
+● ├─accounts-daemon.service
+● ├─gdm.service
+○ ├─nvmefc-boot-connections.service
+○ ├─power-profiles-daemon.service
+● ├─rtkit-daemon.service
+● ├─switcheroo-control.service
+○ ├─systemd-update-utmp-runlevel.service
+● ├─udisks2.service
+● ├─upower.service
+● └─multi-user.target
+●   ├─atd.service
+●   ├─auditd.service
+●   ├─avahi-daemon.service
+●   ├─chronyd.service
+●   ├─crond.service
+●   ├─cups.path
+●   ├─cups.service
+●   ├─firewalld.service
+○   ├─insights-client-boot.service
+○   ├─irqbalance.service
+●   ├─kdump.service
+●   ├─libstoragemgmt.service
+×   ├─mcelog.service
+○   ├─mdmonitor.service
+●   ├─ModemManager.service
+...
+</pre></div>
+
+
+<ul>
+<li>Use <code>systemctl list-dependencies UNIT</code> to see dependencies for any unit.  (<strong>Very helpful in trouble shooting</strong>)</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl list-dependencies sshd</span>
+sshd.service
+● ├─system.slice
+● ├─sshd-keygen.target
+○ │ ├─sshd-keygen@ecdsa.service
+○ │ ├─sshd-keygen@ed25519.service
+○ │ └─sshd-keygen@rsa.service
+● └─sysinit.target
+●   ├─dev-hugepages.mount
+●   ├─dev-mqueue.mount
+●   ├─dracut-shutdown.service
+○   ├─iscsi-onboot.service
+●   ├─kmod-static-nodes.service
+○   ├─ldconfig.service
+●   ├─lvm2-lvmpolld.socket
+●   ├─lvm2-monitor.service
+○   ├─multipathd.service
+●   ├─nis-domainname.service
+●   ├─plymouth-read-write.service
+●   ├─plymouth-start.service
+●   ├─proc-sys-fs-binfmt_misc.automount
+○   ├─selinux-autorelabel-mark.service
+●   ├─sys-fs-fuse-connections.mount
+●   ├─sys-kernel-config.mount
+●   ├─sys-kernel-debug.mount
+●   ├─sys-kernel-tracing.mount
+○   ├─systemd-ask-password-console.path
+...
+</pre></div>
+
+
+<h2 id="masking-services">Masking Services</h2>
+<ul>
+<li>Some units cannot work simultaneously on the same system.</li>
+<li>To prevent adminstrators from accidentally starting these units, use <code>systemctl mask</code>.</li>
+<li><strong>systemctl mask</strong> links a unit to the /dev/null device, which ensures that it cannot be started.</li>
+<li><strong>systemctl unmask</strong> removes the unit mask. </li>
+</ul>
+<h2 id="lab_2">LAB</h2>
+<ul>
+<li>Make sure the httpd service is automatically started.</li>
+<li>Edit its configuration such that on failure, it will continue after 1 minute.</li>
+</ul>
+<hr />
+<h1 id="task-scheduling">Task Scheduling</h1>
+<h2 id="rhel-9-scheduling-options">RHEL 9 Scheduling Options</h2>
+<ul>
+<li><strong>systemd timers</strong> are the primary solution for scheduling recurring jobs on RHEL 9.</li>
+<li><strong>crond</strong> is an older scheduling solution which is still supported and a bit easier to schedule custom tasks.</li>
+<li><strong>at</strong> is available to schedule non-recurring tasks.</li>
+</ul>
+<h2 id="scheduling-tasks-with-systemd-timers">Scheduling Tasks with Systemd Timers 💀</h2>
+<ul>
+<li>Systemd provides unit.timer files that go together with unit.service file to schedule the service files.</li>
+<li>When using systemd timers, the timer should be enabled/ started, and not the service unit.</li>
+<li>systemd timers are often installed from RPM packages.</li>
+<li>In the timer unit file, the <strong>OnCalendar</strong> option speicifes when the service should be started.</li>
+<li>
+<p>On RHEL 9, systemd timers are the default way for scheduling recurring services.</p>
+</li>
+<li>
+<p>Listing systemd timers</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl list-units -t timer</span>
+  UNIT                         LOAD   ACTIVE SUB     DESCRIPTION                                     
+  dnf-makecache.timer          loaded active waiting dnf makecache --timer
+  logrotate.timer              loaded active waiting Daily rotation of log files
+  mlocate-updatedb.timer       loaded active waiting Updates mlocate database every day
+  systemd-tmpfiles-clean.timer loaded active waiting Daily Cleanup of Temporary Directories
+  unbound-anchor.timer         loaded active waiting daily update of the root trust anchor <span class="k">for</span> DNSSEC
+
+<span class="nv">LOAD</span>   <span class="o">=</span> Reflects whether the unit definition was properly loaded.
+<span class="nv">ACTIVE</span> <span class="o">=</span> The high-level unit activation state, i.e. generalization of SUB.
+<span class="nv">SUB</span>    <span class="o">=</span> The low-level unit activation state, values depend on unit type.
+<span class="m">5</span> loaded units listed. Pass --all to see loaded but inactive units, too.
+To show all installed unit files use <span class="s1">&#39;systemctl list-unit-files&#39;</span>.
+</pre></div>
+
+
+<ul>
+<li>Listing unit files</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl list-unit-files logrotate*</span>
+UNIT FILE         STATE   VENDOR PRESET
+logrotate.service static  -            
+logrotate.timer   enabled enabled      
+
+<span class="m">2</span> unit files listed.
+</pre></div>
+
+
+<ul>
+<li>Listing teh <code>sysstat-collect.timer</code>. The <strong>OnCalendar</strong> variable here, state that the timer would run in 10th minutes</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver student<span class="o">]</span><span class="c1"># systemctl cat sysstat-collect.timer</span>
+<span class="c1"># /usr/lib/systemd/system/sysstat-collect.timer</span>
+<span class="c1"># /usr/lib/systemd/system/sysstat-collect.timer</span>
+<span class="c1"># (C) 2014 Tomasz Torcz &lt;tomek@pipebreaker.pl&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># sysstat-12.5.4 systemd unit file:</span>
+<span class="c1">#        Activates activity collector every 10 minutes</span>
+
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Run system activity accounting tool every <span class="m">10</span> minutes
+
+<span class="o">[</span>Timer<span class="o">]</span>
+<span class="nv">OnCalendar</span><span class="o">=</span>*:00/10
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>sysstat.service
+</pre></div>
+
+
+<h3 id="understanding-timer-activation">Understanding Timer Activation</h3>
+<ul>
+<li>The systemd timer <strong>OnCalendar</strong> option uses a rich language to express when the timer should activate.</li>
+<li><strong>OnCalendar=*:00/10</strong> runs every 10 minutes.</li>
+<li><strong>OnCalendar=2023-*-* 9:9,19,29:30</strong> runs the service every day in 2023 at 9:09:30, 9:19:30 and 9:29:30.</li>
+<li>Use <strong>OnUnitActivateSec</strong> to start the unit a specific time after the unit was last activated.</li>
+<li>Use <strong>OnBootSec</strong> or <strong>OnStartupSec</strong> to start the unit a specific time after booting</li>
+<li>Read <strong>man 7 systemd-time</strong> for specification of the time format to be used.</li>
+</ul>
+<h3 id="creating-a-custom-service-and-timer">Creating a custom service and timer.</h3>
+<ul>
+<li>Creating service touchfile.service</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># cat &gt;&gt; /etc/systemd/system/touchfile.service &lt;&lt; EOF</span>
+&gt; <span class="o">[</span>Unit<span class="o">]</span>
+&gt; <span class="nv">Description</span><span class="o">=</span>demo unit
+&gt; 
+&gt; <span class="o">[</span>Service<span class="o">]</span>
+&gt; <span class="nv">Type</span><span class="o">=</span>oneshot
+&gt; <span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/touch /tmp/myfile.txt
+&gt; EOF
+</pre></div>
+
+
+<ul>
+<li>Creating a timer for the above service  touchfile.timer</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># cat &gt;&gt; /etc/systemd/system/touchfile.timer &lt;&lt; EOF</span>
+&gt; <span class="o">[</span>Unit<span class="o">]</span>
+&gt; <span class="nv">Description</span><span class="o">=</span>demo timer
+&gt; 
+&gt; <span class="o">[</span>Timer<span class="o">]</span>
+&gt; <span class="nv">OnCalendar</span><span class="o">=</span>*:00/01
+&gt; EOF
+</pre></div>
+
+
+<ul>
+<li>Reloading systemd, starting the timer</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># systemctl daemon-reload</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># systemctl start touchfile.timer</span>
+</pre></div>
+
+
+<ul>
+<li>Use watch command to have a look whether the file is created or not after a minute. AFter a minute the file was created.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># watch ls -l /tmp/myfile.txt</span>
+</pre></div>
+
+
+<h2 id="scheduling-tasks-with-cron">Scheduling Tasks with Cron</h2>
+<ul>
+<li><strong>cron</strong> is an old UNIX scheduling option.</li>
+<li>It uses crond, a daemon that checks its configuration to run cron jobs periodically.</li>
+<li>Still on RHEL 9, crond is enabled as a systemd service by default.</li>
+<li>Most services that need scheduling are scheduled through systemd timers.</li>
+<li>The cron service checks its config every minute.</li>
+<li><strong>/etc/crontab</strong> is the main(managed) config file.</li>
+<li><strong>/etc/cron.d/</strong> is used for drop-in files.</li>
+<li><strong>/etc/cron.{hourly, daily, weekly, monthly}</strong> is used as a drop-in for scripts that need to be scheduled on a regular basis</li>
+</ul>
+<h3 id="understanding-cron-time-specification">Understanding Cron Time Specification</h3>
+<div class="codehilite"><pre><span></span><span class="c1"># Example of job definition:</span>
+<span class="c1"># .---------------- minute (0 - 59)</span>
+<span class="c1"># |  .------------- hour (0 - 23)</span>
+<span class="c1"># |  |  .---------- day of month (1 - 31)</span>
+<span class="c1"># |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...</span>
+<span class="c1"># |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span>
+<span class="c1"># |  |  |  |  |</span>
+<span class="c1"># *  *  *  *  * user-name  command to be executed</span>
+</pre></div>
+
+
+<h2 id="understanding-anacron">Understanding anacron</h2>
+<ul>
+<li><strong>anacron</strong> is a service behind <strong>cron</strong> that ensures that jobs are executed on a regular basis, but not at a specific time.</li>
+<li>It takes care of the jobs in **/etc/cron.{hourly, daily, weekly, monthly}</li>
+<li>Configuration is in /etc/anacrontab</li>
+<li>Don't change anything in /etc/anacrontab, use systemd instead.</li>
+</ul>
+<h2 id="using-at">Using at</h2>
+<ul>
+<li>The <strong>atd</strong> service must be running to run once-only jobs using <code>at</code>.</li>
+<li>Use <code>at &lt;time&gt;</code> to schedule a job.</li>
+<li>Type one or more job specification in the at interactive shell</li>
+<li>
+<p>Use Ctrl-D to close this shell.</p>
+</li>
+<li>
+<p>Use <code>atq</code> for a lsit of jobs currently scheduled.</p>
+</li>
+<li>Use <code>atrm</code> to remove jobs from the list.</li>
+<li>Example:</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># at teatime</span>
+warning: commands will be executed using /bin/sh
+at&gt; touch /tmp/teatime.txt
+at&gt; <span class="nb">echo</span> <span class="s2">&quot;teatime is 4 PM&quot;</span> &gt; /tmp/teatime.txt
+at&gt; &lt;EOT&gt;
+job <span class="m">1</span> at Sun Dec <span class="m">25</span> <span class="m">16</span>:00:00 <span class="m">2022</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># </span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># </span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># atq</span>
+<span class="m">1</span>   Sun Dec <span class="m">25</span> <span class="m">16</span>:00:00 <span class="m">2022</span> a root
+</pre></div>
+
+
+<ul>
+<li>Ensure that <strong>atd</strong> service is running, orelse at will not work.</li>
+</ul>
+<h2 id="understanding-temporary-files">Understanding Temporary files 💀</h2>
+<ul>
+<li>In the past, temporary files were created in the /tmp directory.</li>
+<li>Without management, these files could stay around for a long time.</li>
+<li>As a solution, the /tmp directory should be created on a RAM drive.</li>
+<li>Nowadays, <strong>systemd-tmpfiles</strong> is started while booting, and manages temporary files and directories.</li>
+<li>It will create and delete tmp files automatically to the configuration files in the following locations:</li>
+<li>/usr/lib/tmpfiles.d/</li>
+<li>/etc/lib/tmpfiles.d/</li>
+<li>
+<p>/run/tmpfiles.d/</p>
+</li>
+<li>
+<p><strong>systemd-tmpfiles</strong> works with related services to manage temporary files.</p>
+</li>
+<li><strong>systemd-tmpfiles-setup.service</strong> creates and removes temporary files according to the configuration.</li>
+<li><strong>systemd-tmpfiles-clean.timer</strong> calls the systemd-tmpfiles-clean.service to remove temporary files.</li>
+<li>By default 15 minutes after booting.</li>
+<li>
+<p>And also on a daily basis.</p>
+</li>
+<li>
+<p>In the configuration files, specify what to do with temporary files.</p>
+</li>
+<li><strong>d /run/myfiles 0750 root root</strong> - will create the directory /run/myfiles if necessary. No action if it already exists.</li>
+<li>
+<p><strong>D /run/myfiles 0750 root root 1d</strong> will create the directory if necessary and wipte its contents if it already exists. Files older than 1 day are eligible for automatic removal.</p>
+</li>
+<li>
+<p><strong>man tmpfiles.d</strong> provides detailed information and examples</p>
+</li>
+</ul>
+<h3 id="demo-showing-mangement-of-temp-files">Demo, showing mangement of temp files</h3>
+<ul>
+<li>Create a config that creates the <strong>/tmp</strong> directory and removes all unused files after 7 days.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># echo &quot;q /tmp 1777 root root 7d&quot; &gt; /etc/tmpfiles.d/tmp.conf</span>
+</pre></div>
+
+
+<ul>
+<li>Checks syntax</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># systemd-tmpfiles --clean /etc/tmpfiles.d/tmp.conf</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># echo &quot;d /tmp/myfiles 0770 root root 30s&quot; &gt; /etc/tmpfiles.d/myfiles.conf</span>
+
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># systemd-tmpfiles --create /etc/tmpfiles.d/myfiles.conf</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># sleep 30; ls -ld /tmp/myfiles</span>
+drwxrwx---. <span class="m">2</span> root root <span class="m">6</span> Dec <span class="m">24</span> <span class="m">19</span>:05 /tmp/myfiles
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># systemd-tmpfiles --clean /etc/tmpfiles.d/myfiles.conf</span>
+<span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># ls -ld /tmp/myfiles/test</span>
+ls: cannot access <span class="s1">&#39;/tmp/myfiles/test&#39;</span>: No such file or directory
+</pre></div>
+
+
+<h2 id="lab_3">LAB</h2>
+<ul>
+<li>Ensure the systemd timer that clean up tmp files is enabled</li>
+<li>Run a cron job that will issue the command touch /tmp/cronfile 5 minutes from the current time.</li>
+<li>Use at to schedule a job to power off your system at a convenient time later today.</li>
+</ul>
+<hr />
+<h1 id="understanding-logging">Understanding Logging</h1>
+<h2 id="exploring-rhel-logging-options">Exploring RHEL Logging Options</h2>
+<ul>
+<li><strong>systemd-journald</strong> is receiving log messages from different locations.</li>
+<li>The kernel</li>
+<li>Early boot procedure</li>
+<li>Syslog events</li>
+<li>
+<p>Standard output and error from daemons</p>
+</li>
+<li>
+<p>The systemd journal is non-persistent by default.</p>
+</li>
+<li>The <strong>rsyslog</strong> service reads syslog messages and writes them to different locations.</li>
+<li>Files in /var/log.</li>
+<li>According to output modules.</li>
+<li>Services may also write to /var/log</li>
+</ul>
+<h2 id="using-systemd-journald">Using systemd-journald</h2>
+<ul>
+<li><strong>systemctl status name.unit</strong> provides easy access to the last messages that have been logged for a specific service.</li>
+<li><strong>journalctl</strong> prints the entire journal.</li>
+<li>
+<p>Important messages are show in red.</p>
+</li>
+<li>
+<p><code>journalctl -p err</code> shows only messages with a priority error and higher.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># journalctl -p err</span>
+Dec <span class="m">22</span> <span class="m">12</span>:13:00 rhcsaserver.example.com kernel: piix4_smbus <span class="m">0000</span>:00:07.3: SMBus Host Controller not enab&gt;
+Dec <span class="m">22</span> <span class="m">12</span>:13:02 rhcsaserver.example.com alsactl<span class="o">[</span><span class="m">1101</span><span class="o">]</span>: alsa-lib main.c:1412:<span class="o">(</span>snd_use_case_mgr_open<span class="o">)</span> erro&gt;
+Dec <span class="m">22</span> <span class="m">12</span>:13:04 rhcsaserver.example.com virtqemud<span class="o">[</span><span class="m">1270</span><span class="o">]</span>: Unable to open /dev/kvm: No such file or direct&gt;
+Dec <span class="m">22</span> <span class="m">12</span>:13:26 rhcsaserver.example.com gdm-password<span class="o">][</span><span class="m">2059</span><span class="o">]</span>: gkr-pam: unable to locate daemon control <span class="k">fi</span>&gt;
+Dec <span class="m">22</span> <span class="m">12</span>:13:31 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">2073</span><span class="o">]</span>: Failed to start Application launched by gnome-ses&gt;
+Dec <span class="m">22</span> <span class="m">12</span>:13:31 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">2073</span><span class="o">]</span>: Failed to start Application launched by gnome-ses&gt;
+Dec <span class="m">22</span> <span class="m">12</span>:13:31 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">2073</span><span class="o">]</span>: Failed to start Application launched by gnome-ses&gt;
+</pre></div>
+
+
+<ul>
+<li><code>journalctl -f</code> shows the last 10 lines and adds new error messages while they are added.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># journalctl -f</span>
+Dec <span class="m">28</span> <span class="m">01</span>:04:59 rhcsaserver.example.com NetworkManager<span class="o">[</span><span class="m">1178</span><span class="o">]</span>: &lt;info&gt;  <span class="o">[</span><span class="m">1672207499</span>.1143<span class="o">]</span> dhcp4 <span class="o">(</span>ens160<span class="o">)</span>: state changed new lease, <span class="nv">address</span><span class="o">=</span><span class="m">192</span>.168.40.130
+Dec <span class="m">28</span> <span class="m">01</span>:19:59 rhcsaserver.example.com NetworkManager<span class="o">[</span><span class="m">1178</span><span class="o">]</span>: &lt;info&gt;  <span class="o">[</span><span class="m">1672208399</span>.1214<span class="o">]</span> dhcp4 <span class="o">(</span>ens160<span class="o">)</span>: state changed new lease, <span class="nv">address</span><span class="o">=</span><span class="m">192</span>.168.40.130
+Dec <span class="m">28</span> <span class="m">01</span>:25:23 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting dnf makecache...
+Dec <span class="m">28</span> <span class="m">01</span>:25:23 rhcsaserver.example.com dnf<span class="o">[</span><span class="m">19944</span><span class="o">]</span>: Updating Subscription Management repositories.
+Dec <span class="m">28</span> <span class="m">01</span>:25:24 rhcsaserver.example.com dnf<span class="o">[</span><span class="m">19944</span><span class="o">]</span>: Metadata cache refreshed recently.
+Dec <span class="m">28</span> <span class="m">01</span>:25:24 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: dnf-makecache.service: Deactivated successfully.
+Dec <span class="m">28</span> <span class="m">01</span>:25:24 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Finished dnf makecache.
+Dec <span class="m">28</span> <span class="m">01</span>:34:59 rhcsaserver.example.com NetworkManager<span class="o">[</span><span class="m">1178</span><span class="o">]</span>: &lt;info&gt;  <span class="o">[</span><span class="m">1672209299</span>.1176<span class="o">]</span> dhcp4 <span class="o">(</span>ens160<span class="o">)</span>: state changed new lease, <span class="nv">address</span><span class="o">=</span><span class="m">192</span>.168.40.130
+Dec <span class="m">28</span> <span class="m">01</span>:39:25 rhcsaserver.example.com gsd-color<span class="o">[</span><span class="m">2391</span><span class="o">]</span>: unable to get EDID <span class="k">for</span> xrandr-Virtual-1: unable to get EDID <span class="k">for</span> output
+Dec <span class="m">28</span> <span class="m">01</span>:44:14 rhcsaserver.example.com gnome-shell<span class="o">[</span><span class="m">2179</span><span class="o">]</span>: Source ID <span class="m">83308</span> was not found when attempting to remove it
+...
+</pre></div>
+
+
+<ul>
+<li><code>journalctl -u sshd.service</code> shows messages for sshd.service only.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># journalctl -u sshd.service</span>
+Dec <span class="m">22</span> <span class="m">12</span>:13:03 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting OpenSSH server daemon...
+Dec <span class="m">22</span> <span class="m">12</span>:13:03 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">1188</span><span class="o">]</span>: Server listening on <span class="m">0</span>.0.0.0 port <span class="m">22</span>.
+Dec <span class="m">22</span> <span class="m">12</span>:13:03 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">1188</span><span class="o">]</span>: Server listening on :: port <span class="m">22</span>.
+Dec <span class="m">22</span> <span class="m">12</span>:13:03 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started OpenSSH server daemon.
+Dec <span class="m">22</span> <span class="m">15</span>:44:33 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">1188</span><span class="o">]</span>: Received signal <span class="m">15</span><span class="p">;</span> terminating.
+Dec <span class="m">22</span> <span class="m">15</span>:44:33 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopping OpenSSH server daemon...
+Dec <span class="m">22</span> <span class="m">15</span>:44:33 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: sshd.service: Deactivated successfully.
+Dec <span class="m">22</span> <span class="m">15</span>:44:33 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Stopped OpenSSH server daemon.
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Starting OpenSSH server daemon...
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">5143</span><span class="o">]</span>: Server listening on <span class="m">0</span>.0.0.0 port <span class="m">22</span>.
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com sshd<span class="o">[</span><span class="m">5143</span><span class="o">]</span>: Server listening on :: port <span class="m">22</span>.
+Dec <span class="m">22</span> <span class="m">15</span>:44:53 rhcsaserver.example.com systemd<span class="o">[</span><span class="m">1</span><span class="o">]</span>: Started OpenSSH server daemon.
+</pre></div>
+
+
+<ul>
+<li><code>journalctl --since "-1hour"; journalctl --since today</code> allows time specification.</li>
+<li><code>journalctl -b</code> shows the current boot log.</li>
+<li><code>journalctl -xb</code> adds explanation texts to the boot log messages.</li>
+<li><code>journalctl --list-boots</code> shows all boots that have been logged (on persisitent journal only).</li>
+<li><code>journalctl -b 3</code> shows messages from the third boot log only.</li>
+</ul>
+<h2 id="preserving-the-systemd-journal">Preserving the Systemd Journal</h2>
+<ul>
+<li>The systemd journal is non-persistent.</li>
+<li>Persistency is taken care of by the rsyslog service.</li>
+<li>Rsyslog offers all the filtering you need to fine-tune log persistency.</li>
+<li>
+<p>If desired, the sytemd journal can be made persistent as well.</p>
+</li>
+<li>
+<p>Systemd journal settings are in <strong>/etc/systemd/journald.conf</strong>.</p>
+</li>
+<li>The setting <strong>Storage=auto</strong> ensures that persistent storage is happening automatically after creating the directory /var/log/journal.</li>
+<li>Other options are:</li>
+<li><strong>persistent</strong>: stores journals in /var/log/journal</li>
+<li><strong>volatile</strong>: stores journals in the temporary /run/log/journal directory.</li>
+<li>none: doesn't use any storage for the journal at all.</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># grep -i storage /etc/systemd/journald.conf </span>
+<span class="c1">#Storage=auto</span>
+</pre></div>
+
+
+<ul>
+<li>In journald.conf, default settings apply to ensure that the journal can't grow in an unlimited way.</li>
+<li>Log rotation triggers monthly.</li>
+<li>No more than 10% of the system size can be used.</li>
+<li>
+<p>No more than 15% of the file system free size can be used.</p>
+</li>
+<li>
+<p>Use `journalctl | grep -E 'Runtime Journal|System Journal' to check current settings.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">[</span>root@rhcsaserver ~<span class="o">]</span><span class="c1"># journalctl | grep -E &#39;Runtime Journal| System Journal&#39;</span>
+Dec <span class="m">22</span> <span class="m">12</span>:12:56 localhost systemd-journald<span class="o">[</span><span class="m">259</span><span class="o">]</span>: Runtime Journal <span class="o">(</span>/run/log/journal/67ab59121271413ebc12843aea2a8ee2<span class="o">)</span> is <span class="m">8</span>.0M, max <span class="m">73</span>.9M, <span class="m">65</span>.9M free.
+Dec <span class="m">22</span> <span class="m">12</span>:12:59 rhcsaserver.example.com systemd-journald<span class="o">[</span><span class="m">921</span><span class="o">]</span>: Runtime Journal <span class="o">(</span>/run/log/journal/1fe4d105a00f46c4bc4d13ac1c498b78<span class="o">)</span> is <span class="m">8</span>.0M, max <span class="m">73</span>.9M, <span class="m">65</span>.9M free.
+Dec <span class="m">22</span> <span class="m">12</span>:12:59 rhcsaserver.example.com systemd-journald<span class="o">[</span><span class="m">921</span><span class="o">]</span>: Runtime Journal <span class="o">(</span>/run/log/journal/1fe4d105a00f46c4bc4d13ac1c498b78<span class="o">)</span> is <span class="m">8</span>.0M, max <span class="m">73</span>.9M, <span class="m">65</span>.9M free.
+</pre></div>
+
+
+<h2 id="configuring-rsyslogd">Configuring rsyslogd</h2>
+<ul>
+<li>Rsyslog needs the <strong>rsyslogd</strong> service to be running.</li>
+<li>The main configuration file is <strong>/etc/rsyslog.conf</strong></li>
+<li>Snap-in files can be placed in /etc/rsyslog.d/ .</li>
+<li>Each logger line contains three items</li>
+<li><strong>facility</strong>: the specific facility that the log is created for.</li>
+<li><strong>severity</strong>: the severity from which, should be logged.</li>
+<li>
+<p><strong>destination</strong>: the file or other destination the log should be written to.</p>
+</li>
+<li>
+<p>Log files normally are in /var/log.</p>
+</li>
+<li>Use the <strong>logger</strong> command to write messages to rsyslog manually.</li>
+</ul>
+<h3 id="understanding-facilities">Understanding Facilities</h3>
+<ul>
+<li><strong>rsyslogd</strong> is and must be backward compatible with the ancient syslog service.</li>
+<li>In syslog, a fixed number of facilities was defined, like kern, authpriv, cron and more.</li>
+<li>To work with services that don't have their own facility local{0..7} can be used.</li>
+<li>Because of the lack of facilities, some services take care of their own logging and don't use rsyslog.</li>
+<li>Sample rules in /etc/syslog.conf</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c1">#### RULES ####</span><span class="w"></span>
+
+<span class="c1"># Log all kernel messages to the console.</span><span class="w"></span>
+<span class="c1"># Logging much else clutters up the screen.</span><span class="w"></span>
+<span class="c1">#kern.*                                                 /dev/console</span><span class="w"></span>
+
+<span class="c1"># Log anything (except mail) of level info or higher.</span><span class="w"></span>
+<span class="c1"># Don&#39;t log private authentication messages!</span><span class="w"></span>
+<span class="o">*.</span><span class="n">info</span><span class="p">;</span><span class="n">mail</span><span class="o">.</span><span class="n">none</span><span class="p">;</span><span class="n">authpriv</span><span class="o">.</span><span class="n">none</span><span class="p">;</span><span class="n">cron</span><span class="o">.</span><span class="n">none</span><span class="w">                </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">messages</span><span class="w"></span>
+
+<span class="c1"># The authpriv file has restricted access.</span><span class="w"></span>
+<span class="n">authpriv</span><span class="o">.*</span><span class="w">                                              </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">secure</span><span class="w"></span>
+
+<span class="c1"># Log all the mail messages in one place.</span><span class="w"></span>
+<span class="n">mail</span><span class="o">.*</span><span class="w">                                                  </span><span class="o">-/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">maillog</span><span class="w"></span>
+
+
+<span class="c1"># Log cron stuff</span><span class="w"></span>
+<span class="n">cron</span><span class="o">.*</span><span class="w">                                                  </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">cron</span><span class="w"></span>
+
+<span class="c1"># Everybody gets emergency messages</span><span class="w"></span>
+<span class="o">*.</span><span class="n">emerg</span><span class="w">                                                 </span><span class="p">:</span><span class="n">omusrmsg</span><span class="p">:</span><span class="o">*</span><span class="w"></span>
+
+<span class="c1"># Save news errors of level crit and higher in a special file.</span><span class="w"></span>
+<span class="n">uucp</span><span class="p">,</span><span class="n">news</span><span class="o">.</span><span class="n">crit</span><span class="w">                                          </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">spooler</span><span class="w"></span>
+
+<span class="c1"># Save boot messages also to boot.log</span><span class="w"></span>
+<span class="n">local7</span><span class="o">.*</span><span class="w">                                                </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">boot</span><span class="o">.</span><span class="n">log</span><span class="w"></span>
+</pre></div>
+
+
+<h3 id="using-logrotate">Using logrotate</h3>
+<ul>
+<li>The <strong>logrotate</strong> command is started by a systemd timer to prevent them from growing too big.</li>
+<li>After roatation, the file is renamed to a file, with the roatation date as extension.</li>
+<li>When too many files are rotated, according to the settings, the oldest file will be discarded.</li>
+<li>Log rotation is configured in files in /etc/logrotate.conf and /etc/logrotate.d/</li>
+</ul>
+<h2 id="lab_4">LAB</h2>
+<ul>
+<li>Make sure the systemd journal is logged persistently.</li>
+<li>Create an entry is rsyslogh that writes all messages with a severity of error or higher to /var/log/error</li>
+<li>Ensure that /var/log/error is rotated on a monthly basis, and the last 12 logs are kept before they are rotated out.</li>
+</ul>
+<hr />
+            </div>
+        </div>
+
+        <div id="generated-at">
+        Generated at: 2023-01-19 17:59:21
+    </div>
+            
+
+        <div id="footer">
+            Powered by
+            <a href="https://github.com/menduo/mdtree" target="_blank"
+                title="https://github.com/menduo/mdtree">
+                https://github.com/menduo/mdtree
+            </a>
+        </div>
+</div>
+</body>
+
+<script>
+
+</script>
+
+
+</html>
+
